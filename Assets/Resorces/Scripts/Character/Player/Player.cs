@@ -11,11 +11,12 @@ public class PlayerMove : MonoBehaviour
     public float jumpFor = 3f;
     private Vector3 moveDir = Vector3.zero;
     private float rotate = 3f;
+    private bool moveFast;
     // Start is called before the first frame update
     void Start()
     {
         rigidbody = this.GetComponent<Rigidbody>();
-        anim = gameObject.transform.GetChild(0).GetComponent<Animator>();
+        anim = GameObject.Find("character").GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -23,21 +24,23 @@ public class PlayerMove : MonoBehaviour
     {
         moveDir.x = Input.GetAxis("Horizontal");
         moveDir.z = Input.GetAxis("Vertical");
-        moveDir.Normalize();
-
-        if(Input.GetKeyDown(KeyCode.Space))
+        moveDir = new Vector3(moveDir.x, 0, moveDir.z).normalized;
+        moveFast = Input.GetButton("Run");
+        anim.SetBool("isRun", moveFast);
+        if (Input.GetKeyDown(KeyCode.Space))
         {
             Vector3 jumpPower = Vector3.up * jumpFor;
             rigidbody.AddForce(jumpPower,ForceMode.VelocityChange);
         }
+        
     }
 
     private void FixedUpdate()
     {
         if (moveDir != Vector3.zero)
         {
-            transform.forward = moveDir;
             anim.SetBool("isWalk", true);
+            transform.forward = moveDir;           
             //Vector3.Lerp(transform.forward,moveDir,rotate*Time.deltaTime);
         }
         else
