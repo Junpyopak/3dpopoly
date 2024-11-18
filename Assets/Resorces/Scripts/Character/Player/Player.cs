@@ -7,47 +7,69 @@ public class PlayerMove : MonoBehaviour
 
     private Rigidbody rigidbody;
     Animator anim;
+    Camera camera;
+    CharacterController chController;
     public float speed = 3f;
+    public float runSpeed = 7f;
     public float jumpFor = 3f;
-    private Vector3 moveDir = Vector3.zero;
     private float rotate = 3f;
     private bool moveFast;
+    public float Smove = 10f;
     // Start is called before the first frame update
     void Start()
     {
         rigidbody = this.GetComponent<Rigidbody>();
         anim = GameObject.Find("character").GetComponent<Animator>();
+        camera = Camera.main;
+        chController = GameObject.Find("character").GetComponent<CharacterController>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        moveDir.x = Input.GetAxis("Horizontal");
-        moveDir.z = Input.GetAxis("Vertical");
-        moveDir = new Vector3(moveDir.x, 0, moveDir.z).normalized;
-        moveFast = Input.GetButton("Run");
-        anim.SetBool("isRun", moveFast);
-        if (Input.GetKeyDown(KeyCode.Space))
+        //moveDir.x = Input.GetAxis("Horizontal");
+        //moveDir.z = Input.GetAxis("Vertical");
+        //moveDir = new Vector3(moveDir.x, 0, moveDir.z).normalized;
+        if (Input.GetKey(KeyCode.LeftShift))
         {
-            Vector3 jumpPower = Vector3.up * jumpFor;
-            rigidbody.AddForce(jumpPower,ForceMode.VelocityChange);
-        }
-        
-    }
-
-    private void FixedUpdate()
-    {
-        if (moveDir != Vector3.zero)
-        {
-            anim.SetBool("isWalk", true);
-            transform.forward = moveDir;           
-            //Vector3.Lerp(transform.forward,moveDir,rotate*Time.deltaTime);
+            moveFast = true;
+            speed = runSpeed;
+            anim.SetBool("isRun", moveFast);
         }
         else
         {
-            anim.SetBool("isWalk",false);
+            moveFast = false;
+            speed = 3;
+            anim.SetBool("isRun", moveFast);
         }
 
-        rigidbody.MovePosition (this.transform.position + moveDir * speed * Time.deltaTime);
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            Vector3 jumpPower = Vector3.up * jumpFor;
+            rigidbody.AddForce(jumpPower, ForceMode.VelocityChange);
+        }
+        Movement();
+    }
+    private void LateUpdate()
+    {
+        Vector3 playerRaotation = Vector3.Scale(camera.transform.forward, new Vector3(1, 0, 1));
+        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(playerRaotation), Time.deltaTime * Smove);
+    }
+    void Movement()
+    {
+        
+        Vector3 forward = transform.TransformDirection(Vector3.forward);
+        Vector3 right = transform.TransformDirection(Vector3.right);
+
+        Vector3 moveDir = forward * Input.GetAxisRaw("Vertical") + right * Input.GetAxisRaw("Horizontal");
+        if(moveDir != Vector3.zero)
+        {
+            anim.SetBool("isWalk", true);
+        }
+        else
+        {
+            anim.SetBool("isWalk", false);
+        }
+        chController.Move(moveDir.normalized * speed * Time.deltaTime);
     }
 }
