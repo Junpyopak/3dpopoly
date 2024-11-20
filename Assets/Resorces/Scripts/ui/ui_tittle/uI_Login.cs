@@ -34,7 +34,7 @@ public class uI_Login : MonoBehaviour
 
         if (inputField.text == Shared.Scenemgr.GetPlayerPrefsStringKey("id"))
         {
-            Shared.Scenemgr.ChangeScene(eSCENE.LOBBY);
+            Shared.Scenemgr.ChangeScene(eSCENE.LOADING);
         }
         else
         {
