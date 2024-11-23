@@ -35,26 +35,29 @@ public class ui_LOADING : MonoBehaviour
     void Update()
     {
         Timer();
-        if (SceneLoadTime >= 73)
+        if (SceneLoadTime >= 13)
         {
             Pause();
             cortine = waitTime(5);
             StartCoroutine(cortine);
-            if (SceneLoadTime >= 20)
+            if (SceneLoadTime >= LoadingTime)
             {
-                StopCoroutine(cortine);
-                StartCoroutine (cortine);
-                if (SceneLoadTime >= 60)
-                {
-                    Pause();
-
-                    if (SceneLoadTime >= LoadingTime)
-                    {
-                        SceneManager.LoadScene("LOBBY");
-                    }
-                }
+                SceneManager.LoadScene("LOBBY");
             }
+            //if (SceneLoadTime >= 20)
+            //{
+            //    StopCoroutine(cortine);
+            //    StartCoroutine (cortine);
+            //    if (SceneLoadTime >= 60)
+            //    {
+            //        Pause();
 
+            //        //if (SceneLoadTime >= LoadingTime)
+            //        //{
+            //        //    SceneManager.LoadScene("LOBBY");
+            //        //}
+            //    }
+            //}
         }
     }
     public IEnumerator waitTime(float wait)
