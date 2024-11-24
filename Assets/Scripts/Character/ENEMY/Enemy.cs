@@ -7,6 +7,8 @@ public class Enemy : MonoBehaviour
     public float detectionDis = 3f;//탐지 거리
     public Transform player;//플레이어 위치 찾기위함용
     public float moveSpeed = 2f;
+    public float Mindetect = 300;
+    private RaycastHit hit;
     Animator anim;
     // Start is called before the first frame update
     void Start()
@@ -17,7 +19,12 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Debug.DrawRay(transform.position, transform.forward*Mindetect,Color.blue);
         Trace();
+        if(Physics.Raycast(transform.position,transform.forward,out hit,Mindetect))//레이케스트로 적 확인
+        {
+
+        }
     }
 
     private void Trace()//타겟추적
@@ -48,4 +55,6 @@ public class Enemy : MonoBehaviour
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(this.transform.position, detectionDis);
     }
+
+
 }
