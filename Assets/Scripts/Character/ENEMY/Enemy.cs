@@ -7,8 +7,8 @@ public class Enemy : MonoBehaviour
     public float detectionDis = 3f;//탐지 거리
     public Transform player;//플레이어 위치 찾기위함용
     public float moveSpeed = 2f;
-    public float Mindetect = 300;
-    private RaycastHit hit;
+    public float Mindetect = 3;
+    [SerializeField] LayerMask Layer;
     Animator anim;
     // Start is called before the first frame update
     void Start()
@@ -19,12 +19,7 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.DrawRay(transform.position, transform.forward*Mindetect,Color.blue);
-        Trace();
-        if(Physics.Raycast(transform.position,transform.forward,out hit,Mindetect))//레이케스트로 적 확인
-        {
-
-        }
+        Trace();      
     }
 
     private void Trace()//타겟추적
@@ -41,7 +36,16 @@ public class Enemy : MonoBehaviour
             transform.position = new Vector3(transform.position.x, 0, transform.position.z);
             //transform.position = Vector3.MoveTowards(transform.position,player.position,moveSpeed*Time.deltaTime);
             transform.position += Detection*moveSpeed*Time.deltaTime;
-            
+
+            Vector3 dis = transform.forward;
+            Ray ray = new Ray(transform.position, dis);
+            RaycastHit hit;
+            Physics.Raycast(ray, out hit, Mindetect, Layer);
+            if(hit.collider)
+            {
+                Debug.Log("플레이어 확인");
+            }
+
         }
         else
         {
@@ -54,6 +58,12 @@ public class Enemy : MonoBehaviour
         //탐지지점확인용
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(this.transform.position, detectionDis);
+
+        Vector3 offset = new Vector3(0, 1, 0); 
+        Vector3 Pos = transform.position + offset;
+        Vector3 dis = Vector3.forward;
+        Gizmos.color = Color.blue;
+        Gizmos.DrawLine(Pos, Pos+dis * Mindetect);
     }
 
 
