@@ -15,6 +15,7 @@ public class PlayerMove : MonoBehaviour
     private float rotate = 3f;
     private bool moveFast;
     public float Smove = 10f;
+    public float Range = 2f;
     // Start is called before the first frame update
     void Start()
     {
@@ -71,5 +72,11 @@ public class PlayerMove : MonoBehaviour
             anim.SetBool("isWalk", false);
         }
         chController.Move(moveDir.normalized * speed * Time.deltaTime);
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(this.transform.position, Range);
     }
 }

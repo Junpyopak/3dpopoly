@@ -830,7 +830,7 @@ MonoBehaviour:
   detectionDis: 8
   player: {fileID: 827915929}
   moveSpeed: 2
-  Mindetect: 300
+  AttakRange: 3
   Layer:
     serializedVersion: 2
     m_Bits: 0
@@ -1030,6 +1030,7 @@ MonoBehaviour:
   runSpeed: 7
   jumpFor: 3
   Smove: 10
+  Range: 2
 --- !u!54 &1287483869
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1436,7 +1437,7 @@ MonoBehaviour:
   detectionDis: 7
   player: {fileID: 827915929}
   moveSpeed: 2
-  Mindetect: 3
+  AttakRange: 3
   Layer:
     serializedVersion: 2
     m_Bits: 0
