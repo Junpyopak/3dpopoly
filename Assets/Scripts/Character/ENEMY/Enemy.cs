@@ -13,7 +13,7 @@ public class Enemy : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        anim = GameObject.Find("Mutant").GetComponent<Animator>();
+        anim = GameObject.Find("Warrok").GetComponent<Animator>();
     }
 
     // Update is called once per frame
