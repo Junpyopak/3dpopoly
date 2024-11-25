@@ -12,9 +12,11 @@ public class Enemy : MonoBehaviour
     [SerializeField] LayerMask Layer;
     private IEnumerator Cortine;
     Animator anim;
+    BoxCollider BoxCollider;
     // Start is called before the first frame update
     void Start()
     {
+        BoxCollider = GameObject.Find("AttackBox").GetComponent<BoxCollider>();
         anim = GameObject.Find("Warrok").GetComponent<Animator>();
     }
 
@@ -22,6 +24,7 @@ public class Enemy : MonoBehaviour
     void Update()
     {
         Trace();
+        Attack();
     }
 
     public IEnumerator StopTrace(float wait)
@@ -41,7 +44,6 @@ public class Enemy : MonoBehaviour
         float TargetDistance = Vector3.Distance(transform.position, player.position);
         if(TargetDistance>AttakRange&& TargetDistance < detectionDis)//플레이어의 위치가 어택범위보다 클때만 이동하기위함
         {
-            Attack();
             if (TargetDistance < detectionDis)
             {
                 transform.LookAt(player);
@@ -52,6 +54,7 @@ public class Enemy : MonoBehaviour
                 transform.position = new Vector3(transform.position.x, 0, transform.position.z);
                 //transform.position = Vector3.MoveTowards(transform.position,player.position,moveSpeed*Time.deltaTime);
                 transform.position += Detection * moveSpeed * Time.deltaTime;
+               
             }
         }   
         else
@@ -74,6 +77,15 @@ public class Enemy : MonoBehaviour
 
     private void Attack()
     {
-        Debug.Log("플레이어 공격");
+        float distance = Vector3.Distance(transform.position, player.position);
+        if (distance < AttakRange)//공격범위에 들어왔을때 공격 에님 돌아가기
+        {
+            anim.SetBool("isAttack", true);
+            Debug.Log("플레이어 공격");
+        }
+        else
+        {
+            anim.SetBool("isAttack", false);
+        }
     }
 }
