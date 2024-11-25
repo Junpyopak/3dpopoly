@@ -16,6 +16,7 @@ public class PlayerMove : MonoBehaviour
     private bool moveFast;
     public float Smove = 10f;
     public float Range = 2f;
+    public bool Attack1 = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -23,6 +24,21 @@ public class PlayerMove : MonoBehaviour
         anim = GameObject.Find("character").GetComponent<Animator>();
         camera = Camera.main;
         chController = GameObject.Find("character").GetComponent<CharacterController>();
+    }
+
+    private void FixedUpdate()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            if (Attack1 == false)
+            {
+                anim.SetTrigger("Atk1");
+            }
+            else if(anim.GetBool("Atk2") == false)
+            {
+                anim.SetBool("Atk2", true);
+            }
+        }
     }
 
     // Update is called once per frame
@@ -49,7 +65,9 @@ public class PlayerMove : MonoBehaviour
             Vector3 jumpPower = Vector3.up * jumpFor;
             rigidbody.AddForce(jumpPower, ForceMode.VelocityChange);
         }
+       
         Movement();
+
     }
     private void LateUpdate()
     {
@@ -79,4 +97,30 @@ public class PlayerMove : MonoBehaviour
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(this.transform.position, Range);
     }
+
+    private void StartAttack()
+    {
+        Attack1 = true;
+    }
+    void EndAttack1()
+    {
+        Attack1 = false;
+    }
+    void EndAttack2()
+    {
+        anim.SetBool("Atk2",false);
+        Debug.Log("æÓ≈√2≥°");
+    }
+
+    //void Attack()
+    //{
+    //    if(Input.GetKeyDown(KeyCode.V)&& Attack1 == false)
+    //    {
+    //        anim.SetTrigger("Atk1");
+    //        if (anim.GetBool("Atk2") == false)
+    //        {
+    //            anim.SetBool("Atk2", true);
+    //        }
+    //    }
+    //}
 }

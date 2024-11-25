@@ -981,6 +981,7 @@ MonoBehaviour:
   jumpFor: 3
   Smove: 10
   Range: 2
+  Attack1: 0
 --- !u!143 &1287483871
 CharacterController:
   m_ObjectHideFlags: 0
@@ -1382,7 +1383,7 @@ MonoBehaviour:
   detectionDis: 7
   player: {fileID: 827915929}
   moveSpeed: 2
-  AttakRange: 2.5
+  AttakRange: 2.2
   Layer:
     serializedVersion: 2
     m_Bits: 0
