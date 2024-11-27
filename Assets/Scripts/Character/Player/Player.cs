@@ -6,7 +6,6 @@ public class Player : Character
 {
 
     private Rigidbody rigidbody;
-    Animator anim;
     Camera camera;
     CharacterController chController;
     
@@ -15,16 +14,17 @@ public class Player : Character
     private float rotate = 3f;
     private bool moveFast;
     public float Smove = 10f;
-    public float Range = 2f;
     public bool Attack1 = false;
     // Start is called before the first frame update
     void Start()
     {
         Speed = 3f;
+        Range = 2f;
         rigidbody = this.GetComponent<Rigidbody>();
-        anim = GameObject.Find("character").GetComponent<Animator>();
+        animator = GameObject.Find("character").GetComponent<Animator>();
         camera = Camera.main;
         chController = GameObject.Find("character").GetComponent<CharacterController>();
+
     }
 
     private void FixedUpdate()
@@ -43,13 +43,13 @@ public class Player : Character
         {
             moveFast = true;
             Speed = runSpeed;
-            anim.SetBool("isRun", moveFast);
+            animator.SetBool("isRun", moveFast);
         }
         else
         {
             moveFast = false;
             Speed = 3;
-            anim.SetBool("isRun", moveFast);
+            animator.SetBool("isRun", moveFast);
         }
 
         if (Input.GetKeyDown(KeyCode.Space))
@@ -75,19 +75,19 @@ public class Player : Character
         Vector3 moveDir = forward * Input.GetAxisRaw("Vertical") + right * Input.GetAxisRaw("Horizontal");
         if(moveDir != Vector3.zero)
         {
-            anim.SetBool("isWalk", true);
+            animator.SetBool("isWalk", true);
         }
         else
         {
-            anim.SetBool("isWalk", false);
+            animator.SetBool("isWalk", false);
         }
         chController.Move(moveDir.normalized * Speed * Time.deltaTime);
     }
 
-    private void OnDrawGizmos()
+
+    public override void OnDrawGizmos()
     {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(this.transform.position, Range);
+        base.OnDrawGizmos();
     }
 
     private void StartAttack()
@@ -100,7 +100,7 @@ public class Player : Character
     }
     void EndAttack2()
     {
-        anim.SetBool("Atk2",false);
+        animator.SetBool("Atk2",false);
         Debug.Log("æÓ≈√2≥°");
     }
 
@@ -110,11 +110,11 @@ public class Player : Character
         {
             if (Attack1 == false)
             {
-                anim.SetTrigger("Atk1");
+                    animator.SetTrigger("Atk1");
             }
-            else if (anim.GetBool("Atk2") == false)
+            else if (animator.GetBool("Atk2") == false)
             {
-                anim.SetBool("Atk2", true);
+                animator.SetBool("Atk2", true);
             }
         }
     }
