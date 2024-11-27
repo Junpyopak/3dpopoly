@@ -19,7 +19,6 @@ public class Player : Character
     void Start()
     {
         Speed = 3f;
-        Range = 2f;
         rigidbody = this.GetComponent<Rigidbody>();
         animator = GameObject.Find("character").GetComponent<Animator>();
         camera = Camera.main;
@@ -35,10 +34,6 @@ public class Player : Character
     // Update is called once per frame
     void Update()
     {
-        
-        //moveDir.x = Input.GetAxis("Horizontal");
-        //moveDir.z = Input.GetAxis("Vertical");
-        //moveDir = new Vector3(moveDir.x, 0, moveDir.z).normalized;
         if (Input.GetKey(KeyCode.LeftShift))
         {
             moveFast = true;
@@ -118,19 +113,6 @@ public class Player : Character
             }
         }
     }
-
-
-    //void Attack()
-    //{
-    //    if(Input.GetKeyDown(KeyCode.V)&& Attack1 == false)
-    //    {
-    //        anim.SetTrigger("Atk1");
-    //        if (anim.GetBool("Atk2") == false)
-    //        {
-    //            anim.SetBool("Atk2", true);
-    //        }
-    //    }
-    //}
 
     private void OnTriggerEnter(Collider other)
     {

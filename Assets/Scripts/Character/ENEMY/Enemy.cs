@@ -12,7 +12,6 @@ public class Enemy : Character
     // Start is called before the first frame update
     void Start()
     {
-        Range = 2f;
         Speed = 2f;
         BoxCollider = GameObject.Find("AttackBox").GetComponent<BoxCollider>();
         animator = GameObject.Find("Warrok").GetComponent<Animator>();
@@ -24,16 +23,6 @@ public class Enemy : Character
     {
         Trace();
         Attack();
-    }
-
-    public IEnumerator StopTrace(float wait)
-    {
-        while (true)
-        {
-            yield return new WaitForSeconds(wait);
-            Trace();
-        }
-
     }
 
     private void Trace()//타겟추적
@@ -61,28 +50,14 @@ public class Enemy : Character
             animator.SetBool("isWalk", false);
         }
     }
-
-    //private void OnDrawGizmos()
-    //{
-    //    //탐지지점확인용
-    //    Gizmos.color = Color.red;
-    //    Gizmos.DrawWireSphere(this.transform.position, detectionDis);
-
-    //    ;
-    //    //공격범위 확인
-    //    Gizmos.color = Color.blue;
-    //    Gizmos.DrawWireSphere(this.transform.position, Range);
-    //}
-
     public override void OnDrawGizmos()
     {
         //탐지지점확인용
         base.OnDrawGizmos();
         //공격범위 확인
         Gizmos.color = Color.blue;
-        Gizmos.DrawWireSphere(this.transform.position, Range);
+        Gizmos.DrawWireSphere(this.transform.position, detectionDis);
     }
-
     protected override void Attack()
     {
         float distance = Vector3.Distance(transform.position, player.position);
@@ -96,20 +71,6 @@ public class Enemy : Character
             animator.SetBool("isAttack", false);
         }
     }
-
-    //private void Attack()
-    //{
-    //    float distance = Vector3.Distance(transform.position, player.position);
-    //    if (distance < AttakRange)//공격범위에 들어왔을때 공격 에님 돌아가기
-    //    {
-    //        anim.SetBool("isAttack", true);
-    //        Debug.Log("플레이어 공격");
-    //    }
-    //    else
-    //    {
-    //        anim.SetBool("isAttack", false);
-    //    }
-    //}
     private void OnTriggerEnter(Collider other)
     {
         if(other.gameObject.layer==LayerMask.NameToLayer("Sward")) 
