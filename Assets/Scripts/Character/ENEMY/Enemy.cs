@@ -10,7 +10,6 @@ public class Enemy : Character
     public float moveSpeed = 2f;
     public float AttakRange = 2;
     [SerializeField] LayerMask Layer;
-    private IEnumerator Cortine;
     Animator anim;
     BoxCollider BoxCollider;
     // Start is called before the first frame update

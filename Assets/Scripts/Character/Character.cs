@@ -9,5 +9,5 @@ public abstract class Character : MonoBehaviour
 
     //protected abstract void SetSpeed();
     protected abstract void Attack();
-
+    public  Character() { }
 }
