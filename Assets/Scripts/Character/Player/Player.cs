@@ -117,6 +117,7 @@ public class Player : Character
         }
     }
 
+
     //void Attack()
     //{
     //    if(Input.GetKeyDown(KeyCode.V)&& Attack1 == false)

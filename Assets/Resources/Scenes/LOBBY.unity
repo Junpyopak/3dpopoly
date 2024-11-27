@@ -1383,7 +1383,7 @@ MonoBehaviour:
   detectionDis: 7
   player: {fileID: 827915929}
   moveSpeed: 2
-  AttakRange: 2.2
+  AttakRange: 2
   Layer:
     serializedVersion: 2
     m_Bits: 0

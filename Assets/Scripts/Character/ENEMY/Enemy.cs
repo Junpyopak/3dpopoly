@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEditor.Build;
 using UnityEngine;
 
-public class Enemy : MonoBehaviour
+public class Enemy : Character
 {
     public float detectionDis = 3f;//탐지 거리
     public Transform player;//플레이어 위치 찾기위함용
@@ -75,7 +75,7 @@ public class Enemy : MonoBehaviour
         Gizmos.DrawWireSphere(this.transform.position, AttakRange);
     }
 
-    private void Attack()
+    protected override void Attack()
     {
         float distance = Vector3.Distance(transform.position, player.position);
         if (distance < AttakRange)//공격범위에 들어왔을때 공격 에님 돌아가기
@@ -88,4 +88,19 @@ public class Enemy : MonoBehaviour
             anim.SetBool("isAttack", false);
         }
     }
+
+    //private void Attack()
+    //{
+    //    float distance = Vector3.Distance(transform.position, player.position);
+    //    if (distance < AttakRange)//공격범위에 들어왔을때 공격 에님 돌아가기
+    //    {
+    //        anim.SetBool("isAttack", true);
+    //        Debug.Log("플레이어 공격");
+    //    }
+    //    else
+    //    {
+    //        anim.SetBool("isAttack", false);
+    //    }
+    //}
+
 }
