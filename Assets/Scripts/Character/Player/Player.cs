@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMove : MonoBehaviour
+public class Player : Character
 {
 
     private Rigidbody rigidbody;
@@ -28,17 +28,7 @@ public class PlayerMove : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (Input.GetMouseButtonDown(0))
-        {
-            if (Attack1 == false)
-            {
-                anim.SetTrigger("Atk1");
-            }
-            else if(anim.GetBool("Atk2") == false)
-            {
-                anim.SetBool("Atk2", true);
-            }
-        }
+        Attack();
     }
 
     // Update is called once per frame
@@ -110,6 +100,21 @@ public class PlayerMove : MonoBehaviour
     {
         anim.SetBool("Atk2",false);
         Debug.Log("æÓ≈√2≥°");
+    }
+
+    protected override void Attack()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            if (Attack1 == false)
+            {
+                anim.SetTrigger("Atk1");
+            }
+            else if (anim.GetBool("Atk2") == false)
+            {
+                anim.SetBool("Atk2", true);
+            }
+        }
     }
 
     //void Attack()
