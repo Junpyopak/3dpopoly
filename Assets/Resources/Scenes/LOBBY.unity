@@ -779,7 +779,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   detectionDis: 8
   player: {fileID: 827915929}
-  moveSpeed: 2
   AttakRange: 3
   Layer:
     serializedVersion: 2
@@ -976,7 +975,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0406c3b8f8835cc428c1ee779d8540e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 3
   runSpeed: 7
   jumpFor: 3
   Smove: 10
@@ -1083,7 +1081,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1356281777}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.354, y: 0.711, z: 0.702}
+  m_LocalPosition: {x: -0.354, y: 0.564, z: 0.198}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1382,7 +1380,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   detectionDis: 7
   player: {fileID: 827915929}
-  moveSpeed: 2
   AttakRange: 2
   Layer:
     serializedVersion: 2

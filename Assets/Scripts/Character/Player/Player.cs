@@ -9,7 +9,7 @@ public class Player : Character
     Animator anim;
     Camera camera;
     CharacterController chController;
-    public float speed = 3f;
+    
     public float runSpeed = 7f;
     public float jumpFor = 3f;
     private float rotate = 3f;
@@ -20,6 +20,7 @@ public class Player : Character
     // Start is called before the first frame update
     void Start()
     {
+        Speed = 3f;
         rigidbody = this.GetComponent<Rigidbody>();
         anim = GameObject.Find("character").GetComponent<Animator>();
         camera = Camera.main;
@@ -34,19 +35,20 @@ public class Player : Character
     // Update is called once per frame
     void Update()
     {
+        
         //moveDir.x = Input.GetAxis("Horizontal");
         //moveDir.z = Input.GetAxis("Vertical");
         //moveDir = new Vector3(moveDir.x, 0, moveDir.z).normalized;
         if (Input.GetKey(KeyCode.LeftShift))
         {
             moveFast = true;
-            speed = runSpeed;
+            Speed = runSpeed;
             anim.SetBool("isRun", moveFast);
         }
         else
         {
             moveFast = false;
-            speed = 3;
+            Speed = 3;
             anim.SetBool("isRun", moveFast);
         }
 
@@ -79,7 +81,7 @@ public class Player : Character
         {
             anim.SetBool("isWalk", false);
         }
-        chController.Move(moveDir.normalized * speed * Time.deltaTime);
+        chController.Move(moveDir.normalized * Speed * Time.deltaTime);
     }
 
     private void OnDrawGizmos()
