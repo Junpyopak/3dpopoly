@@ -131,4 +131,12 @@ public class Player : Character
     //        }
     //    }
     //}
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.gameObject.layer==LayerMask.NameToLayer("MonsterAttackBox"))
+        {
+            Debug.Log("µ¥¹ÌÁö");
+        }
+    }
 }

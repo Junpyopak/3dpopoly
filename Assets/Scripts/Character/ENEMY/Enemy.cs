@@ -101,5 +101,12 @@ public class Enemy : Character
     //        anim.SetBool("isAttack", false);
     //    }
     //}
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.gameObject.layer==LayerMask.NameToLayer("Sward")) 
+        {
+            Debug.Log("몬스터데미지");
+        }
+    }
 
 }
