@@ -18,6 +18,7 @@ public class Player : Character
     // Start is called before the first frame update
     void Start()
     {
+        
         Speed = 3f;
         rigidbody = this.GetComponent<Rigidbody>();
         animator = GameObject.Find("character").GetComponent<Animator>();
@@ -78,13 +79,6 @@ public class Player : Character
         }
         chController.Move(moveDir.normalized * Speed * Time.deltaTime);
     }
-
-
-    public override void OnDrawGizmos()
-    {
-        base.OnDrawGizmos();
-    }
-
     private void StartAttack()
     {
         Attack1 = true;
@@ -120,5 +114,10 @@ public class Player : Character
         {
             Debug.Log("µ¥¹ÌÁö");
         }
+    }
+
+    public override void OnDrawGizmos()
+    {
+        base.OnDrawGizmos();
     }
 }
