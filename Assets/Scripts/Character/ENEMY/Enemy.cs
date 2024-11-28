@@ -9,13 +9,17 @@ public class Enemy : Character
     public Transform player;//플레이어 위치 찾기위함용
     [SerializeField] LayerMask Layer;
     BoxCollider BoxCollider;
+    public int Hp = 70;
+    public int AttackDamage = 7;
+    Player Player;
     // Start is called before the first frame update
     void Start()
     {
+        Player = GameObject.Find("character").GetComponent<Player>();
         Speed = 2f;
         BoxCollider = GameObject.Find("AttackBox").GetComponent<BoxCollider>();
         animator = GameObject.Find("Warrok").GetComponent<Animator>();
-
+        BoxCollider.enabled = false;
     }
 
     // Update is called once per frame
@@ -63,11 +67,13 @@ public class Enemy : Character
         float distance = Vector3.Distance(transform.position, player.position);
         if (distance < Range)//공격범위에 들어왔을때 공격 에님 돌아가기
         {
+            BoxCollider.enabled = true;
             animator.SetBool("isAttack", true);
             Debug.Log("플레이어 공격");
         }
         else
         {
+            BoxCollider.enabled = false;
             animator.SetBool("isAttack", false);
         }
     }
@@ -75,8 +81,16 @@ public class Enemy : Character
     {
         if(other.gameObject.layer==LayerMask.NameToLayer("Sward")) 
         {
+            Damage();
             Debug.Log("몬스터데미지");
         }
     }
-
+    public void Damage()
+    {
+        Hp -= Player.AttackDamage;
+        if (Hp <= 0)
+        {
+            Debug.Log("몬스터가 죽었습니다");
+        }
+    }
 }

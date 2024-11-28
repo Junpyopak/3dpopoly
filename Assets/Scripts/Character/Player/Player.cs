@@ -8,24 +8,27 @@ public class Player : Character
     private Rigidbody rigidbody;
     Camera camera;
     CharacterController chController;
-    
     public float runSpeed = 7f;
     public float jumpFor = 3f;
     private float rotate = 3f;
     private bool moveFast;
     public float Smove = 10f;
     public bool Attack1 = false;
+    Enemy Enemy;
+    public int Hp = 100;
+    public int AttackDamage = 20;
+    MeshCollider MeshCollider;
     // Start is called before the first frame update
     void Start()
     {
-        
+        Enemy = GameObject.Find("Warrok").GetComponent<Enemy>();
         Speed = 3f;
         rigidbody = this.GetComponent<Rigidbody>();
         animator = GameObject.Find("character").GetComponent<Animator>();
         camera = Camera.main;
         chController = GameObject.Find("character").GetComponent<CharacterController>();
-
     }
+    
 
     private void FixedUpdate()
     {
@@ -53,7 +56,7 @@ public class Player : Character
             Vector3 jumpPower = Vector3.up * jumpFor;
             rigidbody.AddForce(jumpPower, ForceMode.VelocityChange);
         }
-       
+
         Movement();
 
     }
@@ -64,12 +67,12 @@ public class Player : Character
     }
     void Movement()
     {
-        
+
         Vector3 forward = transform.TransformDirection(Vector3.forward);
         Vector3 right = transform.TransformDirection(Vector3.right);
 
         Vector3 moveDir = forward * Input.GetAxisRaw("Vertical") + right * Input.GetAxisRaw("Horizontal");
-        if(moveDir != Vector3.zero)
+        if (moveDir != Vector3.zero)
         {
             animator.SetBool("isWalk", true);
         }
@@ -89,7 +92,7 @@ public class Player : Character
     }
     void EndAttack2()
     {
-        animator.SetBool("Atk2",false);
+        animator.SetBool("Atk2", false);
         Debug.Log("어택2끝");
     }
 
@@ -99,7 +102,7 @@ public class Player : Character
         {
             if (Attack1 == false)
             {
-                    animator.SetTrigger("Atk1");
+                animator.SetTrigger("Atk1");
             }
             else if (animator.GetBool("Atk2") == false)
             {
@@ -110,14 +113,26 @@ public class Player : Character
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.layer==LayerMask.NameToLayer("MonsterAttackBox"))
+        if (other.gameObject.layer == LayerMask.NameToLayer("MonsterAttackBox"))
         {
+            Damage();
             Debug.Log("데미지");
+            Debug.Log($"스텟{Hp}");
         }
     }
+   
 
     public override void OnDrawGizmos()
     {
         base.OnDrawGizmos();
+    }
+
+    public void Damage()
+    {
+        Hp -= Enemy.AttackDamage;
+        if (Hp <= 0)
+        {
+            Debug.Log("죽었습니다");
+        }
     }
 }

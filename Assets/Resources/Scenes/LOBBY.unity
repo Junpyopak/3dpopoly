@@ -425,6 +425,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -8294764487174099494, guid: 8d5575e4af2a14046bdd46da63ff6198, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: -8183481454299698827, guid: 8d5575e4af2a14046bdd46da63ff6198, type: 3}
       propertyPath: m_Layer
       value: 12
@@ -744,10 +748,10 @@ PrefabInstance:
       addedObject: {fileID: 1287483871}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 8d5575e4af2a14046bdd46da63ff6198, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1287483873}
+      addedObject: {fileID: 1287483877}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 8d5575e4af2a14046bdd46da63ff6198, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1287483874}
+      addedObject: {fileID: 1287483876}
   m_SourcePrefab: {fileID: 100100000, guid: 8d5575e4af2a14046bdd46da63ff6198, type: 3}
 --- !u!1 &648024985
 GameObject:
@@ -800,10 +804,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   detectionDis: 8
   player: {fileID: 827915929}
-  AttakRange: 3
   Layer:
     serializedVersion: 2
     m_Bits: 0
+  Hp: 0
+  AttackDamage: 7
 --- !u!23 &648024989
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1004,8 +1009,9 @@ MonoBehaviour:
   runSpeed: 7
   jumpFor: 3
   Smove: 10
-  Range: 2
   Attack1: 0
+  Hp: 100
+  AttackDamage: 20
 --- !u!143 &1287483871
 CharacterController:
   m_ObjectHideFlags: 0
@@ -1032,7 +1038,29 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 1, z: 0}
---- !u!54 &1287483873
+--- !u!64 &1287483876
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1287483866}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -4480263318040302648, guid: 8d5575e4af2a14046bdd46da63ff6198, type: 3}
+--- !u!54 &1287483877
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1054,34 +1082,11 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 10
   m_CollisionDetection: 0
---- !u!136 &1287483874
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1287483866}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 1, z: 0}
 --- !u!1 &1356281777
 GameObject:
   m_ObjectHideFlags: 0
@@ -1094,7 +1099,7 @@ GameObject:
   - component: {fileID: 1356281779}
   m_Layer: 13
   m_Name: AttackBox
-  m_TagString: Untagged
+  m_TagString: Tag
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1106,12 +1111,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1356281777}
-  m_LocalRotation: {x: -0.890173, y: 0.05498792, z: -0.44068712, w: 0.101800226}
-  m_LocalPosition: {x: 0.225, y: 0.182, z: 0.187}
+  m_LocalRotation: {x: -0.16059941, y: 0.012512555, z: 0.018566899, w: 0.9867657}
+  m_LocalPosition: {x: -0.31235635, y: -0.39980906, z: 0.2997186}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1483568001}
+  m_Father: {fileID: 1571382056}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &1356281779
@@ -1379,7 +1384,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: 6502182839619065283, guid: 01349be0dc1adb5449471652cbce5773, type: 3}
+    - targetCorrespondingSourceObject: {fileID: -3480699329000672020, guid: 01349be0dc1adb5449471652cbce5773, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1356281778}
     m_AddedComponents:
@@ -1409,10 +1414,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   detectionDis: 7
   player: {fileID: 827915929}
-  AttakRange: 2
   Layer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 4096
+  Hp: 70
+  AttackDamage: 7
 --- !u!136 &1401529792
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1433,12 +1439,12 @@ CapsuleCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5
-  m_Height: 1
+  m_Height: 2
   m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!4 &1483568001 stripped
+  m_Center: {x: 0, y: 1, z: 0}
+--- !u!4 &1571382056 stripped
 Transform:
-  m_CorrespondingSourceObject: {fileID: 6502182839619065283, guid: 01349be0dc1adb5449471652cbce5773, type: 3}
+  m_CorrespondingSourceObject: {fileID: -3480699329000672020, guid: 01349be0dc1adb5449471652cbce5773, type: 3}
   m_PrefabInstance: {fileID: 1401529787}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1646688948
@@ -1603,11 +1609,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5636007606043308990, guid: 421ea12c64fd0af47a4a20ad532c8856, type: 3}
       propertyPath: m_Name
-      value: Sword Two-Hander Blue
+      value: Weapon
       objectReference: {fileID: 0}
     - target: {fileID: 5636007606043308990, guid: 421ea12c64fd0af47a4a20ad532c8856, type: 3}
       propertyPath: m_Layer
       value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 6124454511418279298, guid: 421ea12c64fd0af47a4a20ad532c8856, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1643,7 +1653,7 @@ MeshCollider:
   serializedVersion: 5
   m_Convex: 1
   m_CookingOptions: 30
-  m_Mesh: {fileID: 0}
+  m_Mesh: {fileID: -2432090755550338912, guid: 1c02745d78b45074887f6c194f37c593, type: 3}
 --- !u!1 &1667999367
 GameObject:
   m_ObjectHideFlags: 0
