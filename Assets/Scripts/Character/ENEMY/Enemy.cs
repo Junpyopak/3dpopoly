@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEditor.Build;
 using UnityEngine;
 
@@ -83,6 +84,7 @@ public class Enemy : Character
         {
             Damage();
             Debug.Log("몬스터데미지");
+            Debug.Log($"스탯{Hp}");
         }
     }
     public void Damage()

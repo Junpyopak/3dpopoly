@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Player : Character
 {
-
     private Rigidbody rigidbody;
     Camera camera;
     CharacterController chController;
@@ -19,6 +18,7 @@ public class Player : Character
     public int AttackDamage = 20;
     MeshCollider MeshCollider;
     // Start is called before the first frame update
+
     void Start()
     {
         Enemy = GameObject.Find("Warrok").GetComponent<Enemy>();
@@ -27,6 +27,8 @@ public class Player : Character
         animator = GameObject.Find("character").GetComponent<Animator>();
         camera = Camera.main;
         chController = GameObject.Find("character").GetComponent<CharacterController>();
+        MeshCollider = GameObject.Find("Weapon").GetComponent<MeshCollider>();
+        MeshCollider.enabled = false;
     }
     
 
@@ -89,10 +91,12 @@ public class Player : Character
     void EndAttack1()
     {
         Attack1 = false;
+        MeshCollider.enabled = false;
     }
     void EndAttack2()
     {
         animator.SetBool("Atk2", false);
+        MeshCollider.enabled = false;
         Debug.Log("æÓ≈√2≥°");
     }
 
@@ -100,13 +104,17 @@ public class Player : Character
     {
         if (Input.GetMouseButtonDown(0))
         {
+            
             if (Attack1 == false)
             {
+                MeshCollider.enabled = true;
                 animator.SetTrigger("Atk1");
             }
             else if (animator.GetBool("Atk2") == false)
             {
+                MeshCollider.enabled = true;
                 animator.SetBool("Atk2", true);
+
             }
         }
     }
@@ -120,7 +128,8 @@ public class Player : Character
             Debug.Log($"Ω∫≈›{Hp}");
         }
     }
-   
+
+
 
     public override void OnDrawGizmos()
     {
