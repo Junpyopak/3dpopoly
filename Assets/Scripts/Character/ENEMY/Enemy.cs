@@ -9,7 +9,7 @@ public class Enemy : Character
     public float detectionDis = 3f;//탐지 거리
     public Transform player;//플레이어 위치 찾기위함용
     [SerializeField] LayerMask Layer;
-    BoxCollider BoxCollider;
+    SphereCollider sphereCollider;
     public int Hp = 70;
     public int AttackDamage = 7;
     Player Player;
@@ -18,9 +18,11 @@ public class Enemy : Character
     {
         Player = GameObject.Find("character").GetComponent<Player>();
         Speed = 2f;
-        BoxCollider = GameObject.Find("AttackBox").GetComponent<BoxCollider>();
+        sphereCollider = GameObject.Find("LeftHand").GetComponent<SphereCollider>();
+        // BoxCollider = GameObject.Find("AttackBox").GetComponent<BoxCollider>();
         animator = GameObject.Find("Warrok").GetComponent<Animator>();
-        BoxCollider.enabled = false;
+        //BoxCollider.enabled = false;
+        sphereCollider.enabled = false;
     }
 
     // Update is called once per frame
@@ -68,14 +70,14 @@ public class Enemy : Character
         float distance = Vector3.Distance(transform.position, player.position);
         if (distance < Range)//공격범위에 들어왔을때 공격 에님 돌아가기
         {
-            BoxCollider.enabled = true;
+            //BoxCollider.enabled = true;
             animator.SetBool("isAttack", true);
             Debug.Log("플레이어 공격");
         }
         else
         {
-            BoxCollider.enabled = false;
             animator.SetBool("isAttack", false);
+            
         }
     }
     private void OnTriggerEnter(Collider other)
@@ -94,5 +96,14 @@ public class Enemy : Character
         {
             Debug.Log("몬스터가 죽었습니다");
         }
+    }
+    void StartAttack()
+    {
+        sphereCollider.enabled = true;
+    }
+
+    void EndAttack()
+    {
+        sphereCollider.enabled = false;
     }
 }

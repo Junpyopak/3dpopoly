@@ -16,7 +16,7 @@ public class Player : Character
     Enemy Enemy;
     public int Hp = 100;
     public int AttackDamage = 20;
-    MeshCollider MeshCollider;
+    BoxCollider BoxCollider;
     // Start is called before the first frame update
 
     void Start()
@@ -27,8 +27,10 @@ public class Player : Character
         animator = GameObject.Find("character").GetComponent<Animator>();
         camera = Camera.main;
         chController = GameObject.Find("character").GetComponent<CharacterController>();
-        MeshCollider = GameObject.Find("Weapon").GetComponent<MeshCollider>();
-        MeshCollider.enabled = false;
+        //MeshCollider = GameObject.Find("Weapon").GetComponent<MeshCollider>();
+        //MeshCollider.enabled = false;
+        BoxCollider = GameObject.Find("Weapon").GetComponent<BoxCollider>();
+        BoxCollider.enabled = false;
     }
     
 
@@ -91,30 +93,32 @@ public class Player : Character
     void EndAttack1()
     {
         Attack1 = false;
-        MeshCollider.enabled = false;
     }
     void EndAttack2()
     {
         animator.SetBool("Atk2", false);
-        MeshCollider.enabled = false;
         Debug.Log("æÓ≈√2≥°");
     }
 
+    void StartCol()
+    {
+        BoxCollider.enabled = true;
+    }
+    void EndCol()
+    {
+        BoxCollider.enabled = false;
+    }
     protected override void Attack()
     {
         if (Input.GetMouseButtonDown(0))
-        {
-            
+        {        
             if (Attack1 == false)
             {
-                MeshCollider.enabled = true;
                 animator.SetTrigger("Atk1");
             }
             else if (animator.GetBool("Atk2") == false)
-            {
-                MeshCollider.enabled = true;
+            {              
                 animator.SetBool("Atk2", true);
-
             }
         }
     }
