@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public abstract class Character : MonoBehaviour
@@ -10,7 +11,8 @@ public abstract class Character : MonoBehaviour
     //protected int Hp;
     //protected int Attack_Damage;
     //protected abstract void SetSpeed();
-    protected abstract void Attack();
+    public abstract void Attack();
+    public abstract void Moved();
     public  Character() { }
 
 
@@ -20,6 +22,10 @@ public abstract class Character : MonoBehaviour
         Gizmos.DrawWireSphere(this.transform.position, Range);
     }
 
+    public virtual void OnTriggerEnter(Collider other)
+    {
+        
+    }
     //public void Damage(int  damage)
     //{
     //    Hp -= damage;

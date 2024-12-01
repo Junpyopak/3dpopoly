@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Player : Character
@@ -61,7 +62,7 @@ public class Player : Character
             rigidbody.AddForce(jumpPower, ForceMode.VelocityChange);
         }
 
-        Movement();
+        Moved();
 
     }
     private void LateUpdate()
@@ -69,9 +70,8 @@ public class Player : Character
         Vector3 playerRaotation = Vector3.Scale(camera.transform.forward, new Vector3(1, 0, 1));
         transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(playerRaotation), Time.deltaTime * Smove);
     }
-    void Movement()
+    public override void Moved()
     {
-
         Vector3 forward = transform.TransformDirection(Vector3.forward);
         Vector3 right = transform.TransformDirection(Vector3.right);
 
@@ -86,6 +86,23 @@ public class Player : Character
         }
         chController.Move(moveDir.normalized * Speed * Time.deltaTime);
     }
+    //void Movement()
+    //{
+
+    //    Vector3 forward = transform.TransformDirection(Vector3.forward);
+    //    Vector3 right = transform.TransformDirection(Vector3.right);
+
+    //    Vector3 moveDir = forward * Input.GetAxisRaw("Vertical") + right * Input.GetAxisRaw("Horizontal");
+    //    if (moveDir != Vector3.zero)
+    //    {
+    //        animator.SetBool("isWalk", true);
+    //    }
+    //    else
+    //    {
+    //        animator.SetBool("isWalk", false);
+    //    }
+    //    chController.Move(moveDir.normalized * Speed * Time.deltaTime);
+    //}
     private void StartAttack()
     {
         Attack1 = true;
@@ -108,7 +125,7 @@ public class Player : Character
     {
         BoxCollider.enabled = false;
     }
-    protected override void Attack()
+    public override void Attack()
     {
         if (Input.GetMouseButtonDown(0))
         {        
@@ -123,7 +140,7 @@ public class Player : Character
         }
     }
 
-    private void OnTriggerEnter(Collider other)
+   public override void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.layer == LayerMask.NameToLayer("MonsterAttackBox"))
         {
@@ -132,8 +149,6 @@ public class Player : Character
             Debug.Log($"½ºÅÝ{Hp}");
         }
     }
-
-
 
     public override void OnDrawGizmos()
     {
