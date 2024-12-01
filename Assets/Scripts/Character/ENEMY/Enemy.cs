@@ -8,7 +8,6 @@ public class Enemy : Character
 {
     public float detectionDis = 3f;//탐지 거리
     public Transform player;//플레이어 위치 찾기위함용
-    [SerializeField] LayerMask Layer;
     SphereCollider sphereCollider;
     public int Hp = 70;
     public int AttackDamage = 7;
@@ -28,33 +27,33 @@ public class Enemy : Character
     // Update is called once per frame
     void Update()
     {
-        Moved();
-        Attack();
+       // Moved();
+       // Attack();
     }
 
     public override void Moved()
     {
-        //플레이어와의 거리 계산
-        float TargetDistance = Vector3.Distance(transform.position, player.position);
-        if (TargetDistance > Range && TargetDistance < detectionDis)//플레이어의 위치가 어택범위보다 클때만 이동하기위함
-        {
-            if (TargetDistance < detectionDis)
-            {
-                transform.LookAt(player);
-                animator.SetBool("isWalk", true);
-                //타겟과의 방향 계산
-                Vector3 Detection = (player.position - transform.position).normalized;
-                //플레이어 위치 따라가기
-                transform.position = new Vector3(transform.position.x, 0, transform.position.z);
-                //transform.position = Vector3.MoveTowards(transform.position,player.position,moveSpeed*Time.deltaTime);
-                transform.position += Detection * Speed * Time.deltaTime;
+        //////플레이어와의 거리 계산
+        //float TargetDistance = Vector3.Distance(transform.position, player.position);
+        //if (TargetDistance > Range && TargetDistance < detectionDis)//플레이어의 위치가 어택범위보다 클때만 이동하기위함
+        //{
+        //    if (TargetDistance < detectionDis)
+        //    {
+        //        transform.LookAt(player);
+        //        animator.SetBool("isWalk", true);
+        //        //타겟과의 방향 계산
+        //        Vector3 Detection = (player.position - transform.position).normalized;
+        //        //플레이어 위치 따라가기
+        //        transform.position = new Vector3(transform.position.x, 0, transform.position.z);
+        //        //transform.position = Vector3.MoveTowards(transform.position,player.position,moveSpeed*Time.deltaTime);
+        //        transform.position += Detection * Speed * Time.deltaTime;
 
-            }
-        }
-        else
-        {
-            animator.SetBool("isWalk", false);
-        }
+        //    }
+        //}
+        //else
+        //{
+        //    animator.SetBool("isWalk", false);
+        //}
     }
     //private void Trace()//타겟추적
     //{
@@ -101,7 +100,7 @@ public class Enemy : Character
         else
         {
             animator.SetBool("isAttack", false);
-            
+
         }
     }
     public override void OnTriggerEnter(Collider other)
@@ -122,12 +121,12 @@ public class Enemy : Character
             Debug.Log("몬스터가 죽었습니다");
         }
     }
-    void StartAttack()
+    public void StartAttack()
     {
         sphereCollider.enabled = true;
     }
 
-    void EndAttack()
+   public void EndAttack()
     {
         sphereCollider.enabled = false;
     }

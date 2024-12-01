@@ -12,4 +12,11 @@ public enum eSCENE
     END,
 
 }
-
+public enum eAi
+{
+    eAI_CREATE,
+    eAI_SEARCH,
+    eAI_MOVE,
+    eAI_RESET,
+    eAI_ATTACK,
+}
