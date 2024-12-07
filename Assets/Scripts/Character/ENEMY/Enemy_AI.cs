@@ -14,7 +14,6 @@ public class Enemy_AI : Enemy
     {
         Character = _Character;
     }
-
     public void State()
     {
         switch (AiState)
