@@ -847,7 +847,7 @@ MonoBehaviour:
   enemyCount: 0
   SpawnPoint: {fileID: 5567205}
   listEnemy:
-  - {fileID: 873534635910024682, guid: 7991c8554b7a30645b44a96076189760, type: 3}
+  - {fileID: 1479741190060190479, guid: 7991c8554b7a30645b44a96076189760, type: 3}
   spawnTime: 4
   sTimer: 0
 --- !u!4 &1237044922
@@ -1436,7 +1436,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &329693557313831468
+--- !u!1001 &541912568300750802
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -1444,55 +1444,55 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 873534635910024682, guid: 7991c8554b7a30645b44a96076189760, type: 3}
+    - target: {fileID: 1479741190060190479, guid: 7991c8554b7a30645b44a96076189760, type: 3}
       propertyPath: m_Name
       value: Warrok
       objectReference: {fileID: 0}
-    - target: {fileID: 2131568057769104543, guid: 7991c8554b7a30645b44a96076189760, type: 3}
+    - target: {fileID: 4047026953165576036, guid: 7991c8554b7a30645b44a96076189760, type: 3}
       propertyPath: m_RootOrder
       value: 6
       objectReference: {fileID: 0}
-    - target: {fileID: 2131568057769104543, guid: 7991c8554b7a30645b44a96076189760, type: 3}
+    - target: {fileID: 4047026953165576036, guid: 7991c8554b7a30645b44a96076189760, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2131568057769104543, guid: 7991c8554b7a30645b44a96076189760, type: 3}
+    - target: {fileID: 4047026953165576036, guid: 7991c8554b7a30645b44a96076189760, type: 3}
       propertyPath: m_LocalPosition.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2131568057769104543, guid: 7991c8554b7a30645b44a96076189760, type: 3}
+    - target: {fileID: 4047026953165576036, guid: 7991c8554b7a30645b44a96076189760, type: 3}
       propertyPath: m_LocalPosition.z
       value: 8
       objectReference: {fileID: 0}
-    - target: {fileID: 2131568057769104543, guid: 7991c8554b7a30645b44a96076189760, type: 3}
+    - target: {fileID: 4047026953165576036, guid: 7991c8554b7a30645b44a96076189760, type: 3}
       propertyPath: m_LocalRotation.w
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 2131568057769104543, guid: 7991c8554b7a30645b44a96076189760, type: 3}
+    - target: {fileID: 4047026953165576036, guid: 7991c8554b7a30645b44a96076189760, type: 3}
       propertyPath: m_LocalRotation.x
       value: -0
       objectReference: {fileID: 0}
-    - target: {fileID: 2131568057769104543, guid: 7991c8554b7a30645b44a96076189760, type: 3}
+    - target: {fileID: 4047026953165576036, guid: 7991c8554b7a30645b44a96076189760, type: 3}
       propertyPath: m_LocalRotation.y
       value: -0
       objectReference: {fileID: 0}
-    - target: {fileID: 2131568057769104543, guid: 7991c8554b7a30645b44a96076189760, type: 3}
+    - target: {fileID: 4047026953165576036, guid: 7991c8554b7a30645b44a96076189760, type: 3}
       propertyPath: m_LocalRotation.z
       value: -0
       objectReference: {fileID: 0}
-    - target: {fileID: 2131568057769104543, guid: 7991c8554b7a30645b44a96076189760, type: 3}
+    - target: {fileID: 4047026953165576036, guid: 7991c8554b7a30645b44a96076189760, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2131568057769104543, guid: 7991c8554b7a30645b44a96076189760, type: 3}
+    - target: {fileID: 4047026953165576036, guid: 7991c8554b7a30645b44a96076189760, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2131568057769104543, guid: 7991c8554b7a30645b44a96076189760, type: 3}
+    - target: {fileID: 4047026953165576036, guid: 7991c8554b7a30645b44a96076189760, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7561031095060600378, guid: 7991c8554b7a30645b44a96076189760, type: 3}
+    - target: {fileID: 6687914027753021501, guid: 7991c8554b7a30645b44a96076189760, type: 3}
       propertyPath: player
       value: 
       objectReference: {fileID: 827915929}

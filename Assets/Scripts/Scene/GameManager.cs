@@ -43,7 +43,8 @@ public class GameManager : MonoBehaviour
         Vector3 SpawnPos = Pos + newPos;//기존 박스콜라이더의 위치에서 위에 선언한 위치로 나오게끔
         GameObject go = Instantiate(listEnemy[0], SpawnPos, Quaternion.identity);
 
-        go.name = $"monster {testIndex.ToString()}";
+        //go.name = $"Warrok {testIndex.ToString()}";
+        go.name = "Warrok";
         testIndex++;
     }
    public void CheckSpawn()//설정된 최대 적수 많큼 적을 리스폰
