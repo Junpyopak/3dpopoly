@@ -847,7 +847,7 @@ MonoBehaviour:
   enemyCount: 0
   SpawnPoint: {fileID: 5567205}
   listEnemy:
-  - {fileID: 1479741190060190479, guid: 7991c8554b7a30645b44a96076189760, type: 3}
+  - {fileID: 541912568300750803}
   spawnTime: 4
   sTimer: 0
 --- !u!4 &1237044922
@@ -1501,3 +1501,8 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7991c8554b7a30645b44a96076189760, type: 3}
+--- !u!1 &541912568300750803 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1479741190060190479, guid: 7991c8554b7a30645b44a96076189760, type: 3}
+  m_PrefabInstance: {fileID: 541912568300750802}
+  m_PrefabAsset: {fileID: 0}
