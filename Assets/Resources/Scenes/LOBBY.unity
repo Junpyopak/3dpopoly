@@ -823,7 +823,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1237044922}
-  - component: {fileID: 1237044921}
+  - component: {fileID: 1237044923}
   m_Layer: 0
   m_Name: BattleManager
   m_TagString: Untagged
@@ -831,25 +831,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1237044921
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1237044920}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 20689cd296ebd68478abdf6883dbd056, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxEnemy: 5
-  enemyCount: 1
-  SpawnPoint: {fileID: 5567205}
-  listEnemy:
-  - {fileID: 541912568300750803}
-  spawnTime: 4
-  sTimer: 0
 --- !u!4 &1237044922
 Transform:
   m_ObjectHideFlags: 0
@@ -867,6 +848,25 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1237044923
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1237044920}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71f38d614a062f94b8da14df6c10759f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxEnemy: 5
+  enemyCount: 0
+  SpawnPoint: {fileID: 5567205}
+  listEnemy:
+  - {fileID: 541912568300750803}
+  spawnTime: 4
+  sTimer: 0
 --- !u!1 &1287483866 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 8d5575e4af2a14046bdd46da63ff6198, type: 3}
