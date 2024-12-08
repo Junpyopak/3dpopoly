@@ -44,8 +44,9 @@ public class GameManager : MonoBehaviour
         GameObject go = Instantiate(listEnemy[0], SpawnPos, Quaternion.identity);
 
         //go.name = $"Warrok {testIndex.ToString()}";
+        //testIndex++;
         go.name = "Warrok";
-        testIndex++;
+       
     }
    public void CheckSpawn()//설정된 최대 적수 많큼 적을 리스폰
     {
