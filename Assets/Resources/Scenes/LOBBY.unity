@@ -844,7 +844,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxEnemy: 5
-  enemyCount: 0
+  enemyCount: 1
   SpawnPoint: {fileID: 5567205}
   listEnemy:
   - {fileID: 541912568300750803}
