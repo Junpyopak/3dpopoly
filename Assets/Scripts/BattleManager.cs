@@ -49,7 +49,6 @@ public class BattleManager : MonoBehaviour
     }
     public void CheckSpawn()//설정된 최대 적수 많큼 적을 리스폰
     {
-
         if (enemyCount < maxEnemy)//,최대 적 수보다 현재 적 수가 적으면 리스폰
         {
             sTimer += Time.deltaTime;
