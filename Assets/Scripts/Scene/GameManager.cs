@@ -50,7 +50,7 @@ public class GameManager : MonoBehaviour
    public void CheckSpawn()//설정된 최대 적수 많큼 적을 리스폰
     {
 
-        if (enemyCount < maxEnemy)//최대 적 수보다 현재 적 수가 적으면 리스폰
+        if (enemyCount==0&& enemyCount < maxEnemy)//현재 남은 적이 없고,최대 적 수보다 현재 적 수가 적으면 리스폰
         {
             sTimer += Time.deltaTime;
             if (sTimer >= spawnTime)//적 소환타이머가 돌아가고 리스폰시간이 되면 리스폰
