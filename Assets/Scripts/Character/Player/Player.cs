@@ -23,6 +23,7 @@ public class Player : Character
 
     void Start()
     {
+        
         Enemy = GameObject.Find("Warrok").GetComponent<Enemy>();
         Speed = 3f;
         rigidbody = this.GetComponent<Rigidbody>();
@@ -34,7 +35,6 @@ public class Player : Character
         BoxCollider = GameObject.Find("Weapon").GetComponent<BoxCollider>();
         BoxCollider.enabled = false;
     }
-    
 
     public void SetMove(MoveStrategy moveStrategy)
     {
