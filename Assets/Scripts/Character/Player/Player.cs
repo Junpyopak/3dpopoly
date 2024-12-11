@@ -6,6 +6,7 @@ using UnityEngine;
 public class Player : Character
 {
     private Rigidbody rigidbody;
+    private MoveStrategy moveStrategy;
     Camera camera;
     CharacterController chController;
     public float runSpeed = 7f;
@@ -35,6 +36,16 @@ public class Player : Character
     }
     
 
+    public void SetMove(MoveStrategy moveStrategy)
+    {
+        this.moveStrategy = moveStrategy;
+    }
+
+    public void Move()
+    {
+        moveStrategy.Move();
+    }
+
     private void FixedUpdate()
     {
         Attack();
@@ -45,9 +56,11 @@ public class Player : Character
     {
         if (Input.GetKey(KeyCode.LeftShift))
         {
+            SetMove(new RunStrategy());
             moveFast = true;
             Speed = runSpeed;
             animator.SetBool("isRun", moveFast);
+            Move();
         }
         else
         {
@@ -72,6 +85,7 @@ public class Player : Character
     }
     public override void Moved()
     {
+        SetMove(new WalkStrategy());
         Vector3 forward = transform.TransformDirection(Vector3.forward);
         Vector3 right = transform.TransformDirection(Vector3.right);
 
@@ -79,12 +93,14 @@ public class Player : Character
         if (moveDir != Vector3.zero)
         {
             animator.SetBool("isWalk", true);
+            Move();
         }
         else
         {
             animator.SetBool("isWalk", false);
         }
         chController.Move(moveDir.normalized * Speed * Time.deltaTime);
+        
     }
     //void Movement()
     //{

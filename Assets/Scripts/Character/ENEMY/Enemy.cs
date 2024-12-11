@@ -18,9 +18,7 @@ public class Enemy : Character
         Player = GameObject.Find("character").GetComponent<Player>();
         Speed = 2f;
         sphereCollider = GameObject.Find("LeftHand").GetComponent<SphereCollider>();
-        // BoxCollider = GameObject.Find("AttackBox").GetComponent<BoxCollider>();
-        animator = GameObject.Find("Warrok").GetComponent<Animator>();
-        //BoxCollider.enabled = false;
+        animator = GetComponent<Animator>();
         sphereCollider.enabled = false;
     }
 

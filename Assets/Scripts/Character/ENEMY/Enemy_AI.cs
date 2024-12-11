@@ -94,4 +94,8 @@ public class Enemy_AI : Enemy
             animator.SetBool("isAttack", false);
         }
     }
+    protected virtual void Damage()
+    {
+        base.Damage();
+    }
 }
