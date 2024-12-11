@@ -17,13 +17,15 @@ public class Player : Character
     public bool Attack1 = false;
     Enemy Enemy;
     public int Hp = 100;
+    public int MaxHp = 100;
     public int AttackDamage = 20;
     BoxCollider BoxCollider;
+    [SerializeField]HpGauge hpGauge;
     // Start is called before the first frame update
 
     void Start()
     {
-        
+        Hp = MaxHp;
         Enemy = GameObject.Find("Warrok").GetComponent<Enemy>();
         Speed = 3f;
         rigidbody = this.GetComponent<Rigidbody>();
@@ -174,6 +176,7 @@ public class Player : Character
     public void Damage()
     {
         Hp -= Enemy.AttackDamage;
+        hpGauge.SetPlayerHp(Hp, MaxHp);
         if (Hp <= 0)
         {
             Debug.Log("ав╬З╫ю╢о╢ы");

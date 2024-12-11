@@ -1223,7 +1223,9 @@ MonoBehaviour:
   Smove: 10
   Attack1: 0
   Hp: 100
+  MaxHp: 100
   AttackDamage: 20
+  hpGauge: {fileID: 1807621329}
 --- !u!143 &1287483871
 CharacterController:
   m_ObjectHideFlags: 0

@@ -29,7 +29,7 @@ public class HpGauge : MonoBehaviour
     {
         if (Hp.fillAmount < Effect.fillAmount)//데미지를 입어 체력이 감소했을때
         {
-            Effect.fillAmount -= Time.deltaTime * 0.5f; //이펙트의 붉은 부분이 감소됨
+            Effect.fillAmount -= Time.deltaTime * 0.1f; //이펙트의 붉은 부분이 감소됨
 
             if (Effect.fillAmount <= Hp.fillAmount)//만약 Hp값보다 작아져 버린다면
             {
@@ -39,7 +39,7 @@ public class HpGauge : MonoBehaviour
         float value = curPlayerHp / maxPlayerHp;//남은 hp의 비율
         if (Hp.fillAmount > value) //데미지를 입음
         {
-            Hp.fillAmount -= Time.deltaTime;
+            Hp.fillAmount -= Time.deltaTime*0.2f;
             if (Hp.fillAmount <= value)
             {
                 Hp.fillAmount = value;
@@ -52,6 +52,11 @@ public class HpGauge : MonoBehaviour
         {
             Destroy(gameObject);
         }
+    }
+    public void SetPlayerHp(int _hp, int _maxHp)
+    {
+        curPlayerHp = _hp;
+        maxPlayerHp = _maxHp;
     }
 }
 
