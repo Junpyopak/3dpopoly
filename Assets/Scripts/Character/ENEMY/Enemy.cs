@@ -116,6 +116,7 @@ public class Enemy : Character
         Hp -= Player.AttackDamage;
         if (Hp <= 0)
         {
+            Hp = 0;
             Debug.Log("몬스터가 죽었습니다");
         }
     }

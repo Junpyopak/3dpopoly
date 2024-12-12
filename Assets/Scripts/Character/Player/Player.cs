@@ -43,6 +43,7 @@ public class Player : Character
         this.moveStrategy = moveStrategy;
     }
 
+
     public void Move()
     {
         moveStrategy.Move();
@@ -175,10 +176,12 @@ public class Player : Character
 
     public void Damage()
     {
+        
         Hp -= Enemy.AttackDamage;
         hpGauge.SetPlayerHp(Hp, MaxHp);
         if (Hp <= 0)
         {
+            
             Debug.Log("ав╬З╫ю╢о╢ы");
         }
     }
