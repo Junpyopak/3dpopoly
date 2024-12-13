@@ -21,6 +21,7 @@ public class WalkStrategy :Player,MoveStrategy
         //if (moveDir != Vector3.zero)
         //{
         //    animator.SetBool("isWalk", true);
+        //    Move();
         //}
         //else
         //{

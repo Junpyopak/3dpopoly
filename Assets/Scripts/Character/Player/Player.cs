@@ -44,7 +44,7 @@ public class Player : Character
     }
 
 
-    public void Move()
+    public void DoMove()
     {
         moveStrategy.Move();
     }
@@ -63,7 +63,7 @@ public class Player : Character
             moveFast = true;
             Speed = runSpeed;
             animator.SetBool("isRun", moveFast);
-            Move();
+            DoMove();
         }
         else
         {
@@ -96,7 +96,7 @@ public class Player : Character
         if (moveDir != Vector3.zero)
         {
             animator.SetBool("isWalk", true);
-            Move();
+            DoMove();
         }
         else
         {
