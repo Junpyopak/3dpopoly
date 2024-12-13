@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEditor.Build;
 using UnityEngine;
+using static UI_TITLE;
 
 public class Enemy : Character
 {
@@ -12,12 +13,15 @@ public class Enemy : Character
     public int Hp = 70;
     public int AttackDamage = 7;
     Player Player;
+    BattleManager battleManager;
     // Start is called before the first frame update
     void Start()
     {
         Player = GameObject.Find("character").GetComponent<Player>();
+        player = GameObject.Find("character").transform;
         Speed = 2f;
         sphereCollider = GameObject.Find("LeftHand").GetComponent<SphereCollider>();
+        battleManager = GameObject.Find("BattleManager").GetComponent<BattleManager>();
         animator = GetComponent<Animator>();
         sphereCollider.enabled = false;
     }
@@ -117,6 +121,8 @@ public class Enemy : Character
         if (Hp <= 0)
         {
             Hp = 0;
+            Destroy(gameObject);
+            battleManager.enemyCount -= 1;
             Debug.Log("몬스터가 죽었습니다");
         }
     }

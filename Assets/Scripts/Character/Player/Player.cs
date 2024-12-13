@@ -103,7 +103,6 @@ public class Player : Character
             animator.SetBool("isWalk", false);
         }
         chController.Move(moveDir.normalized * Speed * Time.deltaTime);
-        
     }
     //void Movement()
     //{
