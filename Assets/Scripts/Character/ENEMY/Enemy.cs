@@ -29,6 +29,7 @@ public class Enemy : Character
     // Update is called once per frame
     void Update()
     {
+
        // Moved();
        // Attack();
     }
