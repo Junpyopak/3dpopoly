@@ -4,7 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class DamaeText : MonoBehaviour
+public class DamaeText : Enemy
 {
     Text TextDamage;
     Color alpha;
@@ -16,7 +16,7 @@ public class DamaeText : MonoBehaviour
     void Start()
     {
         Enemy = GetComponent<Enemy>();
-        Damage = 7;
+        Damage = AttackDamage;
         TextDamage = GetComponent<Text>();
         alpha = TextDamage.color;
         TextDamage.text = $"{((int)Damage).ToString("D1")} ";
