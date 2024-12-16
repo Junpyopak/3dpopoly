@@ -22,14 +22,15 @@ public class DamaeText : MonoBehaviour
         TextDamage.text = $"{((int)Damage).ToString("D1")} ";
         Invoke("DeleteText", ColorSpeed);
     }
-    
+
 
     // Update is called once per frame
     void Update()
     {
-       transform.Translate(new Vector3(0, UpSpeed * Time.deltaTime,0));
+        transform.Translate(new Vector3(0, UpSpeed * Time.deltaTime, 0));
         alpha.a = Mathf.Lerp(alpha.a, 0, Time.deltaTime * ColorSpeed);
         TextDamage.color = alpha;
+        //DamageTextLog();
     }
 
     //public void DamageTextLog()
@@ -38,6 +39,10 @@ public class DamaeText : MonoBehaviour
     //}
     private void DeleteText()
     {
-        gameObject.SetActive(false);
+        Destroy(gameObject);
     }
+    //public void GetDamage(int _damage)
+    //{
+    //    Damage = _damage;
+    //}
 }
