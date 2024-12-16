@@ -1,15 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.UIElements;
 
 public class BattleManager : MonoBehaviour
 {
     public static GameManager Instance;
     public int maxEnemy = 5;
     public int enemyCount;
-
+    public int KillCount;
+    public int MaxValue = 10;
     public GameObject SpawnPoint;//리스폰 위치
     BoxCollider SpawnBoxCollider;//특정 구간 내에서만 스폰이 될수있도록
+    public Text KillText;
 
     [Header("적 생성")]
     [SerializeField] List<GameObject> listEnemy;//적의 종류
@@ -27,6 +31,7 @@ public class BattleManager : MonoBehaviour
     void Update()
     {
         CheckSpawn();
+        CheckBossAcquire();
     }
     static int testIndex = 0;//확인용
     public void CreateEnemy()
@@ -59,5 +64,9 @@ public class BattleManager : MonoBehaviour
                 enemyCount++;
             }
         }
+    }
+    public void CheckBossAcquire()
+    {
+        KillText.text = $"{((int)KillCount).ToString("D2")} / {((int)MaxValue).ToString("D2")}";
     }
 }
