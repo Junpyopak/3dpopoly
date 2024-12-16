@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using TMPro;
+using UnityEngine.UI;
+using static System.Net.Mime.MediaTypeNames;
 
 public class Player : Character
 {
@@ -21,8 +24,10 @@ public class Player : Character
     public int AttackDamage = 20;
     BoxCollider BoxCollider;
     [SerializeField]HpGauge hpGauge;
-    // Start is called before the first frame update
+    [SerializeField] DamaeText DamaeText;
+    public GameObject damageText;
 
+    // Start is called before the first frame update
     void Start()
     {
         Hp = MaxHp;
@@ -36,6 +41,7 @@ public class Player : Character
         //MeshCollider.enabled = false;
         BoxCollider = GameObject.Find("Weapon").GetComponent<BoxCollider>();
         BoxCollider.enabled = false;
+
     }
 
     public void SetMove(MoveStrategy moveStrategy)
@@ -161,22 +167,22 @@ public class Player : Character
    public override void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.layer == LayerMask.NameToLayer("MonsterAttackBox"))
-        {
-            Damage();
+        {          
+            Damage();         
             Debug.Log("µ¥¹ÌÁö");
             Debug.Log($"½ºÅÝ{Hp}");
         }
     }
-
     public override void OnDrawGizmos()
     {
         base.OnDrawGizmos();
     }
 
     public void Damage()
-    {
-        
+    { 
         Hp -= Enemy.AttackDamage;
+        GameObject Text = Instantiate(damageText);
+        Text.GetComponent<DamaeText>();    
         hpGauge.SetPlayerHp(Hp, MaxHp);
         if (Hp <= 0)
         {

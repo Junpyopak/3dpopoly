@@ -1226,6 +1226,8 @@ MonoBehaviour:
   MaxHp: 100
   AttackDamage: 20
   hpGauge: {fileID: 1807621329}
+  DamaeText: {fileID: 389903785997758964, guid: 24d8f608c3dfb4f459884b968f80fdd3, type: 3}
+  damageText: {fileID: 8131566568141632185, guid: fc6ba0aff8cddcf428bdef92441af22b, type: 3}
 --- !u!143 &1287483871
 CharacterController:
   m_ObjectHideFlags: 0
@@ -1938,7 +1940,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_VertexColorAlwaysGammaSpace: 0
-  m_AdditionalShaderChannelsFlag: 0
+  m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0
