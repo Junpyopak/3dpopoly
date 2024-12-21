@@ -11,6 +11,7 @@ public class AIMonster : Enemy_AI
         Search();
         Move();
         Attack();
+        //Damage();
     }
     protected override void Search()
     {
@@ -23,5 +24,9 @@ public class AIMonster : Enemy_AI
     protected override void Atack()
     {
         base.Atack();
+    }
+    protected override void Damage()
+    {
+        base.Damage();
     }
 }
