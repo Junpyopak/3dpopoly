@@ -32,7 +32,7 @@ public class ui_BossLoad : MonoBehaviour
             StartCoroutine(cortine);
             if (SceneLoadTime >= LoadingTime)
             {
-                SceneManager.LoadScene("LOBBY");
+                SceneManager.LoadScene("BossLOBBY");
             }
         }
     }

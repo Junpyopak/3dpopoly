@@ -31,6 +31,9 @@ public partial class Scenemgr : MonoBehaviour
             case eSCENE.BossMapLOAD:
                 SceneManager.LoadScene("BossMapLOAD");
                 break;
+            case eSCENE.BossLOBBY:
+                SceneManager.LoadScene("BossLOBBY");
+                break;
             case eSCENE.LOBBY:
                 SceneManager.LoadScene("LOBBY");
                 break;

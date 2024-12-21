@@ -15,7 +15,6 @@ public class DamaeText : Enemy
     Enemy Enemy;
     void Start()
     {
-        Enemy = GetComponent<Enemy>();
         Damage = AttackDamage;
         TextDamage = GetComponent<Text>();
         alpha = TextDamage.color;

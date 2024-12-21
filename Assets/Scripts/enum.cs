@@ -10,6 +10,7 @@ public enum eSCENE
     BATTLE,
     LOADING,
     BossMapLOAD,
+    BossLOBBY,
     END,
 
 }
