@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Resources/Scenes/LOBBY.unity
     guid: ad106059e340a3547aaa3af2e9063bd2
+  - enabled: 1
+    path: Assets/Resources/Scenes/BossMapLOAD.unity
+    guid: c275656b3aac359408dc5289c529ee17
   m_configObjects: {}

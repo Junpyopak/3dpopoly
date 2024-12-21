@@ -1,10 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
-using static System.Net.Mime.MediaTypeNames;
+using UnityEngine.SceneManagement;
 
 public class Player : Character
 {
@@ -171,6 +170,11 @@ public class Player : Character
             Damage();         
             Debug.Log("데미지");
             Debug.Log($"스텟{Hp}");
+        }
+        if(other.gameObject.CompareTag("Gate"))
+        {
+            Debug.Log("게이트");
+            SceneManager.LoadScene("BossMapLOAD");
         }
     }
     public override void OnDrawGizmos()

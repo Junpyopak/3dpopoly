@@ -9,6 +9,7 @@ public enum eSCENE
     LOBBY,
     BATTLE,
     LOADING,
+    BossMapLOAD,
     END,
 
 }
