@@ -107,7 +107,7 @@ public class Enemy : Character
     }
     public override void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.layer==LayerMask.NameToLayer("Sward")) 
+        if(other.gameObject.layer == LayerMask.NameToLayer("Sward")) 
         {
             Damage();
             Debug.Log("몬스터데미지");
