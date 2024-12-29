@@ -26,6 +26,7 @@ public class BOSS : MonoBehaviour
         {
             Vector3 Pos = transform.position;
             GameObject pattern = Instantiate(listPattern[0], Pos, Quaternion.identity);
+            pattern.name = "Range";
             Attack1 = false;
         }
     }

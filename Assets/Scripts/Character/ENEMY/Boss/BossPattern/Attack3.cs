@@ -11,7 +11,7 @@ public class Attack3 : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        Invoke("EndRange", 5f);
     }
 
     // Update is called once per frame
@@ -26,5 +26,9 @@ public class Attack3 : MonoBehaviour
         {
             Range.transform.localScale += new Vector3(0.3f, 0.3f, 0) * speed;
         }
+    }
+    void EndRange()
+    {
+        Destroy(Range);
     }
 }
