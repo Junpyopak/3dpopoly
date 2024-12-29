@@ -758,8 +758,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e4b5ba219d960a4188d1c9b616e613d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  detectionDis: 3
+  player: {fileID: 0}
+  Hp: 70
+  AttackDamage: 7
+  PlayerDamage: 20
   Attack1: 0
   Attack2: 0
+  HP: 300
   listPattern:
   - {fileID: 6317087873473705677, guid: 3a63b7e4e9deabe4e9ea742d2f41a81a, type: 3}
 --- !u!4 &3483344099374137623

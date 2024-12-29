@@ -12,7 +12,6 @@ public abstract class Character : MonoBehaviour
     //protected abstract void SetSpeed();
     public abstract void Attack();
     public abstract void Moved();
-    public  Character() { }
 
 
     public virtual void OnDrawGizmos()
