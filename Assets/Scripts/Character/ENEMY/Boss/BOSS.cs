@@ -8,7 +8,7 @@ public class BOSS : MonoBehaviour
     public bool Attack1 = false;
     public bool Attack2;
     GameObject mProjectorAtt1;
-    [SerializeField] List<GameObject> listPattern;//적의 종류
+    [SerializeField] List<GameObject> listPattern;//패턴의 종류
     void Start()
     {
 
