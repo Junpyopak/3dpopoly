@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEditor.Build;
 using UnityEngine;
 using static UI_TITLE;
@@ -11,6 +12,7 @@ public class Enemy : Character
     SphereCollider sphereCollider;
     public int Hp = 70;
     public int AttackDamage = 7;
+    public int PlayerDamage = 20;
     Player Player;
     BattleManager battleManager;
     // Start is called before the first frame update
@@ -115,7 +117,7 @@ public class Enemy : Character
         }
     }
 
-    public void Damage()
+    public virtual void Damage()
     {
         Hp -= Player.AttackDamage;
         if (Hp <= 0)

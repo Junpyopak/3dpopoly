@@ -2,12 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BOSS : MonoBehaviour
+public class BOSS : Enemy
 {
     // Start is called before the first frame update
     public bool Attack1 = false;
     public bool Attack2;
-    GameObject mProjectorAtt1;
+    public int HP = 300;
     [SerializeField] List<GameObject> listPattern;//패턴의 종류
     void Start()
     {
@@ -28,6 +28,27 @@ public class BOSS : MonoBehaviour
             GameObject pattern = Instantiate(listPattern[0], Pos, Quaternion.identity);
             pattern.name = "Range";
             Attack1 = false;
+        }
+    }
+
+    public override void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.layer == LayerMask.NameToLayer("Sward"))
+        {
+            Damage();
+            Debug.Log("데미지");
+            Debug.Log($"스탯{HP}");
+        }
+    }
+
+    public override void Damage()
+    {
+        HP -= PlayerDamage;
+        if (HP <=0)
+        {
+            Hp = 0;
+            Destroy(gameObject);
+            Debug.Log("보스가 죽었습니다");
         }
     }
 
