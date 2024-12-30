@@ -8,10 +8,12 @@ public class BOSS : Enemy
     public bool Attack1 = false;
     public bool Attack2;
     public int HP = 300;
+    public int MaxHp = 300;
+    [SerializeField] BossHpGauge BossHpgauge;
     [SerializeField] List<GameObject> listPattern;//패턴의 종류
     void Start()
     {
-
+        HP = MaxHp;
     }
 
     // Update is called once per frame
@@ -47,6 +49,7 @@ public class BOSS : Enemy
         if (HP <=0)
         {
             Hp = 0;
+            BossHpgauge.SetHp(HP, MaxHp);
             Destroy(gameObject);
             Debug.Log("보스가 죽었습니다");
         }
