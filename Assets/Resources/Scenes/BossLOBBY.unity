@@ -1258,12 +1258,14 @@ MonoBehaviour:
   PlayerDamage: 20
   Attack1: 0
   Attack2: 0
+  Attack3: 0
   HP: 300
   MaxHp: 300
   BossHpgauge: {fileID: 16060443}
   listPattern:
-  - {fileID: 6317087873473705677, guid: 3a63b7e4e9deabe4e9ea742d2f41a81a, type: 3}
   - {fileID: 3834786303547003370, guid: 0cd09b37598506e4a9017265118710b7, type: 3}
+  - {fileID: 189243555060168941, guid: f94062b6a1d5a3e4caad9bf6e2a0c8b5, type: 3}
+  - {fileID: 6317087873473705677, guid: 3a63b7e4e9deabe4e9ea742d2f41a81a, type: 3}
 --- !u!1 &2128894030
 GameObject:
   m_ObjectHideFlags: 0
