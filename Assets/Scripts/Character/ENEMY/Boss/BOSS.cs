@@ -20,6 +20,7 @@ public class BOSS : Enemy
     void Update()
     {
         Attack_1();
+        Attack_2();
     }
 
     private void Attack_1()
@@ -30,6 +31,16 @@ public class BOSS : Enemy
             GameObject pattern = Instantiate(listPattern[0], Pos, Quaternion.identity);
             pattern.name = "Range";
             Attack1 = false;
+        }
+    }
+    private void Attack_2()
+    {
+        if(Attack2==true)
+        {
+            Vector3 Pos = new Vector3(0,0.01f,4.21f);
+            GameObject pattern = Instantiate(listPattern[1], Pos, Quaternion.identity);
+            pattern.name = "Range";
+            Attack2= false;
         }
     }
 

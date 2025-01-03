@@ -18,6 +18,7 @@ public class Attack3 : MonoBehaviour
     void Update()
     {
         Size();
+
     }
 
     void Size()
