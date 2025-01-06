@@ -10,11 +10,19 @@ public class BOSS : Enemy
     public bool Attack3 = false;
     public int HP = 300;
     public int MaxHp = 300;
+    Animator Animator;
     [SerializeField] BossHpGauge BossHpgauge;
     [SerializeField] List<GameObject> listPattern;//패턴의 종류
     void Start()
     {
         HP = MaxHp;
+        Animator = GetComponent<Animator>();
+    }
+
+    IEnumerator RoarCoroutine()
+    {
+        yield return new WaitForSeconds(0f);
+        Animator.SetTrigger("Roar");
     }
 
     // Update is called once per frame
@@ -29,6 +37,8 @@ public class BOSS : Enemy
     {
         if (Attack1 == true)
         {
+            Shared.MainShake.Shake(0);
+            StartCoroutine(RoarCoroutine());
             Vector3 Pos = new Vector3(0, 0.01f, 4.21f);
             GameObject pattern = Instantiate(listPattern[0], Pos, Quaternion.identity);
             pattern.name = "Range";
@@ -39,6 +49,8 @@ public class BOSS : Enemy
     {
         if(Attack2 == true)
         {
+            Shared.MainShake.Shake(0);
+            StartCoroutine(RoarCoroutine());
             Vector3 Pos = new Vector3(0, 0.01f, 4.21f);
             GameObject pattern = Instantiate(listPattern[1], Pos, Quaternion.identity);
             pattern.name = "Range";
@@ -49,6 +61,7 @@ public class BOSS : Enemy
     {
         if (Attack3 == true)
         {
+            Shared.MainShake.Shake(0);
             Vector3 Pos = transform.position;
             GameObject pattern = Instantiate(listPattern[2], Pos, Quaternion.identity);
             pattern.name = "Range";

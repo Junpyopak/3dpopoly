@@ -6,7 +6,7 @@ using UnityEngine.Rendering;
 public class Attack3 : MonoBehaviour
 {
     public GameObject Range;
-    float speed = 0.1f;
+    float speed = 0.2f;
     Vector3 Vector3 = new Vector3(15,15,0);
     // Start is called before the first frame update
     void Start()
