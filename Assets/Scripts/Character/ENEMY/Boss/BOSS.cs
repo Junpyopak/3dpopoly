@@ -13,6 +13,7 @@ public class BOSS : Enemy
     Animator Animator;
     [SerializeField] BossHpGauge BossHpgauge;
     [SerializeField] List<GameObject> listPattern;//패턴의 종류
+    public ParticleSystem MyparticleSystem;
     void Start()
     {
         HP = MaxHp;
@@ -89,6 +90,15 @@ public class BOSS : Enemy
             Destroy(gameObject);
             Debug.Log("보스가 죽었습니다");
         }
+    }
+
+    public void StartBless()
+    {
+        MyparticleSystem.Play();
+    }
+    public void EndBless()
+    {
+        MyparticleSystem.Stop();
     }
 
 }
