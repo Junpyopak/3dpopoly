@@ -62,28 +62,31 @@ public class Player : Character
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey(KeyCode.LeftShift))
+        if(animator.GetBool("Death")==false)
         {
-            SetMove(new RunStrategy());
-            moveFast = true;
-            Speed = runSpeed;
-            animator.SetBool("isRun", moveFast);
-            DoMove();
-        }
-        else
-        {
-            moveFast = false;
-            Speed = 3;
-            animator.SetBool("isRun", moveFast);
-        }
+            if (Input.GetKey(KeyCode.LeftShift))
+            {
+                SetMove(new RunStrategy());
+                moveFast = true;
+                Speed = runSpeed;
+                animator.SetBool("isRun", moveFast);
+                DoMove();
+            }
+            else
+            {
+                moveFast = false;
+                Speed = 3;
+                animator.SetBool("isRun", moveFast);
+            }
 
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            Vector3 jumpPower = Vector3.up * jumpFor;
-            rigidbody.AddForce(jumpPower, ForceMode.VelocityChange);
-        }
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                Vector3 jumpPower = Vector3.up * jumpFor;
+                rigidbody.AddForce(jumpPower, ForceMode.VelocityChange);
+            }
 
-        Moved();
+            Moved();
+        }     
 
     }
     private void LateUpdate()
@@ -165,17 +168,20 @@ public class Player : Character
 
    public override void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.layer == LayerMask.NameToLayer("MonsterAttackBox"))
-        {          
-            Damage();         
-            Debug.Log("데미지");
-            Debug.Log($"스텟{Hp}");
-        }
-        if(other.gameObject.CompareTag("Gate"))
+        if(animator.GetBool("Death") == false)
         {
-            Debug.Log("게이트");
-            SceneManager.LoadScene("BossMapLOAD");
-        }
+            if (other.gameObject.layer == LayerMask.NameToLayer("MonsterAttackBox"))
+            {
+                Damage();
+                Debug.Log("데미지");
+                Debug.Log($"스텟{Hp}");
+            }
+            if (other.gameObject.CompareTag("Gate"))
+            {
+                Debug.Log("게이트");
+                SceneManager.LoadScene("BossMapLOAD");
+            }
+        }    
     }
     public override void OnDrawGizmos()
     {
@@ -190,7 +196,7 @@ public class Player : Character
         hpGauge.SetPlayerHp(Hp, MaxHp);
         if (Hp <= 0)
         {
-            
+            animator.SetBool("Death", true);
             Debug.Log("죽었습니다");
         }
     }
