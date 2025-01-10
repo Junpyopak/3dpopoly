@@ -25,6 +25,7 @@ public class Player : Character
     [SerializeField]HpGauge hpGauge;
     [SerializeField] DamaeText DamaeText;
     public GameObject damageText;
+    public GameObject GameOver;
 
     // Start is called before the first frame update
     void Start()
@@ -196,6 +197,8 @@ public class Player : Character
         hpGauge.SetPlayerHp(Hp, MaxHp);
         if (Hp <= 0)
         {
+            GameObject gameOver = Instantiate(GameOver);
+            gameOver.GetComponent<Ui_Retry>();
             animator.SetBool("Death", true);
             Debug.Log("ав╬З╫ю╢о╢ы");
         }
