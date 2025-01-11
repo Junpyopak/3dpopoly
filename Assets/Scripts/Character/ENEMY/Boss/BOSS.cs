@@ -43,7 +43,6 @@ public class BOSS : Enemy
         if (CoolTime <= 0)
         {
             Attack1 = true;
-
             CoolTime = CoolTimer;
             CoolTime = 10f;
         }
