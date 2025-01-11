@@ -7075,6 +7075,7 @@ MonoBehaviour:
   hpGauge: {fileID: 6962863178428731356, guid: 15cc9bc0069205647be909f2e0bbc31f, type: 3}
   DamaeText: {fileID: 5882894034401387900, guid: 24d8f608c3dfb4f459884b968f80fdd3, type: 3}
   damageText: {fileID: 8048349282971925151, guid: 24d8f608c3dfb4f459884b968f80fdd3, type: 3}
+  GameOver: {fileID: 0}
 --- !u!143 &2055979651
 CharacterController:
   m_ObjectHideFlags: 0
@@ -7431,6 +7432,7 @@ MonoBehaviour:
   - {fileID: 189243555060168941, guid: f94062b6a1d5a3e4caad9bf6e2a0c8b5, type: 3}
   - {fileID: 6317087873473705677, guid: 3a63b7e4e9deabe4e9ea742d2f41a81a, type: 3}
   MyparticleSystem: {fileID: 122428359}
+  CoolTime: 10
 --- !u!1 &2128894030
 GameObject:
   m_ObjectHideFlags: 0

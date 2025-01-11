@@ -14,6 +14,9 @@ public class BOSS : Enemy
     [SerializeField] BossHpGauge BossHpgauge;
     [SerializeField] List<GameObject> listPattern;//패턴의 종류
     public ParticleSystem MyparticleSystem;
+    [Header("보스스킬 쿨타임")]
+    [SerializeField] float CoolTime = 5.0f;
+    float CoolTimer = 0.0f;
     void Start()
     {
         HP = MaxHp;
@@ -32,10 +35,18 @@ public class BOSS : Enemy
         Attack_1();
         Attack_2();
         Attack_3();
+        CheckCool();
     }
 
     private void Attack_1()
     {
+        if (CoolTime <= 0)
+        {
+            Attack1 = true;
+
+            CoolTime = CoolTimer;
+            CoolTime = 10f;
+        }
         if (Attack1 == true)
         {
             Shared.MainShake.Shake(0);
@@ -48,7 +59,7 @@ public class BOSS : Enemy
     }
     private void Attack_2()
     {
-        if(Attack2 == true)
+        if (Attack2 == true)
         {
             Shared.MainShake.Shake(0);
             StartCoroutine(RoarCoroutine());
@@ -83,7 +94,9 @@ public class BOSS : Enemy
     public override void Damage()
     {
         HP -= PlayerDamage;
-        if (HP <=0)
+
+
+        if (HP <= 0)
         {
             Hp = 0;
             BossHpgauge.SetHp(HP, MaxHp);
@@ -99,6 +112,14 @@ public class BOSS : Enemy
     public void EndBless()
     {
         MyparticleSystem.Stop();
+    }
+    private void CheckCool()
+    {
+        if (CoolTime > 0)
+        {
+            CoolTime -= Time.deltaTime * 0.5f;
+
+        }
     }
 
 }
