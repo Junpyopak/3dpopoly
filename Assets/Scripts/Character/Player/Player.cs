@@ -31,7 +31,10 @@ public class Player : Character
     void Start()
     {
         Hp = MaxHp;
-        Enemy = GameObject.Find("Warrok").GetComponent<Enemy>();
+        if (GameObject.Find("Warrok") != null)
+        {
+            Enemy = GameObject.Find("Warrok").GetComponent<Enemy>();
+        }
         Speed = 3f;
         rigidbody = this.GetComponent<Rigidbody>();
         animator = GameObject.Find("character").GetComponent<Animator>();
@@ -63,35 +66,35 @@ public class Player : Character
     // Update is called once per frame
     void Update()
     {
-        if(animator.GetBool("Death")==false)
+        //if (animator.GetBool("Death") == false)
+        //{
+           
+        //}
+        if (Input.GetKey(KeyCode.LeftShift))
         {
-            if (Input.GetKey(KeyCode.LeftShift))
-            {
-                SetMove(new RunStrategy());
-                moveFast = true;
-                Speed = runSpeed;
-                animator.SetBool("isRun", moveFast);
-                DoMove();
-            }
-            else
-            {
-                moveFast = false;
-                Speed = 3;
-                animator.SetBool("isRun", moveFast);
-            }
+            SetMove(new RunStrategy());
+            moveFast = true;
+            Speed = runSpeed;
+            animator.SetBool("isRun", moveFast);
+            DoMove();
+        }
+        else
+        {
+            moveFast = false;
+            Speed = 3;
+            animator.SetBool("isRun", moveFast);
+        }
 
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                Vector3 jumpPower = Vector3.up * jumpFor;
-                rigidbody.AddForce(jumpPower, ForceMode.VelocityChange);
-            }
-
-            Moved();
-        }     
-
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            Vector3 jumpPower = Vector3.up * jumpFor;
+            rigidbody.AddForce(jumpPower, ForceMode.VelocityChange);
+        }
+        Moved();
     }
     private void LateUpdate()
     {
+        if (camera == null) return;
         Vector3 playerRaotation = Vector3.Scale(camera.transform.forward, new Vector3(1, 0, 1));
         transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(playerRaotation), Time.deltaTime * Smove);
     }
@@ -181,6 +184,12 @@ public class Player : Character
             {
                 Debug.Log("∞‘¿Ã∆Æ");
                 SceneManager.LoadScene("BossMapLOAD");
+            }
+            if(other.gameObject.CompareTag("BossSkill"))
+            {
+                Hp -= BossSkillDamage;
+                hpGauge.SetPlayerHp(Hp, MaxHp);
+                Debug.Log($"Ω∫≈›{Hp}");
             }
         }    
     }

@@ -5,6 +5,7 @@ using UnityEngine;
 public abstract class Character : MonoBehaviour
 {
     protected Animator animator;
+    protected int BossSkillDamage = 10;
     protected float Range =2f;
     protected float Speed ;//상속받는 클래스들에서 많이 쓰는 변수들
     //protected int Hp;

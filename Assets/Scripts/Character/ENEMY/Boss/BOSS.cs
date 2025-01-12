@@ -35,7 +35,10 @@ public class BOSS : Enemy
         Attack_1();
         Attack_2();
         Attack_3();
-        CheckCool();
+        if(Attack1==false)
+        {
+            CheckCool();
+        }   
     }
 
     private void Attack_1()
@@ -120,5 +123,4 @@ public class BOSS : Enemy
 
         }
     }
-
 }
