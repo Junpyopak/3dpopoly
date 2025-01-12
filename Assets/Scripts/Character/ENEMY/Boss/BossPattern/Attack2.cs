@@ -18,7 +18,6 @@ public class Attack2 : MonoBehaviour
     {
         Invoke("EndRange", 1f);
         BossTrs = GameObject.Find("Boss").transform;
-
     }
 
     // Update is called once per frame
@@ -30,7 +29,7 @@ public class Attack2 : MonoBehaviour
 
     void Size()
     {
-        if (Range.transform.localScale.x <= Vector3.x&& Range2.transform.localScale.x <= Vector3.x && Range3.transform.localScale.x <= Vector3.x)
+        if (Range.transform.localScale.x <= Vector3.x && Range2.transform.localScale.x <= Vector3.x && Range3.transform.localScale.x <= Vector3.x)
         {
             Range.transform.localScale += new Vector3(0.3f, 0.3f, 0) * speed;
             Range2.transform.localScale += new Vector3(0.3f, 0.3f, 0) * speed;
@@ -43,7 +42,7 @@ public class Attack2 : MonoBehaviour
     {
         if (Range.transform.localScale.x >= Vector3.x && RockAttack == true)
         {
-            Vector3 Pos = new Vector3(-1.5f, 2.26f, BossTrs.position.z - 7f);
+            Vector3 Pos = new Vector3(-1.5f, 2.26f, BossTrs.position.z - 8f);
             GameObject Rock = Instantiate(ListAttack[0], Pos, Quaternion.identity);
             Rock.name = "RockAttack";
             RockAttack = false;
