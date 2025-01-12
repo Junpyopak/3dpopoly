@@ -65,7 +65,7 @@ public class BOSS : Enemy
         {
             Shared.MainShake.Shake(0);
             StartCoroutine(RoarCoroutine());
-            Vector3 Pos = new Vector3(0, 0.01f, 4.21f);
+            Vector3 Pos = new Vector3(0, 0.01f, transform.position.z-6.42f);
             GameObject pattern = Instantiate(listPattern[1], Pos, Quaternion.identity);
             pattern.name = "Range";
             Attack2 = false;
