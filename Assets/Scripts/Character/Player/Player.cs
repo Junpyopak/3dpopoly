@@ -30,6 +30,7 @@ public class Player : Character
     public GameObject GameOver;
     private PlayableDirector playableDirector;
     public TimelineAsset[] timelines;
+    private int playCount = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -197,8 +198,12 @@ public class Player : Character
             }
             if (other.tag == "CutScene")
             {
-                Debug.Log("ÄÆ½Å");
-                playableDirector.Play(timelines[0]);
+                if(playCount==0)
+                {
+                    Debug.Log("ÄÆ½Å");
+                    playableDirector.Play(timelines[0]);
+                }
+                playCount=1;
             }
         }
     }
