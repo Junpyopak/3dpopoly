@@ -4,6 +4,8 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.Playables;
+using UnityEngine.Timeline;
 
 public class Player : Character
 {
@@ -22,10 +24,12 @@ public class Player : Character
     public int MaxHp = 100;
     public int AttackDamage = 20;
     BoxCollider BoxCollider;
-    [SerializeField]HpGauge hpGauge;
+    [SerializeField] HpGauge hpGauge;
     [SerializeField] DamaeText DamaeText;
     public GameObject damageText;
     public GameObject GameOver;
+    private PlayableDirector playableDirector;
+    public TimelineAsset[] timelines;
 
     // Start is called before the first frame update
     void Start()
@@ -43,7 +47,7 @@ public class Player : Character
         //MeshCollider = GameObject.Find("Weapon").GetComponent<MeshCollider>();
         //MeshCollider.enabled = false;
         BoxCollider = GameObject.Find("Weapon").GetComponent<BoxCollider>();
-        BoxCollider.enabled = false;
+        playableDirector = GetComponent<PlayableDirector>();
 
     }
 
@@ -68,7 +72,7 @@ public class Player : Character
     {
         //if (animator.GetBool("Death") == false)
         //{
-           
+
         //}
         if (Input.GetKey(KeyCode.LeftShift))
         {
@@ -158,21 +162,21 @@ public class Player : Character
     public override void Attack()
     {
         if (Input.GetMouseButtonDown(0))
-        {        
+        {
             if (Attack1 == false)
             {
                 animator.SetTrigger("Atk1");
             }
             else if (animator.GetBool("Atk2") == false)
-            {              
+            {
                 animator.SetBool("Atk2", true);
             }
         }
     }
 
-   public override void OnTriggerEnter(Collider other)
+    public override void OnTriggerEnter(Collider other)
     {
-        if(animator.GetBool("Death") == false)
+        if (animator.GetBool("Death") == false)
         {
             if (other.gameObject.layer == LayerMask.NameToLayer("MonsterAttackBox"))
             {
@@ -185,13 +189,18 @@ public class Player : Character
                 Debug.Log("°ÔÀÌÆ®");
                 SceneManager.LoadScene("BossMapLOAD");
             }
-            if(other.gameObject.CompareTag("BossSkill"))
+            if (other.gameObject.CompareTag("BossSkill"))
             {
                 Hp -= BossSkillDamage;
                 hpGauge.SetPlayerHp(Hp, MaxHp);
                 Debug.Log($"½ºÅÝ{Hp}");
             }
-        }    
+            if (other.tag == "CutScene")
+            {
+                Debug.Log("ÄÆ½Å");
+                playableDirector.Play(timelines[0]);
+            }
+        }
     }
     public override void OnDrawGizmos()
     {
@@ -199,10 +208,10 @@ public class Player : Character
     }
 
     public void Damage()
-    { 
+    {
         Hp -= Enemy.AttackDamage;
         GameObject Text = Instantiate(damageText);
-        Text.GetComponent<DamaeText>();    
+        Text.GetComponent<DamaeText>();
         hpGauge.SetPlayerHp(Hp, MaxHp);
         if (Hp <= 0)
         {
