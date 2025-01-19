@@ -12,6 +12,11 @@ public class InventoryUi : MonoBehaviour
     public Slot[] slots;
     public Transform SlotHolder;
     // Start is called before the first frame update
+
+    private void Awake()
+    {
+        DontDestroyOnLoad(this);
+    }
     void Start()
     {
         inven = Inventory.instance;
@@ -24,7 +29,7 @@ public class InventoryUi : MonoBehaviour
     {
         for(int i = 0; i < slots.Length; i++)
         {
-            if(i<inven.SlotCount)
+            if (i<inven.SlotCount)
             {
                 slots[i].GetComponent<Button>().interactable = true;
             }
@@ -43,6 +48,10 @@ public class InventoryUi : MonoBehaviour
         {
             OpenInvebtory = !OpenInvebtory;
             Inven.SetActive(OpenInvebtory);
+            if(inven.SlotCount==0)
+            {
+                inven.SlotCount = 4;
+            }
         }
         if (OpenInvebtory == true)
         {

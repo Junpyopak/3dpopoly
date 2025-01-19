@@ -5,20 +5,18 @@ using UnityEngine;
 public class Inventory : MonoBehaviour
 {
     public static Inventory instance;
-    #region Singleton
     private void Awake()
     {
-        if(instance != null)
+        if (instance != null)
         {
             Destroy(gameObject);
             return;
         }
         instance = this;
     }
-    #endregion
     public delegate void ChangeSlotCount(int val);
     public ChangeSlotCount changeSlotCount;
-    private int slotCount;
+    private int slotCount ;
     public int SlotCount
     {
         get => slotCount;
@@ -30,6 +28,7 @@ public class Inventory : MonoBehaviour
     }
     private void Start()
     {
-        SlotCount = 4;
+        slotCount = 0;
+        //SlotCount = slotCount;
     }
 }
