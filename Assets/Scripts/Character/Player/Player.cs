@@ -31,6 +31,7 @@ public class Player : Character
     private PlayableDirector playableDirector;
     public TimelineAsset[] timelines;
     private int playCount = 0;
+    public bool playCut = false;
 
     // Start is called before the first frame update
     void Start()
@@ -67,35 +68,48 @@ public class Player : Character
     {
         Attack();
     }
-
+    IEnumerator MoveStopCoroutine()//컷신 플레이시 플레이어 움직임 조작
+    {
+        yield return new WaitForSeconds(11.2f);
+        playCut = false;
+    }
     // Update is called once per frame
     void Update()
     {
+
         if (animator.GetBool("Death") == false)
         {
-            if (Input.GetKey(KeyCode.LeftShift))
+            if(playCut == false)
             {
-                SetMove(new RunStrategy());
-                moveFast = true;
-                Speed = runSpeed;
-                animator.SetBool("isRun", moveFast);
-                DoMove();
-            }
+                if (Input.GetKey(KeyCode.LeftShift))
+                {
+                    SetMove(new RunStrategy());
+                    moveFast = true;
+                    Speed = runSpeed;
+                    animator.SetBool("isRun", moveFast);
+                    DoMove();
+                }
+                else
+                {
+                    moveFast = false;
+                    Speed = 3;
+                    animator.SetBool("isRun", moveFast);
+                }
+
+                if (Input.GetKeyDown(KeyCode.Space))
+                {
+                    Vector3 jumpPower = Vector3.up * jumpFor;
+                    rigidbody.AddForce(jumpPower, ForceMode.VelocityChange);
+                }
+                Moved();
+            }  
             else
             {
-                moveFast = false;
-                Speed = 3;
-                animator.SetBool("isRun", moveFast);
+                Speed = 0;
+                animator.SetBool("isRun", false);
+                animator.SetBool("isWalk", false);
             }
-
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                Vector3 jumpPower = Vector3.up * jumpFor;
-                rigidbody.AddForce(jumpPower, ForceMode.VelocityChange);
-            }
-            Moved();
-        }
-       
+        }      
     }
     private void LateUpdate()
     {
@@ -198,10 +212,12 @@ public class Player : Character
             }
             if (other.tag == "CutScene")
             {
-                if(playCount==0)
+                if (playCount==0)
                 {
                     Debug.Log("컷신");
                     playableDirector.Play(timelines[0]);
+                    playCut = true;
+                    StartCoroutine(MoveStopCoroutine());
                 }
                 playCount=1;
             }
