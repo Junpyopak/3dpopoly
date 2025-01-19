@@ -1517,6 +1517,8 @@ MonoBehaviour:
   damageText: {fileID: 8131566568141632185, guid: fc6ba0aff8cddcf428bdef92441af22b, type: 3}
   GameOver: {fileID: 2620707268189010400, guid: a7322b6342a15b243b5884a6b0c8d130, type: 3}
   timelines: []
+  playCut: 0
+  inventoryUi: {fileID: 2651188578189166021, guid: 26c83234f82bd2941abe4cafc8379844, type: 3}
 --- !u!143 &7627963556914526577
 CharacterController:
   m_ObjectHideFlags: 0
@@ -1539,7 +1541,7 @@ CharacterController:
   m_Height: 2
   m_Radius: 0.5
   m_SlopeLimit: 0
-  m_StepOffset: 0.3
+  m_StepOffset: 0
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 1, z: 0}
@@ -1637,7 +1639,7 @@ Transform:
   m_Children:
   - {fileID: 1828069631954124329}
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &6223761824607034749
 MonoBehaviour:

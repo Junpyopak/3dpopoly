@@ -21,10 +21,7 @@ public class Enemy : Character
         Player = GameObject.Find("character").GetComponent<Player>();
         player = GameObject.Find("character").transform;
         Speed = 2f;
-        if(this.gameObject.name== "Warrok")
-        {
-            sphereCollider = GameObject.Find("LeftHand").GetComponent<SphereCollider>();
-        }     
+        sphereCollider = GameObject.Find("LeftHand").GetComponent<SphereCollider>();
         battleManager = GameObject.Find("BattleManager").GetComponent<BattleManager>();
         animator = GetComponent<Animator>();
         sphereCollider.enabled = false;
@@ -34,8 +31,8 @@ public class Enemy : Character
     void Update()
     {
 
-       // Moved();
-       // Attack();
+        // Moved();
+        // Attack();
     }
 
     public override void Moved()
@@ -79,7 +76,7 @@ public class Enemy : Character
     //            transform.position = new Vector3(transform.position.x, 0, transform.position.z);
     //            //transform.position = Vector3.MoveTowards(transform.position,player.position,moveSpeed*Time.deltaTime);
     //            transform.position += Detection * Speed * Time.deltaTime;
-               
+
     //        }
     //    }   
     //    else
@@ -112,7 +109,7 @@ public class Enemy : Character
     }
     public override void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.layer == LayerMask.NameToLayer("Sward")) 
+        if (other.gameObject.layer == LayerMask.NameToLayer("Sward"))
         {
             Damage();
             Debug.Log("몬스터데미지");
@@ -132,12 +129,12 @@ public class Enemy : Character
             Debug.Log("몬스터가 죽었습니다");
         }
     }
-    public void StartAttack()
+    public  void StartAttack()
     {
         sphereCollider.enabled = true;
     }
 
-   public void EndAttack()
+    public void EndAttack()
     {
         sphereCollider.enabled = false;
     }

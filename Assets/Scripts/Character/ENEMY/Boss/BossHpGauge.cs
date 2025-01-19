@@ -7,8 +7,8 @@ public class BossHpGauge : MonoBehaviour
 {
     private Image HP;
     private Image Effect;
-    [SerializeField] private float CurPlayerHp;
-    [SerializeField] private float MaxPlayerHp;
+    [SerializeField] private float CurBossHp;
+    [SerializeField] private float MaxBossHp;
     private void Awake()
     {
         HP = GameObject.Find("HpBar").GetComponent<Image>();
@@ -36,10 +36,10 @@ public class BossHpGauge : MonoBehaviour
                 Effect.fillAmount = HP.fillAmount;//이펙트를 Hp값으로 변경
             }
         }
-        float value = CurPlayerHp / MaxPlayerHp;//남은 hp의 비율
+        float value = CurBossHp / MaxBossHp;//남은 hp의 비율
         if (HP.fillAmount > value) //데미지를 입음
         {
-            HP.fillAmount -= Time.deltaTime * 0.2f;
+            HP.fillAmount -= Time.deltaTime * 0.35f;
             if (HP.fillAmount <= value)
             {
                 HP.fillAmount = value;
@@ -55,7 +55,7 @@ public class BossHpGauge : MonoBehaviour
     }
     public void SetHp(int _hp, int _maxHp)
     {
-        CurPlayerHp = _hp;
-        MaxPlayerHp = _maxHp;
+        CurBossHp = _hp;
+        MaxBossHp = _maxHp;
     }
 }

@@ -28,6 +28,12 @@ public class BOSS : Enemy
         yield return new WaitForSeconds(0f);
         Animator.SetTrigger("Roar");
     }
+    IEnumerator DearthCoroutine()
+    {
+        yield return new WaitForSeconds(10f);
+        Destroy(gameObject);
+        Debug.Log("보스가 죽었습니다");
+    }
 
     // Update is called once per frame
     void Update()
@@ -96,14 +102,12 @@ public class BOSS : Enemy
     public override void Damage()
     {
         HP -= PlayerDamage;
-
-
+        BossHpgauge.SetHp(HP, MaxHp);
         if (HP <= 0)
         {
             Hp = 0;
-            BossHpgauge.SetHp(HP, MaxHp);
-            Destroy(gameObject);
-            Debug.Log("보스가 죽었습니다");
+            Animator.SetBool("Death", true);
+            StartCoroutine(DearthCoroutine());     
         }
     }
 
@@ -117,7 +121,7 @@ public class BOSS : Enemy
     }
     private void CheckCool()
     {
-        if (CoolTime > 0)
+        if (CoolTime > 0 && HP >=0)
         {
             CoolTime -= Time.deltaTime * 0.5f;
 

@@ -9,7 +9,6 @@ public class Enemy_AI : Enemy
     protected Character Character;
     //public Vector3 SearchPoint;
     protected eAi AiState = eAi.eAI_CREATE;
-
     public void Init(Character _Character)
     {
         Character = _Character;

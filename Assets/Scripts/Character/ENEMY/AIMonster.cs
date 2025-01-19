@@ -5,7 +5,6 @@ using static UI_TITLE;
 
 public class AIMonster : Enemy_AI 
 {
-
     private void Update()
     {
         Search();

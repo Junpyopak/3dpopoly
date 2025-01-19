@@ -32,7 +32,6 @@ public class Player : Character
     public TimelineAsset[] timelines;
     private int playCount = 0;
     public bool playCut = false;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -79,7 +78,7 @@ public class Player : Character
 
         if (animator.GetBool("Death") == false)
         {
-            if(playCut == false)
+            if (playCut == false)
             {
                 if (Input.GetKey(KeyCode.LeftShift))
                 {
@@ -102,14 +101,14 @@ public class Player : Character
                     rigidbody.AddForce(jumpPower, ForceMode.VelocityChange);
                 }
                 Moved();
-            }  
+            }
             else
             {
                 Speed = 0;
                 animator.SetBool("isRun", false);
                 animator.SetBool("isWalk", false);
             }
-        }      
+        }
     }
     private void LateUpdate()
     {
@@ -176,7 +175,7 @@ public class Player : Character
     }
     public override void Attack()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetKeyDown(KeyCode.V))
         {
             if (Attack1 == false)
             {
@@ -212,14 +211,14 @@ public class Player : Character
             }
             if (other.tag == "CutScene")
             {
-                if (playCount==0)
+                if (playCount == 0)
                 {
                     Debug.Log("ÄÆ½Å");
                     playableDirector.Play(timelines[0]);
                     playCut = true;
                     StartCoroutine(MoveStopCoroutine());
                 }
-                playCount=1;
+                playCount = 1;
             }
         }
     }
