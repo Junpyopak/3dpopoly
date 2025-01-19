@@ -45,7 +45,6 @@ GameObject:
   - component: {fileID: 6031007979998938485}
   - component: {fileID: 2321161143737485635}
   - component: {fileID: 4750615602116601673}
-  - component: {fileID: -2243170233524882579}
   m_Layer: 0
   m_Name: Warrok
   m_TagString: Untagged
@@ -127,23 +126,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   detectionDis: 7
-  player: {fileID: 0}
-  Hp: 70
-  AttackDamage: 7
-  PlayerDamage: 20
---- !u!114 &-2243170233524882579
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 669465899863786551}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: efec503bde4facf4ba56c85c71354076, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  detectionDis: 3
   player: {fileID: 0}
   Hp: 70
   AttackDamage: 7
