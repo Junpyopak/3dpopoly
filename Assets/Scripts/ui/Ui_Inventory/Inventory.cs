@@ -16,6 +16,8 @@ public class Inventory : MonoBehaviour
     }
     public delegate void ChangeSlotCount(int val);
     public ChangeSlotCount changeSlotCount;
+
+  
     private int slotCount ;
     public int SlotCount
     {
@@ -31,4 +33,5 @@ public class Inventory : MonoBehaviour
         slotCount = 0;
         //SlotCount = slotCount;
     }
+    
 }

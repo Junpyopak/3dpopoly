@@ -6,6 +6,7 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using UnityEngine.Playables;
 using UnityEngine.Timeline;
+using System;
 
 public class Player : Character
 {
@@ -220,8 +221,10 @@ public class Player : Character
                 }
                 playCount = 1;
             }
+         
         }
     }
+
     public override void OnDrawGizmos()
     {
         base.OnDrawGizmos();

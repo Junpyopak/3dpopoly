@@ -12,6 +12,8 @@ TagManager:
   - Tag
   - BossSkill
   - CutScene
+  - item
+  - DropItem
   layers:
   - Default
   - TransparentFX
