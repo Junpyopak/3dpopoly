@@ -13,6 +13,7 @@ public class HpGauge : MonoBehaviour
     {
         Hp = transform.Find("HP").GetComponent<Image>();
         Effect = transform.Find("Effect").GetComponent<Image>();
+        DontDestroyOnLoad(this);
     }
     void Start()
     {
