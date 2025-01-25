@@ -11,6 +11,7 @@ public class BOSS : Enemy
     [SerializeField] BossHpGauge BossHpgauge;
     [SerializeField] List<GameObject> listPattern;//패턴의 종류
     public ParticleSystem MyparticleSystem;
+    public StartAttack startAttack;
     [Header("보스 패턴")]
 
     [SerializeField] int pattern1Count = 1;
@@ -33,6 +34,7 @@ public class BOSS : Enemy
     {
         HP = MaxHp;
         Animator = GetComponent<Animator>();
+        startAttack = GameObject.Find("StartAttack").GetComponent<StartAttack>();
     }
 
     IEnumerator RoarCoroutine()
@@ -57,7 +59,10 @@ public class BOSS : Enemy
         //{
         //    CheckCool();
         //}
-        BossSkill();
+        if(startAttack.onPlayer==true)
+        {
+            BossSkill();
+        }     
     }
     private void BossSkill()
     {
