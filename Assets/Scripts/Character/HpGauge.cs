@@ -7,7 +7,7 @@ public class HpGauge : MonoBehaviour
 {
     private Image Hp;
     private Image Effect;
-    [SerializeField] private float curPlayerHp;
+    [SerializeField] public float curPlayerHp;
     [SerializeField] private float maxPlayerHp;
     private void Awake()
     {
@@ -27,6 +27,10 @@ public class HpGauge : MonoBehaviour
     }
     public void HpCheck()
     {
+        if(curPlayerHp>maxPlayerHp)
+        {
+            curPlayerHp = maxPlayerHp;
+        }
         if (Hp.fillAmount < Effect.fillAmount)//데미지를 입어 체력이 감소했을때
         {
             Effect.fillAmount -= Time.deltaTime * 0.1f; //이펙트의 붉은 부분이 감소됨
@@ -36,11 +40,23 @@ public class HpGauge : MonoBehaviour
                 Effect.fillAmount = Hp.fillAmount;//이펙트를 Hp값으로 변경
             }
         }
+        else if (Hp.fillAmount > Effect.fillAmount)//체력을 회복했을때
+        {
+            Effect.fillAmount = Hp.fillAmount;//이팩트를 hp 값으로 변경
+        }
         float value = curPlayerHp / maxPlayerHp;//남은 hp의 비율
         if (Hp.fillAmount > value) //데미지를 입음
         {
             Hp.fillAmount -= Time.deltaTime*0.2f;
             if (Hp.fillAmount <= value)
+            {
+                Hp.fillAmount = value;
+            }
+        }
+        else if (Hp.fillAmount < value)//회복되었을때
+        {
+            Hp.fillAmount += Time.deltaTime;
+            if (Hp.fillAmount >= value)
             {
                 Hp.fillAmount = value;
             }

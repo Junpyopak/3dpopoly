@@ -76,7 +76,10 @@ public class Player : Character
     // Update is called once per frame
     void Update()
     {
-
+        if(Hp > MaxHp)
+        {
+            Hp = MaxHp;
+        }
         if (animator.GetBool("Death") == false)
         {
             if (playCut == false)
