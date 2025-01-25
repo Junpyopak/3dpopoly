@@ -21,7 +21,6 @@ public class ItemEffect : MonoBehaviour
         PlayerHpGauge = GameObject.Find("PlayerHp").GetComponent<HpGauge>();
 
     }
-    private const string HP = "HP";
     public void Useitem(Item _item)
     {
         if(_item.itemType==Item.ItemType.Used)
@@ -31,7 +30,13 @@ public class ItemEffect : MonoBehaviour
                 player.Hp += 30;
                 PlayerHpGauge.curPlayerHp = player.Hp;
                 Debug.Log("체력이 회복되었습니다.");
-            }      
+            }
+            if(_item.ItemName == "하급 포션")
+            {
+                player.Hp += 15;
+                PlayerHpGauge.curPlayerHp = player.Hp;
+                Debug.Log("체력이 회복되었습니다.");
+            }
         }
     }
 }

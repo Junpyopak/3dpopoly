@@ -17,9 +17,11 @@ public class Slot : MonoBehaviour, IPointerClickHandler
     [SerializeField]
     private GameObject CountImage;
     private ItemEffect itemEffect;
+    private Player player;
     // Start is called before the first frame update
     void Start()
     {
+        player = GameObject.Find("character").GetComponent<Player>();
         itemEffect = FindObjectOfType<ItemEffect>();
         oriPos = transform.position;
         slotButton = GetComponent<Button>();
@@ -84,9 +86,19 @@ public class Slot : MonoBehaviour, IPointerClickHandler
                 {
                     if(item!=null)
                     {
-                        itemEffect.Useitem(item);
-                        Debug.Log(item.ItemName + "을 사용하였습니다.");
-                        SetSlotCount(-1);
+                        if(player.Hp<player.MaxHp)//힐포션일떄 체력이 풀이 아닐경우에만 사용하기 위함.
+                        {
+                            itemEffect.Useitem(item);
+                            Debug.Log(item.ItemName + "을 사용하였습니다.");
+                            SetSlotCount(-1);
+                        }
+                        //itemEffect.Useitem(item);
+                        //Debug.Log(item.ItemName + "을 사용하였습니다.");
+                        //SetSlotCount(-1);
+                        else
+                        {
+                            Debug.Log("현재 체력이 꽉 차있습니다");
+                        }
                     }
                     
                     
