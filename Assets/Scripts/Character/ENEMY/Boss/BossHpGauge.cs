@@ -7,8 +7,8 @@ public class BossHpGauge : MonoBehaviour
 {
     private Image HP;
     private Image Effect;
-    [SerializeField] private float CurBossHp;
-    [SerializeField] private float MaxBossHp;
+    [SerializeField] public float CurBossHp;
+    [SerializeField] public float MaxBossHp;
     private void Awake()
     {
         HP = GameObject.Find("HpBar").GetComponent<Image>();

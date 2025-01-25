@@ -10288,9 +10288,6 @@ MonoBehaviour:
   Hp: 70
   AttackDamage: 7
   PlayerDamage: 20
-  Attack1: 0
-  Attack2: 0
-  Attack3: 0
   HP: 50
   MaxHp: 50
   BossHpgauge: {fileID: 16060443}
@@ -10299,7 +10296,13 @@ MonoBehaviour:
   - {fileID: 189243555060168941, guid: f94062b6a1d5a3e4caad9bf6e2a0c8b5, type: 3}
   - {fileID: 6317087873473705677, guid: 3a63b7e4e9deabe4e9ea742d2f41a81a, type: 3}
   MyparticleSystem: {fileID: 122428359}
-  CoolTime: 10
+  pattern1Count: 2
+  pattern1Reload: 5
+  pattern2Count: 3
+  pattern2Reload: 7
+  pattern3Count: 3
+  pattern3Reload: 7
+  patternChangeTime: 7
 --- !u!95 &2116081807 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 5866666021909216657, guid: cff0afbf235be454e90cbb4f33707be7, type: 3}
