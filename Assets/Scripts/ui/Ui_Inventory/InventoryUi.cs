@@ -27,9 +27,9 @@ public class InventoryUi : MonoBehaviour
 
     private void SlotChange(int val)
     {
-        for(int i = 0; i < slots.Length; i++)
+        for (int i = 0; i < slots.Length; i++)
         {
-            if (i<inven.SlotCount)
+            if (i < inven.SlotCount)
             {
                 slots[i].GetComponent<Button>().interactable = true;
             }
@@ -48,7 +48,7 @@ public class InventoryUi : MonoBehaviour
         {
             OpenInvebtory = !OpenInvebtory;
             Inven.SetActive(OpenInvebtory);
-            if(inven.SlotCount==0)
+            if (inven.SlotCount == 0)
             {
                 inven.SlotCount = 4;
             }
@@ -66,6 +66,33 @@ public class InventoryUi : MonoBehaviour
     }
     public void AddSlot()
     {
-        inven.SlotCount+=4;
+        inven.SlotCount += 4;
+    }
+
+    public void AddSlotItem(Item _item, int _count = 1)
+    {
+        if (Item.ItemType.Equipment != _item.itemType)
+        {
+            for (int i = 0; i < slots.Length; i++)
+            {
+                if (slots[i].item != null)
+                {
+                    if (slots[i].item.ItemName == _item.ItemName)
+                    {
+                        slots[i].SetSlotCount(_count);
+                        return;
+                    }
+                }
+            }
+        }
+
+        for (int i = 0; i < slots.Length; i++)
+        {
+            if (slots[i].item == null)
+            {
+                slots[i].AddItem(_item, _count);
+                return;
+            }
+        }
     }
 }
