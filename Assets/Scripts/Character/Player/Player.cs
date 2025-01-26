@@ -84,6 +84,22 @@ public class Player : Character
         {
             if (playCut == false)
             {
+                if (transform.position.x > 250f)
+                {
+                    transform.position = new Vector3(250f, transform.position.y, transform.position.z);
+                }
+                if (transform.position.x < -70f)
+                {
+                    transform.position = new Vector3(-70f, transform.position.y, transform.position.z);
+                }
+                if (transform.position.z > 550f)
+                {
+                    transform.position = new Vector3(transform.position.x, transform.position.y, 550f);
+                }
+                if (transform.position.z > -84f)
+                {
+                    transform.position = new Vector3(transform.position.x, transform.position.y, -120f);
+                }
                 if (Input.GetKey(KeyCode.LeftShift))
                 {
                     SetMove(new RunStrategy());
@@ -137,6 +153,7 @@ public class Player : Character
             animator.SetBool("isWalk", false);
         }
         chController.Move(moveDir.normalized * Speed * Time.deltaTime);
+       
     }
     //void Movement()
     //{
