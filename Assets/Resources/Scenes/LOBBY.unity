@@ -280,6 +280,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d288e1bc30cbde45a010f3abeddad98, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MyparticleSystem: {fileID: 0}
 --- !u!4 &242339029
 Transform:
   m_ObjectHideFlags: 0
