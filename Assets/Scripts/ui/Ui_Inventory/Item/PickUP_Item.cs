@@ -9,7 +9,6 @@ public class PickUP_Item : MonoBehaviour
     [SerializeField]
     private float Range;
     private bool PickItem = false;
-
     private RaycastHit hit;
 
     [SerializeField]
@@ -18,7 +17,7 @@ public class PickUP_Item : MonoBehaviour
     [SerializeField]
     private Text ActionText;
     [SerializeField]
-    private InventoryUi inventoryUi; 
+    private InventoryUi inventoryUi;
     // Start is called before the first frame update
     void Start()
     {
@@ -33,7 +32,7 @@ public class PickUP_Item : MonoBehaviour
     }
     private void GetAction()
     {
-        if(Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.E))
         {
             CheckItem();
             DoPickup();
@@ -42,9 +41,9 @@ public class PickUP_Item : MonoBehaviour
 
     private void DoPickup()
     {
-        if(PickItem)
+        if (PickItem)
         {
-            if(hit.transform!=null)
+            if (hit.transform != null)
             {
                 Debug.Log(hit.transform.GetComponent<GetItem>().item.ItemName + "»πµÊ");
                 inventoryUi.AddSlotItem(hit.transform.GetComponent<GetItem>().item);
@@ -61,6 +60,7 @@ public class PickUP_Item : MonoBehaviour
             {
                 ItemInfo();
             }
+         
         }
         else
             ItemInfoDis();
@@ -69,7 +69,7 @@ public class PickUP_Item : MonoBehaviour
     {
         PickItem = true;
         ActionText.gameObject.SetActive(true);
-        ActionText.text = hit.transform.GetComponent<GetItem>().item.ItemName + "»πµÊ«œ±‚" + "<color=yellow>"+"(E)"+"</color>";
+        ActionText.text = hit.transform.GetComponent<GetItem>().item.ItemName + "»πµÊ«œ±‚" + "<color=yellow>" + "(E)" + "</color>";
     }
     private void ItemInfoDis()
     {

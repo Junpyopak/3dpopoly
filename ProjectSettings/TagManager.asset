@@ -13,6 +13,7 @@ TagManager:
   - BossSkill
   - CutScene
   - Item
+  - ItemBox
   layers:
   - Default
   - TransparentFX
