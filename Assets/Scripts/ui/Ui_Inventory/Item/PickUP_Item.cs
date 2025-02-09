@@ -13,7 +13,7 @@ public class PickUP_Item : MonoBehaviour
 
     [SerializeField]
     LayerMask layerMask;
-
+    Vector3 itemPick = new Vector3(0f, 0.1f, 1f);
     [SerializeField]
     private Text ActionText;
     [SerializeField]
@@ -29,6 +29,7 @@ public class PickUP_Item : MonoBehaviour
     {
         CheckItem();
         GetAction();
+        Draw();
     }
     private void GetAction()
     {
@@ -75,5 +76,9 @@ public class PickUP_Item : MonoBehaviour
     {
         PickItem = false;
         ActionText.gameObject.SetActive(false);
+    }
+    private void  Draw()
+    {
+        Debug.DrawRay(transform.position, transform.TransformDirection(itemPick),Color.red);
     }
 }

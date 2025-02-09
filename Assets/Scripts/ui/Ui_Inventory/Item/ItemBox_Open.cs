@@ -7,25 +7,32 @@ using UnityEngine.UI;
 public class ItemBox_Open : MonoBehaviour
 {
     GameObject player;
-
+    GameObject PotionImg;
     Animator anim;
     bool isPlayerEnter; // Player가 범위 안에 왔는지를 판별할 bool 타입 변수
     bool boxOpening = false;
     [SerializeField]
     private Text ActionText;
-
+    [SerializeField]
+    GameObject potion;
     private void Awake()
     {
         player = GameObject.FindGameObjectWithTag("Player");
         anim = GetComponent<Animator>();
-
+        PotionImg = GameObject.Find("PotionUp");
         isPlayerEnter = false;
+        PotionImg .SetActive(false);
     }
 
     IEnumerator BoxOpen()
     {
         yield return new WaitForSeconds(5.5f);
         Destroy(gameObject);
+    }
+    IEnumerator PotionImageUp()
+    {
+        yield return new WaitForSeconds(3f);
+        PotionImg.SetActive(true);
     }
     void Update()
     {
@@ -35,6 +42,8 @@ public class ItemBox_Open : MonoBehaviour
             boxOpening = true;
             anim.SetTrigger("Open");
            StartCoroutine(BoxOpen());
+            StartCoroutine(PotionImageUp());
+            Instantiate(potion,transform.position,Quaternion.identity);
             ActionText.gameObject.SetActive(false);
         }
 
