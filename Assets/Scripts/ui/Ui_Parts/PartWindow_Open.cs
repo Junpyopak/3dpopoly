@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Burst.CompilerServices;
 using UnityEngine;
 
 public class PartWindow_Open : MonoBehaviour
@@ -8,6 +9,8 @@ public class PartWindow_Open : MonoBehaviour
     public GameObject OpenParts;
     public GameObject UpgradeButton;
     public GameObject UpgradeWindow;
+
+
     void Start()
     {
         OpenParts.SetActive(false);
@@ -31,6 +34,11 @@ public class PartWindow_Open : MonoBehaviour
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
         }
+        if(OpenWindow == false)
+        {
+            UpgradeWindow.SetActive(false);
+        }
+        
     }
     public void closeUpgrade()
     {
@@ -42,4 +50,5 @@ public class PartWindow_Open : MonoBehaviour
         UpgradeWindow.SetActive(true);
         UpgradeButton.SetActive(false);
     }
+   
 }
