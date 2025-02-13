@@ -12,6 +12,7 @@ public class Upgrade_Ui : MonoBehaviour
     [SerializeField]
     private Text level;
     int Level=0;
+    int MaxLevel = 15;
     // Start is called before the first frame update
     void Start()
     {
@@ -28,25 +29,31 @@ public class Upgrade_Ui : MonoBehaviour
     public void UpgaradeParts()
     {
         int ran = Random.Range(0, 10);
-        if(ran <5 )
+        if(Level<MaxLevel)
         {
-            Level++;
-            Debug.Log("Succes!!!");
-            level.text = $"Lv.{((int)Level)} ";
+            if (ran < 5)
+            {
+                Level++;
+                Debug.Log("Succes!!!");
+                level.text = $"Lv.{((int)Level)} ";
+            }
+            else if (ran < 8)
+            {
+                Debug.Log("Fail!!!");
+            }
+            else if (ran < 9)
+            {
+                Debug.Log("Fail!!!");
+            }
+            else if (ran < 10)
+            {
+                Debug.Log("Fail!!!");
+            }
         }
-        else if(ran <8)
+        else
         {
-            Debug.Log("Fail!!!");
+            Debug.Log("장비 레벨이 최대치입니다.");
         }
-        else if (ran < 9)
-        {
-            Debug.Log("Fail!!!");
-        }
-        else if (ran < 10)
-        {
-            Debug.Log("Fail!!!");
-        }
-
     }
     public void AddSlotItem(Item _item, int _count = 1)
     {
