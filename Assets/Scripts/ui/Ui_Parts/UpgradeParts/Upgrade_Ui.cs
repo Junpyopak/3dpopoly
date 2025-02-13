@@ -1,12 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting.Antlr3.Runtime.Misc;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.UIElements;
 
 public class Upgrade_Ui : MonoBehaviour
 {
     public UpgradeSlot[] slots;
     [SerializeField] List<GameObject> listWeapon;
+    [SerializeField]
+    private Text level;
+    int Level=0;
     // Start is called before the first frame update
     void Start()
     {
@@ -25,7 +30,9 @@ public class Upgrade_Ui : MonoBehaviour
         int ran = Random.Range(0, 10);
         if(ran <5 )
         {
+            Level++;
             Debug.Log("Succes!!!");
+            level.text = $"Lv.{((int)Level)} ";
         }
         else if(ran <8)
         {
