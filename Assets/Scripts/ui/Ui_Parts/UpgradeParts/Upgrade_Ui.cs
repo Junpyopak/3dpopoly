@@ -4,6 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.UIElements;
+using static UI_TITLE;
 
 public class Upgrade_Ui : MonoBehaviour
 {
@@ -19,10 +20,12 @@ public class Upgrade_Ui : MonoBehaviour
     public GameObject resultText;
     [SerializeField]
     Upgrade_Text Upgrade_Text;
+    Player player;
     // Start is called before the first frame update
     void Start()
     {
         slots = GetComponentsInChildren<UpgradeSlot>();
+        player = GameObject.Find("character").GetComponent<Player>();
         DoPickup();
     }
 
@@ -46,6 +49,7 @@ public class Upgrade_Ui : MonoBehaviour
                     Atkup += 2;
                     Debug.Log("Succes!!!");
                     Debug.Log($" + ({(Atkup)})");
+                    player.AttackDamage += 2;
                     atkText.text = $"공격력 : 20 (+{(Atkup)})";
                     level.text = $"Lv.{((int)Level)} ";
                     GameObject text = Instantiate(resultText);
@@ -94,6 +98,7 @@ public class Upgrade_Ui : MonoBehaviour
                     Atkup += 2;
                     Debug.Log("Succes!!!");
                     atkText.text = $"공격력 : 20 (+{(Atkup)})";
+                    player.AttackDamage += 2;
                     level.text = $"Lv.{((int)Level)} ";
                     GameObject text = Instantiate(resultText);
                     resultText.GetComponent<Upgrade_Text>();
@@ -112,6 +117,7 @@ public class Upgrade_Ui : MonoBehaviour
                     Debug.Log("강화레벨 하락");
                     Level--;
                     Atkup -= 2;
+                    player.AttackDamage -= 2;
                     atkText.text = $"공격력 : 20 (+{(Atkup)})";
                     level.text = $"Lv.{((int)Level)} ";
                     GameObject text = Instantiate(resultText);
