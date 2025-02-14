@@ -3446,7 +3446,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1792516779
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3547,6 +3547,9 @@ MonoBehaviour:
   listWeapon:
   - {fileID: 5735204081171806422, guid: fb830389ed5d3ab4fb5af7f4ebc0c02b, type: 3}
   level: {fileID: 4455415207113855110}
+  Success: 0
+  Failed: 0
+  resultText: {fileID: 8749269641590314812, guid: 46aeb0fb2d63a244d8be3c4331bb526d, type: 3}
 --- !u!1 &1792963072
 GameObject:
   m_ObjectHideFlags: 0

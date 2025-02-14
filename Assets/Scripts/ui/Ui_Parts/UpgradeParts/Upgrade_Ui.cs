@@ -13,6 +13,9 @@ public class Upgrade_Ui : MonoBehaviour
     private Text level;
     int Level=0;
     int MaxLevel = 15;
+    public bool Success = false;
+    public bool Failed = false;
+    public GameObject resultText;
     // Start is called before the first frame update
     void Start()
     {
@@ -31,24 +34,78 @@ public class Upgrade_Ui : MonoBehaviour
         int ran = Random.Range(0, 10);
         if(Level<MaxLevel)
         {
-            if (ran < 5)
+            if(Level<8)
             {
-                Level++;
-                Debug.Log("Succes!!!");
-                level.text = $"Lv.{((int)Level)} ";
+                if (ran < 5)
+                {
+                    Success = true;
+                    Level++;
+                    Debug.Log("Succes!!!");
+                    level.text = $"Lv.{((int)Level)} ";
+                    GameObject text = Instantiate(resultText);
+                    resultText.GetComponent<Upgrade_Text>();
+                    Success = false;
+                }
+                else if (ran < 8)
+                {
+                    Failed = true;
+                    GameObject text = Instantiate(resultText);
+                    resultText.GetComponent<Upgrade_Text>();
+                    Debug.Log("Fail!!!");
+                    Failed = false;
+                }
+                else if (ran < 9)
+                {
+                    Failed = true;
+                    GameObject text = Instantiate(resultText);
+                    resultText.GetComponent<Upgrade_Text>();
+                    Debug.Log("Fail!!!");
+                    Failed = false;
+                }
+                else if (ran < 10)
+                {
+                    Failed = true;
+                    GameObject text = Instantiate(resultText);
+                    resultText.GetComponent<Upgrade_Text>();
+                    Debug.Log("Fail!!!");
+                    Failed = false;
+                }
             }
-            else if (ran < 8)
+            else if(Level<15)
             {
-                Debug.Log("Fail!!!");
+                if (ran < 5)
+                {
+                    Failed = true;
+                    GameObject text = Instantiate(resultText);
+                    resultText.GetComponent<Upgrade_Text>();
+                    Debug.Log("Fail!!!");
+                    Failed = false;
+                }
+                else if (ran < 8)
+                {
+                    Success = true;
+                    Level++;
+                    Debug.Log("Succes!!!");
+                    level.text = $"Lv.{((int)Level)} ";
+                    GameObject text = Instantiate(resultText);
+                    resultText.GetComponent<Upgrade_Text>();
+                    Success = false;
+                }
+                //else if (ran < 9)
+                //{
+                //    Level++;
+                //    Debug.Log("Succes!!!");
+                //    level.text = $"Lv.{((int)Level)} ";
+                   
+                //}
+                else if (ran < 10)
+                {
+                    Debug.Log("강화레벨 하락");
+                    Level--;
+                    level.text = $"Lv.{((int)Level)} ";
+                }
             }
-            else if (ran < 9)
-            {
-                Debug.Log("Fail!!!");
-            }
-            else if (ran < 10)
-            {
-                Debug.Log("Fail!!!");
-            }
+            
         }
         else
         {
