@@ -11,11 +11,14 @@ public class Upgrade_Ui : MonoBehaviour
     [SerializeField] List<GameObject> listWeapon;
     [SerializeField]
     private Text level;
+    [SerializeField]
+    private Text atkText;
     int Level=0;
     int MaxLevel = 15;
-    public bool Success = false;
-    public bool Failed = false;
+    int Atkup = 0;
     public GameObject resultText;
+    [SerializeField]
+    Upgrade_Text Upgrade_Text;
     // Start is called before the first frame update
     void Start()
     {
@@ -38,58 +41,63 @@ public class Upgrade_Ui : MonoBehaviour
             {
                 if (ran < 5)
                 {
-                    Success = true;
+                    Upgrade_Text.isSucces = true;
                     Level++;
+                    Atkup += 2;
                     Debug.Log("Succes!!!");
+                    Debug.Log($" + ({(Atkup)})");
+                    atkText.text = $"공격력 : 20 (+{(Atkup)})";
                     level.text = $"Lv.{((int)Level)} ";
                     GameObject text = Instantiate(resultText);
                     resultText.GetComponent<Upgrade_Text>();
-                    Success = false;
+                    Upgrade_Text.isSucces = false;
                 }
                 else if (ran < 8)
                 {
-                    Failed = true;
+                    Upgrade_Text.isFail = true;
                     GameObject text = Instantiate(resultText);
                     resultText.GetComponent<Upgrade_Text>();
                     Debug.Log("Fail!!!");
-                    Failed = false;
+                    Upgrade_Text.isFail = false;
                 }
                 else if (ran < 9)
                 {
-                    Failed = true;
+                    Upgrade_Text.isFail = true;
                     GameObject text = Instantiate(resultText);
                     resultText.GetComponent<Upgrade_Text>();
                     Debug.Log("Fail!!!");
-                    Failed = false;
+                    Upgrade_Text.isFail = false;
                 }
                 else if (ran < 10)
                 {
-                    Failed = true;
+                    Upgrade_Text.isFail = true;
                     GameObject text = Instantiate(resultText);
                     resultText.GetComponent<Upgrade_Text>();
                     Debug.Log("Fail!!!");
-                    Failed = false;
+                    Upgrade_Text.isFail = false;
                 }
             }
             else if(Level<15)
             {
                 if (ran < 5)
                 {
-                    Failed = true;
+                    Upgrade_Text.isFail = true;
                     GameObject text = Instantiate(resultText);
                     resultText.GetComponent<Upgrade_Text>();
                     Debug.Log("Fail!!!");
-                    Failed = false;
+                    Upgrade_Text.isFail = false;
                 }
                 else if (ran < 8)
                 {
-                    Success = true;
+                    Upgrade_Text.isSucces = true;
                     Level++;
+                    Atkup += 2;
                     Debug.Log("Succes!!!");
+                    atkText.text = $"공격력 : 20 (+{(Atkup)})";
                     level.text = $"Lv.{((int)Level)} ";
                     GameObject text = Instantiate(resultText);
                     resultText.GetComponent<Upgrade_Text>();
-                    Success = false;
+                    Upgrade_Text.isSucces = false;
                 }
                 //else if (ran < 9)
                 //{
@@ -100,9 +108,15 @@ public class Upgrade_Ui : MonoBehaviour
                 //}
                 else if (ran < 10)
                 {
+                    Upgrade_Text.Downgrade = true;
                     Debug.Log("강화레벨 하락");
                     Level--;
+                    Atkup -= 2;
+                    atkText.text = $"공격력 : 20 (+{(Atkup)})";
                     level.text = $"Lv.{((int)Level)} ";
+                    GameObject text = Instantiate(resultText);
+                    resultText.GetComponent<Upgrade_Text>();
+                    Upgrade_Text.Downgrade = false;
                 }
             }
             

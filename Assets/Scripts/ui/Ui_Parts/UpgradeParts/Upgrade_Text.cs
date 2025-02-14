@@ -4,27 +4,34 @@ using System.Xml.Serialization;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Upgrade_Text : Upgrade_Ui
+public class Upgrade_Text : MonoBehaviour
 {
-    bool isSucces;
-    bool isFail;
+    public bool isSucces;
+    public bool isFail;
+    public bool Downgrade;
     Text ResultText;
 
-    // Start is called before the first frame update
-    void Start()
+    private void Awake()
     {
-        isSucces = Success;
-        isFail = Failed;
-        ResultText = GetComponent<Text>();
-        if (Success == true)
+        ResultText = GetComponentInChildren<Text>();
+        if (isSucces == true)
         {
             ResultText.text = "<color=yellow>" + "강화 성공 !!" + "</color>";
         }
-        else if(Failed == true)
+        else if (isFail == true)
         {
             ResultText.text = "<color=red>" + "강화 실패..." + "</color>";
         }
-        Invoke("DeleteText",1f);
+        else if(Downgrade == true)
+        {
+            ResultText.text = "<color=black>" + "강화 하락..." + "</color>";
+        }
+    }
+    // Start is called before the first frame update
+    void Start()
+    {
+
+        Invoke("DeleteText", 0.5f);
     }
     private void DeleteText()
     {
