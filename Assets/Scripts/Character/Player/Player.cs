@@ -49,7 +49,10 @@ public class Player : Character
         chController = GameObject.Find("character").GetComponent<CharacterController>();
         //MeshCollider = GameObject.Find("Weapon").GetComponent<MeshCollider>();
         //MeshCollider.enabled = false;
-        BoxCollider = GameObject.Find("Weapon").GetComponent<BoxCollider>();
+        if (GameObject.Find("Weapon") != null)
+        {
+            BoxCollider = GameObject.Find("Weapon").GetComponent<BoxCollider>();
+        }
         playableDirector = GetComponent<PlayableDirector>();
 
     }
@@ -77,7 +80,7 @@ public class Player : Character
     // Update is called once per frame
     void Update()
     {
-        if(Hp > MaxHp)
+        if (Hp > MaxHp)
         {
             Hp = MaxHp;
         }
@@ -154,7 +157,7 @@ public class Player : Character
             animator.SetBool("isWalk", false);
         }
         chController.Move(moveDir.normalized * Speed * Time.deltaTime);
-       
+
     }
     //void Movement()
     //{
@@ -242,7 +245,7 @@ public class Player : Character
                 }
                 playCount = 1;
             }
-         
+
         }
     }
 
