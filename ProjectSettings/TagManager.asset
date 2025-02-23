@@ -14,6 +14,8 @@ TagManager:
   - CutScene
   - Item
   - ItemBox
+  - DropItem
+  - Water
   layers:
   - Default
   - TransparentFX

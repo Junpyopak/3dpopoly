@@ -8,6 +8,7 @@ using UnityEngine.Playables;
 using UnityEngine.Timeline;
 using System;
 using Unity.Mathematics;
+using Unity.Burst.CompilerServices;
 
 public class Player : Character
 {
@@ -34,6 +35,7 @@ public class Player : Character
     public TimelineAsset[] timelines;
     private int playCount = 0;
     public bool playCut = false;
+    private RaycastHit hit;
     // Start is called before the first frame update
     void Start()
     {
