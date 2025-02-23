@@ -3995,6 +3995,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: HumanFishingPole
       objectReference: {fileID: 0}
+    - target: {fileID: 1641477228926019621, guid: d506a27454308e74aa81abcec360fca9, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2129185005798650527, guid: d506a27454308e74aa81abcec360fca9, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -16334,7 +16338,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7809831402607367939, guid: ec8e408c484cd39479235db1b5e19d71, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
