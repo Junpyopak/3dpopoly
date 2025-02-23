@@ -119,11 +119,11 @@ public class Player : Character
                     animator.SetBool("isRun", moveFast);
                 }
 
-                if (Input.GetKeyDown(KeyCode.Space))
-                {
-                    Vector3 jumpPower = Vector3.up * jumpFor;
-                    rigidbody.AddForce(jumpPower, ForceMode.VelocityChange);
-                }
+                //if (Input.GetKeyDown(KeyCode.Space))
+                //{
+                //    Vector3 jumpPower = Vector3.up * jumpFor;
+                //    rigidbody.AddForce(jumpPower, ForceMode.VelocityChange);
+                //}
                 Moved();
             }
             else
