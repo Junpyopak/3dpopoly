@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -18,6 +19,10 @@ public class PickUP_Item : MonoBehaviour
     private Text ActionText;
     [SerializeField]
     private InventoryUi inventoryUi;
+    Vector3 fising = new Vector3(0f, -7f, 10f);
+    [SerializeField]
+    GameObject FishSlider;
+    public Text FishingCnt;
     // Start is called before the first frame update
     void Start()
     {
@@ -30,6 +35,7 @@ public class PickUP_Item : MonoBehaviour
         CheckItem();
         GetAction();
         Draw();
+        WaterRay();
     }
     private void GetAction()
     {
@@ -81,4 +87,35 @@ public class PickUP_Item : MonoBehaviour
     {
         Debug.DrawRay(transform.position, transform.TransformDirection(itemPick),Color.red);
     }
+    private void WaterRay()
+    {
+        Debug.DrawRay(transform.position, transform.TransformDirection(fising), Color.blue);
+        if(Physics.Raycast(transform.position, transform.TransformDirection(fising), out hit))
+        {
+            if (hit.transform.tag == "Water")
+            {
+                StartFishing();
+                Debug.Log("³¬½Ã °¡´É");
+            }
+            else
+            {
+                DisFising();
+            }
+        }
+    }
+    private void StartFishing()
+    {
+        ActionText.gameObject.SetActive(true);
+        ActionText.text = "³¬½ÃÇÏ±â" + "<color=yellow>" + "(F)" + "</color>";
+        if(Input.GetKeyDown(KeyCode.F))
+        {
+            FishSlider.SetActive(true);
+            FishingCnt.gameObject.SetActive(true);
+        }
+    }
+    void DisFising()
+    {
+        ActionText.gameObject.SetActive(false);
+    }
+     
 }
