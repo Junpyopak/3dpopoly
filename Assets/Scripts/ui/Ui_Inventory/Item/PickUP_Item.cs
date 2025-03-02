@@ -22,7 +22,6 @@ public class PickUP_Item : MonoBehaviour
     Vector3 fising = new Vector3(0f, -7f, 10f);
     [SerializeField]
     GameObject FishSlider;
-    public Text FishingCnt;
     // Start is called before the first frame update
     void Start()
     {
@@ -109,8 +108,9 @@ public class PickUP_Item : MonoBehaviour
         ActionText.text = "³¬½ÃÇÏ±â" + "<color=yellow>" + "(F)" + "</color>";
         if(Input.GetKeyDown(KeyCode.F))
         {
-            FishSlider.SetActive(true);
-            FishingCnt.gameObject.SetActive(true);
+            GameObject go = Instantiate(FishSlider);
+            go.name = "fishing";
+            
         }
     }
     void DisFising()

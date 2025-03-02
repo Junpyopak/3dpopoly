@@ -60,7 +60,7 @@ public class Player : Character
         }
         playableDirector = GetComponent<PlayableDirector>();
 
-        
+        hpGauge = GameObject.Find("PlayerHp").GetComponent<HpGauge>();
     }
 
     public void SetMove(MoveStrategy moveStrategy)

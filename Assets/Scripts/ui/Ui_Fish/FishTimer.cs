@@ -70,7 +70,7 @@ public class FishTimer : MonoBehaviour
     }
     IEnumerator Failfish()
     {
-        yield return new WaitForSeconds(1.5f); ;
-        gameObject.SetActive(false);
+        yield return new WaitForSeconds(1.5f);
+        Destroy(GameObject.Find("fishing"));
     }
 }
