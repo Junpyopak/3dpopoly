@@ -64,7 +64,7 @@ public class Enemy_AI : Enemy
             //타겟과의 방향 계산
             Vector3 Detection = (player.position - transform.position).normalized;
             //플레이어 위치 따라가기
-            transform.position = new Vector3(transform.position.x, 0, transform.position.z);
+            transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z);
             //transform.position = Vector3.MoveTowards(transform.position,player.position,moveSpeed*Time.deltaTime);
             transform.position += Detection * Speed * Time.deltaTime;
             AiState = eAi.eAI_ATTACK;

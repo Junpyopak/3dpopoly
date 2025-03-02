@@ -10,6 +10,7 @@ using System;
 using Unity.Mathematics;
 using Unity.Burst.CompilerServices;
 
+
 public class Player : Character
 {
     private Rigidbody rigidbody;
@@ -36,6 +37,8 @@ public class Player : Character
     private int playCount = 0;
     public bool playCut = false;
     private RaycastHit hit;
+       
+
     // Start is called before the first frame update
     void Start()
     {
@@ -57,6 +60,7 @@ public class Player : Character
         }
         playableDirector = GetComponent<PlayableDirector>();
 
+        
     }
 
     public void SetMove(MoveStrategy moveStrategy)

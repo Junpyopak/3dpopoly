@@ -21,8 +21,8 @@ public class FishTimer : MonoBehaviour
     {
         Slider = GetComponent<Slider>();
         fishText.text = $"{((int)fishCnt)}/{MaxCnt}";
+        Slider.value = 0;
     }
-
     // Update is called once per frame
     void Update()
     {
