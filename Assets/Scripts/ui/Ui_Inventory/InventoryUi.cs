@@ -53,16 +53,16 @@ public class InventoryUi : MonoBehaviour
                 inven.SlotCount = 4;
             }
         }
-        if (OpenInvebtory == true)
-        {
-            Cursor.lockState = CursorLockMode.None;
-            Cursor.visible = true;
-        }
-        else
-        {
-            Cursor.lockState = CursorLockMode.Locked;
-            Cursor.visible = false;
-        }
+        //if (OpenInvebtory == true)
+        //{
+        //    Cursor.lockState = CursorLockMode.None;
+        //    Cursor.visible = true;
+        //}
+        //else
+        //{
+        //    Cursor.lockState = CursorLockMode.Locked;
+        //    Cursor.visible = false;
+        //}
     }
     public void AddSlot()
     {
@@ -94,5 +94,20 @@ public class InventoryUi : MonoBehaviour
                 return;
             }
         }
+    }
+    
+    public void OpenInven()
+    {
+        OpenInvebtory = true;
+        Inven.SetActive(OpenInvebtory);
+        if (inven.SlotCount == 0)
+        {
+            inven.SlotCount = 4;
+        }
+    }
+    public void CloseInven()
+    {
+        OpenInvebtory = false;
+        Inven.SetActive(OpenInvebtory);
     }
 }
