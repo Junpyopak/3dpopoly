@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class InventoryUi : MonoBehaviour
 {
     Inventory inven;
+    MiniCam_Close MiniCam_close;
     public GameObject Inven;
     private bool OpenInvebtory = false;
     public Slot[] slots;
@@ -23,6 +24,7 @@ public class InventoryUi : MonoBehaviour
         slots = GetComponentsInChildren<Slot>();
         inven.changeSlotCount += SlotChange;
         Inven.SetActive(false);
+        MiniCam_close = MiniCam_Close.instance;
     }
 
     private void SlotChange(int val)
@@ -100,6 +102,7 @@ public class InventoryUi : MonoBehaviour
     {
         OpenInvebtory = true;
         Inven.SetActive(OpenInvebtory);
+        MiniCam_close.Closemap();
         if (inven.SlotCount == 0)
         {
             inven.SlotCount = 4;
@@ -109,5 +112,6 @@ public class InventoryUi : MonoBehaviour
     {
         OpenInvebtory = false;
         Inven.SetActive(OpenInvebtory);
+        MiniCam_close.OpenMap();
     }
 }

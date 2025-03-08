@@ -51,4 +51,14 @@ public class PartWindow_Open : MonoBehaviour
         UpgradeButton.SetActive(false);
     }
    
+    public void Btn_OpenWindow()
+    {
+        OpenWindow = true;
+        OpenParts.SetActive(OpenWindow);
+    }
+    public void Btn_closeWindow()
+    {
+        OpenWindow = false;
+        OpenParts.SetActive(OpenWindow);
+    }
 }
