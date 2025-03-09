@@ -9,10 +9,17 @@ public class HpGauge : MonoBehaviour
     private Image Effect;
     [SerializeField] public float curPlayerHp;
     [SerializeField] private float maxPlayerHp;
+    public static HpGauge instance;
     private void Awake()
     {
         Hp = transform.Find("HP").GetComponent<Image>();
         Effect = transform.Find("Effect").GetComponent<Image>();
+        if (instance != null)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        instance = this;
         DontDestroyOnLoad(this);
     }
     void Start()
@@ -74,6 +81,14 @@ public class HpGauge : MonoBehaviour
     {
         curPlayerHp = _hp;
         maxPlayerHp = _maxHp;
+    }
+    public void BtnOn_Hp()
+    {
+        gameObject.SetActive(true);
+    }
+    public void BtnOff_Hp()
+    {
+        gameObject.SetActive(false);
     }
 }
 

@@ -8,6 +8,7 @@ public class InventoryUi : MonoBehaviour
 {
     Inventory inven;
     MiniCam_Close MiniCam_close;
+    HpGauge hpGauge;
     public GameObject Inven;
     private bool OpenInvebtory = false;
     public Slot[] slots;
@@ -25,6 +26,7 @@ public class InventoryUi : MonoBehaviour
         inven.changeSlotCount += SlotChange;
         Inven.SetActive(false);
         MiniCam_close = MiniCam_Close.instance;
+        hpGauge = HpGauge.instance;
     }
 
     private void SlotChange(int val)
@@ -103,6 +105,7 @@ public class InventoryUi : MonoBehaviour
         OpenInvebtory = true;
         Inven.SetActive(OpenInvebtory);
         MiniCam_close.Closemap();
+        hpGauge.BtnOff_Hp();
         if (inven.SlotCount == 0)
         {
             inven.SlotCount = 4;
@@ -113,5 +116,6 @@ public class InventoryUi : MonoBehaviour
         OpenInvebtory = false;
         Inven.SetActive(OpenInvebtory);
         MiniCam_close.OpenMap();
+        hpGauge.BtnOn_Hp();
     }
 }

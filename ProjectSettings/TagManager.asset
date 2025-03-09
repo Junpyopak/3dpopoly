@@ -16,6 +16,7 @@ TagManager:
   - ItemBox
   - DropItem
   - Water
+  - Telport
   layers:
   - Default
   - TransparentFX

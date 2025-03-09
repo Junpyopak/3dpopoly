@@ -37,7 +37,6 @@ public class Player : Character
     private int playCount = 0;
     public bool playCut = false;
     private RaycastHit hit;
-       
 
     // Start is called before the first frame update
     void Start()
@@ -130,7 +129,8 @@ public class Player : Character
                 //    Vector3 jumpPower = Vector3.up * jumpFor;
                 //    rigidbody.AddForce(jumpPower, ForceMode.VelocityChange);
                 //}
-                Moved();
+                    Moved();
+                
             }
             else
             {
@@ -145,9 +145,11 @@ public class Player : Character
         if (camera == null) return;
         Vector3 playerRaotation = Vector3.Scale(camera.transform.forward, new Vector3(1, 0, 1));
         transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(playerRaotation), Time.deltaTime * Smove);
+
     }
     public override void Moved()
     {
+
         SetMove(new WalkStrategy());
         Vector3 forward = transform.TransformDirection(Vector3.forward);
         Vector3 right = transform.TransformDirection(Vector3.right);
