@@ -38,6 +38,7 @@ public class Player : Character
     public bool playCut = false;
     private RaycastHit hit;
 
+    public bool DoTelpo = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -58,7 +59,6 @@ public class Player : Character
             BoxCollider = GameObject.Find("Weapon").GetComponent<BoxCollider>();
         }
         playableDirector = GetComponent<PlayableDirector>();
-
         hpGauge = GameObject.Find("PlayerHp").GetComponent<HpGauge>();
     }
 
@@ -93,22 +93,6 @@ public class Player : Character
         {
             if (playCut == false)
             {
-                //if (transform.position.x > 250f)
-                //{
-                //    transform.position = new Vector3(250f, transform.position.y, transform.position.z);
-                //}
-                //if (transform.position.x < -70f)
-                //{
-                //    transform.position = new Vector3(-70f, transform.position.y, transform.position.z);
-                //}
-                //if (transform.position.z > 550f)
-                //{
-                //    transform.position = new Vector3(transform.position.x, transform.position.y, 550f);
-                //}
-                //if (transform.position.z > -84f)
-                //{
-                //    transform.position = new Vector3(transform.position.x, transform.position.y, -120f);
-                //}
                 if (Input.GetKey(KeyCode.LeftShift))
                 {
                     SetMove(new RunStrategy());
@@ -123,14 +107,8 @@ public class Player : Character
                     Speed = 3;
                     animator.SetBool("isRun", moveFast);
                 }
+                Moved();
 
-                //if (Input.GetKeyDown(KeyCode.Space))
-                //{
-                //    Vector3 jumpPower = Vector3.up * jumpFor;
-                //    rigidbody.AddForce(jumpPower, ForceMode.VelocityChange);
-                //}
-                    Moved();
-                
             }
             else
             {
@@ -146,26 +124,28 @@ public class Player : Character
         Vector3 playerRaotation = Vector3.Scale(camera.transform.forward, new Vector3(1, 0, 1));
         transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(playerRaotation), Time.deltaTime * Smove);
 
+
     }
     public override void Moved()
     {
-
-        SetMove(new WalkStrategy());
-        Vector3 forward = transform.TransformDirection(Vector3.forward);
-        Vector3 right = transform.TransformDirection(Vector3.right);
-
-        Vector3 moveDir = forward * Input.GetAxisRaw("Vertical") + right * Input.GetAxisRaw("Horizontal");
-        if (moveDir != Vector3.zero)
+        if(DoTelpo==false)
         {
-            animator.SetBool("isWalk", true);
-            DoMove();
-        }
-        else
-        {
-            animator.SetBool("isWalk", false);
-        }
-        chController.Move(moveDir.normalized * Speed * Time.deltaTime);
+            SetMove(new WalkStrategy());
+            Vector3 forward = transform.TransformDirection(Vector3.forward);
+            Vector3 right = transform.TransformDirection(Vector3.right);
 
+            Vector3 moveDir = forward * Input.GetAxisRaw("Vertical") + right * Input.GetAxisRaw("Horizontal");
+            if (moveDir != Vector3.zero)
+            {
+                animator.SetBool("isWalk", true);
+                DoMove();
+            }
+            else
+            {
+                animator.SetBool("isWalk", false);
+            }
+            chController.Move(moveDir.normalized * Speed * Time.deltaTime);
+        }
     }
     //void Movement()
     //{

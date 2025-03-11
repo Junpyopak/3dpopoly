@@ -977,6 +977,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &370171944 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5419910688738474794, guid: ec8e408c484cd39479235db1b5e19d71, type: 3}
+  m_PrefabInstance: {fileID: 8960730758587264257}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &416284771
 GameObject:
   m_ObjectHideFlags: 0
@@ -2704,7 +2709,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a876fae9e8b85d4aa8ee84393eff7b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Target: {fileID: 8960730758587264258}
+  Target: {fileID: 370171944}
   TelPos: {fileID: 1218757514}
   TelPort: 0
 --- !u!1 &1939129922
@@ -15947,9 +15952,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 7851136426968942684}
     - target: {fileID: 2846947327307596792, guid: ec8e408c484cd39479235db1b5e19d71, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2846947327307596792, guid: ec8e408c484cd39479235db1b5e19d71, type: 3}
       propertyPath: inventoryUi
       value: 
       objectReference: {fileID: 92630376470073173}
+    - target: {fileID: 2846947327307596792, guid: ec8e408c484cd39479235db1b5e19d71, type: 3}
+      propertyPath: WorldMap_set
+      value: 
+      objectReference: {fileID: 1874624937}
     - target: {fileID: 3872378026474177761, guid: ec8e408c484cd39479235db1b5e19d71, type: 3}
       propertyPath: m_LocalScale.x
       value: 4
@@ -16031,6 +16044,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6748326039461480960, guid: ec8e408c484cd39479235db1b5e19d71, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7627963556914526577, guid: ec8e408c484cd39479235db1b5e19d71, type: 3}
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}

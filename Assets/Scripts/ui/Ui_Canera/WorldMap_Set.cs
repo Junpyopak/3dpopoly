@@ -12,6 +12,8 @@ public class WorldMap_Set : MonoBehaviour
     public GameObject Target;
     public GameObject TelPos;
     public bool TelPort = false;
+    Player player;
+    CharacterController chController;
     private void Awake()
     {
         if (instance != null)
@@ -25,7 +27,8 @@ public class WorldMap_Set : MonoBehaviour
     void Start()
     {
         WorldCam = GameObject.Find("World_miniCam").GetComponent<Camera>();
-
+        player = GameObject.Find("character").GetComponent<Player>();
+        chController = GameObject.Find("character").GetComponent<CharacterController>();
     }
 
     // Update is called once per frame
@@ -42,9 +45,12 @@ public class WorldMap_Set : MonoBehaviour
             {
                 if (hit.transform.tag == "Telport")
                 {
+                    StartCoroutine(MoveStartCoroutine());
                     Debug.Log("¿Ãµø");
-                    //TelPort = true;
+                    chController.enabled = false;
+                    player.DoTelpo = true;
                     Target.transform.position = TelPos.transform.position;
+                    chController.enabled = true;
                 }
             }
         }
@@ -57,5 +63,10 @@ public class WorldMap_Set : MonoBehaviour
     public void Btn_MapClose()
     {
         gameObject.SetActive(false);
+    }
+    IEnumerator MoveStartCoroutine()
+    {
+        yield return new WaitForSeconds(1f);
+        player.DoTelpo = false;
     }
 }
