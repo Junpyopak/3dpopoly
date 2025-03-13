@@ -9,6 +9,7 @@ using UnityEngine.Timeline;
 using System;
 using Unity.Mathematics;
 using Unity.Burst.CompilerServices;
+using static UnityEngine.Rendering.VolumeComponent;
 
 
 public class Player : Character
@@ -37,6 +38,8 @@ public class Player : Character
     private int playCount = 0;
     public bool playCut = false;
     private RaycastHit hit;
+    public GameObject Autoloading;
+    private bool AutoMode = false;
 
     public bool DoTelpo = false;
     // Start is called before the first frame update
@@ -255,5 +258,10 @@ public class Player : Character
             animator.SetBool("Death", true);
             Debug.Log("ав╬З╫ю╢о╢ы");
         }
+    }
+    public void BtnAuto()
+    {
+        AutoMode = !AutoMode;      
+        Autoloading.SetActive(AutoMode);
     }
 }
