@@ -14,6 +14,7 @@ public class WorldMap_Set : MonoBehaviour
     public bool TelPort = false;
     Player player;
     CharacterController chController;
+    public GameObject LoadingPop;
     private void Awake()
     {
         if (instance != null)
@@ -50,6 +51,7 @@ public class WorldMap_Set : MonoBehaviour
                     chController.enabled = false;
                     player.DoTelpo = true;
                     Target.transform.position = TelPos.transform.position;
+                    LoadingPop.SetActive(true);
                     chController.enabled = true;
                 }
             }
