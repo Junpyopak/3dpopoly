@@ -10,6 +10,7 @@ using System;
 using Unity.Mathematics;
 using Unity.Burst.CompilerServices;
 using static UnityEngine.Rendering.VolumeComponent;
+using UnityEngine.AI;
 
 
 public class Player : Character
@@ -39,7 +40,9 @@ public class Player : Character
     public bool playCut = false;
     private RaycastHit hit;
     public GameObject Autoloading;
+    public GameObject AutoPos;
     private bool AutoMode = false;
+    NavMeshAgent meshAgent;
 
     public bool DoTelpo = false;
     // Start is called before the first frame update
@@ -63,6 +66,7 @@ public class Player : Character
         }
         playableDirector = GetComponent<PlayableDirector>();
         hpGauge = GameObject.Find("PlayerHp").GetComponent<HpGauge>();
+        meshAgent = GetComponent<NavMeshAgent>();
     }
 
     public void SetMove(MoveStrategy moveStrategy)
@@ -96,7 +100,7 @@ public class Player : Character
         {
             if (playCut == false)
             {
-                if (Input.GetKey(KeyCode.LeftShift))
+                if (Input.GetKey(KeyCode.LeftShift)/*||AutoMode==true*/)
                 {
                     SetMove(new RunStrategy());
                     moveFast = true;
@@ -111,7 +115,10 @@ public class Player : Character
                     animator.SetBool("isRun", moveFast);
                 }
                 Moved();
-
+                //if (AutoMode == true)
+                //{
+                //    transform.position = Vector3.MoveTowards(transform.position, AutoPos.transform.position, Speed);
+                //}
             }
             else
             {
@@ -120,6 +127,15 @@ public class Player : Character
                 animator.SetBool("isWalk", false);
             }
         }
+        if (AutoMode && !meshAgent.pathPending && meshAgent.remainingDistance <= 0.1f)
+        {
+            AutoMode = false;
+
+            meshAgent.isStopped = true;
+            chController.enabled = true;
+            animator.SetBool("isRun", false);
+        }
+        Autoloading.SetActive(AutoMode);
     }
     private void LateUpdate()
     {
@@ -131,7 +147,7 @@ public class Player : Character
     }
     public override void Moved()
     {
-        if(DoTelpo==false)
+        if (DoTelpo == false)
         {
             SetMove(new WalkStrategy());
             Vector3 forward = transform.TransformDirection(Vector3.forward);
@@ -261,7 +277,37 @@ public class Player : Character
     }
     public void BtnAuto()
     {
-        AutoMode = !AutoMode;      
+        //AutoMode = !AutoMode;
+        //Autoloading.SetActive(AutoMode);
+        //if (AutoMode == true)
+        //{
+        //    chController.enabled = false;
+        //    meshAgent.speed = Speed;
+        //    meshAgent.destination = AutoPos.transform.position;
+        //}
+        //else if (meshAgent.remainingDistance < 0.1f)
+        //{
+        //    AutoMode = false;
+        //    chController.enabled = false;
+        //    animator.SetBool("isRun", false);
+        //}
+        AutoMode = !AutoMode;
         Autoloading.SetActive(AutoMode);
+
+        if (AutoMode)
+        {
+            chController.enabled = false;
+            meshAgent.isStopped = false; // Ensure the agent is active
+            meshAgent.speed = Speed;
+            meshAgent.destination = AutoPos.transform.position;
+            animator.SetBool("isRun", true);
+        }
+        else
+        {
+            meshAgent.isStopped = true;
+            meshAgent.ResetPath();
+            chController.enabled = true;
+            animator.SetBool("isRun", false);
+        }
     }
 }
