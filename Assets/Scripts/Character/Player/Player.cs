@@ -11,6 +11,7 @@ using Unity.Mathematics;
 using Unity.Burst.CompilerServices;
 using static UnityEngine.Rendering.VolumeComponent;
 using UnityEngine.AI;
+using static UI_TITLE;
 
 
 public class Player : Character
@@ -24,6 +25,7 @@ public class Player : Character
     private float rotate = 3f;
     private bool moveFast;
     public float Smove = 10f;
+    public float detectionDis = 7f;//탐지 거리
     public bool Attack1 = false;
     Enemy Enemy;
     public int Hp = 100;
@@ -43,7 +45,7 @@ public class Player : Character
     public GameObject AutoPos;
     public bool AutoMode = false;
     NavMeshAgent meshAgent;
-
+    Transform Warrok;
     public bool DoTelpo = false;
     // Start is called before the first frame update
     void Start()
@@ -52,6 +54,7 @@ public class Player : Character
         if (GameObject.Find("Warrok") != null)
         {
             Enemy = GameObject.Find("Warrok").GetComponent<Enemy>();
+            Warrok = GameObject.Find("Warrok").transform;
         }
         Speed = 3f;
         rigidbody = this.GetComponent<Rigidbody>();
@@ -67,6 +70,7 @@ public class Player : Character
         playableDirector = GetComponent<PlayableDirector>();
         hpGauge = GameObject.Find("PlayerHp").GetComponent<HpGauge>();
         meshAgent = GetComponent<NavMeshAgent>();
+
     }
 
     public void SetMove(MoveStrategy moveStrategy)
@@ -148,7 +152,7 @@ public class Player : Character
             Vector3 right = transform.TransformDirection(Vector3.right);
 
             Vector3 moveDir = forward * Input.GetAxisRaw("Vertical") + right * Input.GetAxisRaw("Horizontal");
-            if (moveDir != Vector3.zero )
+            if (moveDir != Vector3.zero)
             {
                 animator.SetBool("isWalk", true);
                 DoMove();
@@ -253,6 +257,9 @@ public class Player : Character
     public override void OnDrawGizmos()
     {
         base.OnDrawGizmos();
+        //공격범위 확인
+        Gizmos.color = Color.blue;
+        Gizmos.DrawWireSphere(this.transform.position, detectionDis);
     }
 
     public void Damage()
@@ -271,20 +278,6 @@ public class Player : Character
     }
     public void BtnAuto()
     {
-        //AutoMode = !AutoMode;
-        //Autoloading.SetActive(AutoMode);
-        //if (AutoMode == true)
-        //{
-        //    chController.enabled = false;
-        //    meshAgent.speed = Speed;
-        //    meshAgent.destination = AutoPos.transform.position;
-        //}
-        //else if (meshAgent.remainingDistance < 0.1f)
-        //{
-        //    AutoMode = false;
-        //    chController.enabled = false;
-        //    animator.SetBool("isRun", false);
-        //}
         AutoMode = !AutoMode;
         Autoloading.SetActive(AutoMode);
 
@@ -295,8 +288,8 @@ public class Player : Character
             meshAgent.speed = 5;
             meshAgent.destination = AutoPos.transform.position;
             transform.LookAt(AutoPos.transform.position);
-            animator.SetBool("isRun", true);
         }
+
         else
         {
             meshAgent.isStopped = true;
