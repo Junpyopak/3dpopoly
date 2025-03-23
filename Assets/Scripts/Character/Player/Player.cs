@@ -41,7 +41,7 @@ public class Player : Character
     private RaycastHit hit;
     public GameObject Autoloading;
     public GameObject AutoPos;
-    private bool AutoMode = false;
+    public bool AutoMode = false;
     NavMeshAgent meshAgent;
 
     public bool DoTelpo = false;
@@ -100,7 +100,7 @@ public class Player : Character
         {
             if (playCut == false)
             {
-                if (Input.GetKey(KeyCode.LeftShift)/*||AutoMode==true*/)
+                if (Input.GetKey(KeyCode.LeftShift) || AutoMode == true)
                 {
                     SetMove(new RunStrategy());
                     moveFast = true;
@@ -115,10 +115,6 @@ public class Player : Character
                     animator.SetBool("isRun", moveFast);
                 }
                 Moved();
-                //if (AutoMode == true)
-                //{
-                //    transform.position = Vector3.MoveTowards(transform.position, AutoPos.transform.position, Speed);
-                //}
             }
             else
             {
@@ -130,10 +126,8 @@ public class Player : Character
         if (AutoMode && !meshAgent.pathPending && meshAgent.remainingDistance <= 0.1f)
         {
             AutoMode = false;
-
             meshAgent.isStopped = true;
             chController.enabled = true;
-            animator.SetBool("isRun", false);
         }
         Autoloading.SetActive(AutoMode);
     }
@@ -154,7 +148,7 @@ public class Player : Character
             Vector3 right = transform.TransformDirection(Vector3.right);
 
             Vector3 moveDir = forward * Input.GetAxisRaw("Vertical") + right * Input.GetAxisRaw("Horizontal");
-            if (moveDir != Vector3.zero)
+            if (moveDir != Vector3.zero )
             {
                 animator.SetBool("isWalk", true);
                 DoMove();
@@ -297,9 +291,10 @@ public class Player : Character
         if (AutoMode)
         {
             chController.enabled = false;
-            meshAgent.isStopped = false; // Ensure the agent is active
-            meshAgent.speed = Speed;
+            meshAgent.isStopped = false;
+            meshAgent.speed = 5;
             meshAgent.destination = AutoPos.transform.position;
+            transform.LookAt(AutoPos.transform.position);
             animator.SetBool("isRun", true);
         }
         else
@@ -307,7 +302,6 @@ public class Player : Character
             meshAgent.isStopped = true;
             meshAgent.ResetPath();
             chController.enabled = true;
-            animator.SetBool("isRun", false);
         }
     }
 }

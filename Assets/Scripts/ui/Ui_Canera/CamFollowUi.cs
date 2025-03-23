@@ -19,6 +19,7 @@ public class CamFollowUi : MonoBehaviour
     public float maxDis;//√÷¥Î
     public float finalDis;
     public float Smove = 10f;
+    Player player;
     // Start is called before the first frame update
     void Start()
     {
@@ -26,7 +27,7 @@ public class CamFollowUi : MonoBehaviour
         rotaY = transform.localRotation.eulerAngles.y;
         dir = Camera.localPosition.normalized;
         finalDis = Camera.localPosition.magnitude;
-
+        player = GameObject.Find("character").GetComponent<Player>();
         //Cursor.lockState = CursorLockMode.Locked;
         //Cursor.visible = false;
     }
@@ -34,13 +35,22 @@ public class CamFollowUi : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        rotaX += -(Input.GetAxis("Mouse Y")) * MouseSensor * Time.deltaTime;
-        rotaY += Input.GetAxis("Mouse X") * MouseSensor * Time.deltaTime;
+        if(player.AutoMode==false)
+        {
+            rotaX += -(Input.GetAxis("Mouse Y")) * MouseSensor * Time.deltaTime;
+            rotaY += Input.GetAxis("Mouse X") * MouseSensor * Time.deltaTime;
+            rotaX = Mathf.Clamp(rotaX, -LimitAngle, LimitAngle);
+            Quaternion root = Quaternion.Euler(rotaX, rotaY, 0);
+            transform.rotation = root;
+        }
+        else
+        {
+            rotaX = 14;
+            rotaY = 46;
+            Quaternion root = Quaternion.Euler(rotaX, rotaY, 0);
+            transform.rotation = root;
+        }
 
-
-        rotaX = Mathf.Clamp(rotaX, -LimitAngle, LimitAngle);
-        Quaternion root = Quaternion.Euler(rotaX,rotaY,0);
-        transform.rotation = root;
     }
     private void LateUpdate()
     {
@@ -48,15 +58,15 @@ public class CamFollowUi : MonoBehaviour
         finalDir = transform.TransformPoint(dir * maxDis);
 
         RaycastHit hit;
-        if(Physics.Linecast(transform.position,finalDir,out hit))
+        if (Physics.Linecast(transform.position, finalDir, out hit))
         {
-            finalDis = Mathf.Clamp(hit.distance,minDis,maxDis);
+            finalDis = Mathf.Clamp(hit.distance, minDis, maxDis);
         }
         else
         {
             finalDis = maxDis;
         }
 
-        Camera.localPosition = Vector3.Lerp(Camera.localPosition,dir*finalDis, Time.deltaTime * Smove);
+        Camera.localPosition = Vector3.Lerp(Camera.localPosition, dir * finalDis, Time.deltaTime * Smove);
     }
 }
