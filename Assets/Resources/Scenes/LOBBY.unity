@@ -17258,6 +17258,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7627963556914526577, guid: ec8e408c484cd39479235db1b5e19d71, type: 3}
+      propertyPath: m_StepOffset
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7809831402607367939, guid: ec8e408c484cd39479235db1b5e19d71, type: 3}
       propertyPath: m_IsActive
       value: 1

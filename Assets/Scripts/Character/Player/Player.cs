@@ -99,10 +99,6 @@ public class Player : Character
     void Update()
     {
         //float targetDistance = Vector3.Distance(transform.position, Warrok.position);
-        if (Warrok == null)
-        {
-            Warrok = GameObject.Find("Warrok").transform;
-        }
         if (Hp > MaxHp)
         {
             Hp = MaxHp;
