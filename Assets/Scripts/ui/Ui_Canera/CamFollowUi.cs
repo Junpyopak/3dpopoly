@@ -28,14 +28,12 @@ public class CamFollowUi : MonoBehaviour
         dir = Camera.localPosition.normalized;
         finalDis = Camera.localPosition.magnitude;
         player = GameObject.Find("character").GetComponent<Player>();
-        //Cursor.lockState = CursorLockMode.Locked;
-        //Cursor.visible = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(player.AutoMode==false)
+        if (player.AutoMode == false)
         {
             rotaX += -(Input.GetAxis("Mouse Y")) * MouseSensor * Time.deltaTime;
             rotaY += Input.GetAxis("Mouse X") * MouseSensor * Time.deltaTime;

@@ -55,9 +55,9 @@ public class Player : Character
         {
             Enemy = GameObject.Find("Warrok").GetComponent<Enemy>();
             Warrok = GameObject.Find("Warrok").transform;
-            
+
         }
-        
+
         Speed = 3f;
         rigidbody = this.GetComponent<Rigidbody>();
         animator = GameObject.Find("character").GetComponent<Animator>();
@@ -98,6 +98,7 @@ public class Player : Character
     // Update is called once per frame
     void Update()
     {
+        //float targetDistance = Vector3.Distance(transform.position, Warrok.position);
         if (Warrok == null)
         {
             Warrok = GameObject.Find("Warrok").transform;
@@ -140,14 +141,32 @@ public class Player : Character
             chController.enabled = true;
         }
         Autoloading.SetActive(AutoMode);
+        //if(AutoMode==true)
+        //{
+        //    if(targetDistance > Range && targetDistance < detectionDis)
+        //    {
+        //        chController.enabled = false;
+        //        meshAgent.isStopped = false;
+        //        meshAgent.speed = 5;
+        //        meshAgent.destination = Warrok.position;
+        //    }
+        //    if (targetDistance <= Range)
+        //    {
+        //        // 네비 멈추고 공격 실행
+        //        meshAgent.isStopped = true;
+        //        Attack();
+        //        Debug.Log("플레이어 적 공격");
+        //    }
+        //}
     }
     private void LateUpdate()
     {
         if (camera == null) return;
         Vector3 playerRaotation = Vector3.Scale(camera.transform.forward, new Vector3(1, 0, 1));
         transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(playerRaotation), Time.deltaTime * Smove);
-
-
+        Vector3 direction = (Warrok.position - transform.position).normalized;
+        Quaternion targetRotation = Quaternion.LookRotation(direction);
+        transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 5f);
     }
     public override void Moved()
     {
@@ -267,98 +286,22 @@ public class Player : Character
     }
     public void BtnAuto()
     {
-        //    AutoMode = !AutoMode;
-        //    Autoloading.SetActive(AutoMode);
-        //    float targetDistance = Vector3.Distance(transform.position, Warrok.position);
-        //    float distance = Vector3.Distance(transform.position, Warrok.position);
-        //    if (AutoMode)
-        //    {
-        //        // 적이 탐지 범위 내에 있는 경우
-        //        if (targetDistance > Range && targetDistance < detectionDis)
-        //        {
-        //            // 메쉬 에이전트 활성화 및 대상 위치 설정
-        //            chController.enabled = false;
-        //            meshAgent.isStopped = false;
-        //            meshAgent.speed = 5;
-        //            meshAgent.destination = Warrok.position;
-
-        //            // 타겟을 바라보도록 회전
-        //            Vector3 direction = (Warrok.position - transform.position).normalized;
-        //            Quaternion targetRotation = Quaternion.LookRotation(direction);
-        //            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 5f);
-        //            if (distance < Range)//공격범위에 들어왔을때 공격 에님 돌아가기
-        //            {
-        //                //BoxCollider.enabled = true;
-        //                Attack();
-        //                Debug.Log("플레이어 공격");
-        //            }
-        //        }
-        //        else
-        //        {
-        //            // 탐지 범위 밖일 경우 AutoPos로 이동
-        //            chController.enabled = false;
-        //            meshAgent.isStopped = false;
-        //            meshAgent.speed = 5;
-        //            meshAgent.destination = AutoPos.transform.position;
-
-        //            // AutoPos를 바라보도록 회전
-        //            Vector3 direction = (AutoPos.transform.position - transform.position).normalized;
-        //            Quaternion targetRotation = Quaternion.LookRotation(direction);
-        //            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 5f);
-        //        }
-        //    }
-        //    else
-        //    {
-        //        // 수동 모드
-        //        meshAgent.isStopped = true;
-        //        meshAgent.ResetPath();
-        //        chController.enabled = true;
-        //    }
         AutoMode = !AutoMode;
         Autoloading.SetActive(AutoMode);
-
         if (AutoMode)
         {
-            chController.enabled = false;   // AutoMode일 때 공통
-
-            float targetDistance = Vector3.Distance(transform.position, Warrok.position);
-
-            // 적이 탐지 범위 내에 있는 경우
-            if (targetDistance > Range && targetDistance < detectionDis)
-            {
-                // 메쉬 에이전트 활성화 및 대상 위치 설정
-                meshAgent.isStopped = false;
-                meshAgent.speed = 5;
-                meshAgent.destination = Warrok.position;
-
-                // 타겟을 바라보도록 회전
-                RotateTowards(Warrok.position);
-            }
-            else
-            {
-                // 탐지 범위 밖일 경우 AutoPos로 이동
-                meshAgent.isStopped = false;
-                meshAgent.speed = 5;
-                meshAgent.destination = AutoPos.transform.position;
-
-                // AutoPos를 바라보도록 회전
-                RotateTowards(AutoPos.transform.position);
-            }
+            chController.enabled = false;
+            meshAgent.isStopped = false;
+            meshAgent.speed = 5;
+            meshAgent.destination = AutoPos.transform.position;
         }
+
         else
         {
-            // 수동 모드
             meshAgent.isStopped = true;
             meshAgent.ResetPath();
             chController.enabled = true;
         }
     }
 
-    // 타겟 바라보기 함수
-    private void RotateTowards(Vector3 targetPosition)
-    {
-        Vector3 direction = (targetPosition - transform.position).normalized;
-        Quaternion targetRotation = Quaternion.LookRotation(direction);
-        transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 5f);
-    }
 }
