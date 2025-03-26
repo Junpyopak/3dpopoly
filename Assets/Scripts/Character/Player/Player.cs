@@ -18,7 +18,7 @@ public class Player : Character
 {
     private Rigidbody rigidbody;
     private MoveStrategy moveStrategy;
-    Camera camera;
+     Camera camera;
     CharacterController chController;
     public float runSpeed = 7f;
     public float jumpFor = 3f;
@@ -98,7 +98,7 @@ public class Player : Character
     // Update is called once per frame
     void Update()
     {
-        //float targetDistance = Vector3.Distance(transform.position, Warrok.position);
+        float targetDistance = Vector3.Distance(transform.position, Warrok.position);
         if (Hp > MaxHp)
         {
             Hp = MaxHp;
@@ -137,32 +137,32 @@ public class Player : Character
             chController.enabled = true;
         }
         Autoloading.SetActive(AutoMode);
-        //if(AutoMode==true)
-        //{
-        //    if(targetDistance > Range && targetDistance < detectionDis)
-        //    {
-        //        chController.enabled = false;
-        //        meshAgent.isStopped = false;
-        //        meshAgent.speed = 5;
-        //        meshAgent.destination = Warrok.position;
-        //    }
-        //    if (targetDistance <= Range)
-        //    {
-        //        // 네비 멈추고 공격 실행
-        //        meshAgent.isStopped = true;
-        //        Attack();
-        //        Debug.Log("플레이어 적 공격");
-        //    }
-        //}
+        if (AutoMode == true)
+        {
+            if (targetDistance > Range && targetDistance < detectionDis)
+            {
+                chController.enabled = false;
+                meshAgent.isStopped = false;
+                meshAgent.speed = 5;
+                meshAgent.destination = Warrok.position;
+            }
+            if (targetDistance <= Range)
+            {
+                // 네비 멈추고 공격 실행
+                meshAgent.isStopped = true;
+                Attack();
+                Debug.Log("플레이어 적 공격");
+            }
+        }  
     }
     private void LateUpdate()
     {
         if (camera == null) return;
         Vector3 playerRaotation = Vector3.Scale(camera.transform.forward, new Vector3(1, 0, 1));
         transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(playerRaotation), Time.deltaTime * Smove);
-        Vector3 direction = (Warrok.position - transform.position).normalized;
-        Quaternion targetRotation = Quaternion.LookRotation(direction);
-        transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 5f);
+        //Vector3 direction = (Warrok.position - transform.position).normalized;
+        //Quaternion targetRotation = Quaternion.LookRotation(direction);
+        //transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 5f);
     }
     public override void Moved()
     {
