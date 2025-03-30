@@ -18,7 +18,7 @@ public class Player : Character
 {
     private Rigidbody rigidbody;
     private MoveStrategy moveStrategy;
-     Camera camera;
+    Camera camera;
     CharacterController chController;
     public float runSpeed = 7f;
     public float jumpFor = 3f;
@@ -47,6 +47,9 @@ public class Player : Character
     NavMeshAgent meshAgent;
     public Transform Warrok;
     public bool DoTelpo = false;
+    public LayerMask layer;
+    public Collider[] colliders;
+    public Collider ShotEnemy;
     // Start is called before the first frame update
     void Start()
     {
@@ -55,7 +58,6 @@ public class Player : Character
         {
             Enemy = GameObject.Find("Warrok").GetComponent<Enemy>();
             Warrok = GameObject.Find("Warrok").transform;
-
         }
 
         Speed = 3f;
@@ -89,6 +91,7 @@ public class Player : Character
     private void FixedUpdate()
     {
         Attack();
+        colliders = Physics.OverlapSphere(transform.position, detectionDis, layer);
     }
     IEnumerator MoveStopCoroutine()//컷신 플레이시 플레이어 움직임 조작
     {
@@ -98,7 +101,7 @@ public class Player : Character
     // Update is called once per frame
     void Update()
     {
-        float targetDistance = Vector3.Distance(transform.position, Warrok.position);
+
         if (Hp > MaxHp)
         {
             Hp = MaxHp;
@@ -136,9 +139,32 @@ public class Player : Character
             meshAgent.isStopped = true;
             chController.enabled = true;
         }
+        if (colliders.Length > 0)
+        {
+            float targetDistance = Vector3.Distance(transform.position, colliders[0].transform.position);
+            foreach (Collider collider in colliders)
+            {
+                float Shotdistance = Vector3.Distance(transform.position, collider.transform.position);
+                if (targetDistance > Shotdistance)
+                {
+                    targetDistance = Shotdistance;
+                    ShotEnemy = collider;
+                }
+            }
+        }
         Autoloading.SetActive(AutoMode);
         if (AutoMode == true)
         {
+            float targetDistance = Vector3.Distance(transform.position, colliders[0].transform.position);
+            //foreach (Collider collider in colliders)
+            //{
+            //    float Shotdistance = Vector3.Distance(transform.position, collider.transform.position);
+            //    if (targetDistance > Shotdistance)
+            //    {
+            //        targetDistance = Shotdistance;
+            //        ShotEnemy = collider;
+            //    }
+            //}
             if (targetDistance > Range && targetDistance < detectionDis)
             {
                 chController.enabled = false;
@@ -150,10 +176,12 @@ public class Player : Character
             {
                 // 네비 멈추고 공격 실행
                 meshAgent.isStopped = true;
+                //chController.enabled = true;
+                Autoloading.SetActive(true);
                 Attack();
                 Debug.Log("플레이어 적 공격");
             }
-        }  
+        }
     }
     private void LateUpdate()
     {
@@ -268,7 +296,7 @@ public class Player : Character
 
     public void Damage()
     {
-        Hp -= Enemy.AttackDamage;
+        Hp -= 7;//Enemy.AttackDamage;
         GameObject Text = Instantiate(damageText);
         Text.GetComponent<DamaeText>();
         hpGauge.SetPlayerHp(Hp, MaxHp);

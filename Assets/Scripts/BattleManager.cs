@@ -16,15 +16,14 @@ public class BattleManager : MonoBehaviour
     BoxCollider SpawnBoxCollider;//특정 구간 내에서만 스폰이 될수있도록
     BoxCollider PotalBoxCollider;
     public Text KillText;
-    private int PotalCount =0;
+    private int PotalCount = 0;
     private int MaxPotal = 1;
-
     [Header("적 생성")]
     [SerializeField] List<GameObject> listEnemy;//적의 종류
     [SerializeField] List<GameObject> listPotal;//포탈
-
     [SerializeField] float spawnTime = 4.0f;
     [SerializeField] float sTimer = 0.0f;//스폰타이머 
+
     void Start()
     {
         enemyCount = 1;
@@ -40,6 +39,8 @@ public class BattleManager : MonoBehaviour
         checkPotal();
     }
     static int testIndex = 0;//확인용
+
+
     public void CreateEnemy()
     {
         Vector3 Pos = SpawnPoint.transform.position;//현재 위치를 박스 콜라이더의 위치로 설정
