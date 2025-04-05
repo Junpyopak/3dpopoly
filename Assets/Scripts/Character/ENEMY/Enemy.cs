@@ -7,6 +7,7 @@ using static UI_TITLE;
 
 public class Enemy : Character
 {
+    Pooling pooling;
     public float detectionDis = 3f;//탐지 거리
     public Transform player;//플레이어 위치 찾기위함용
     SphereCollider sphereCollider;
@@ -18,6 +19,7 @@ public class Enemy : Character
     // Start is called before the first frame update
     void Start()
     {
+        pooling = Pooling.instance;
         Player = GameObject.Find("character").GetComponent<Player>();
         player = GameObject.Find("character").transform;
         Speed = 2f;
@@ -123,7 +125,7 @@ public class Enemy : Character
         if (Hp <= 0)
         {
             Hp = 0;
-            Destroy(gameObject);
+            pooling.OnEnemyDeath(this.gameObject);
             battleManager.enemyCount -= 1;
             battleManager.KillCount += 1;
             Debug.Log("몬스터가 죽었습니다");
