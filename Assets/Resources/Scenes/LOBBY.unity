@@ -275,7 +275,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &5567206
 Transform:
   m_ObjectHideFlags: 0
@@ -2401,7 +2401,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1237044920}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 71f38d614a062f94b8da14df6c10759f, type: 3}
   m_Name: 
@@ -2431,15 +2431,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8596a2866a40f04d949a7058d25bb0a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyCount: 0
+  enemyCount: 1
   maxEnemy: 3
   SpawnPoint: {fileID: 5567205}
   spawnTime: 4
   sTimer: 0
+  minSpawnDistance: 2
   pools:
-  - tag: Eenemy
+  - tag: Enemy
     prefab: {fileID: 669465899863786551, guid: 7991c8554b7a30645b44a96076189760, type: 3}
-    size: 1
+    size: 2
 --- !u!1 &1360193802
 GameObject:
   m_ObjectHideFlags: 0
