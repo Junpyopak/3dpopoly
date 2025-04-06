@@ -42,6 +42,12 @@ public class Pooling : MonoBehaviour
             }
             poolDictionary.Add(pool.tag, objectPool);
         }
+        if (instance != null)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        instance = this;
     }
 
     private void Update()
