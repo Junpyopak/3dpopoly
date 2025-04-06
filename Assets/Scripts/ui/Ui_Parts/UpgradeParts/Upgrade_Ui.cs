@@ -27,6 +27,8 @@ public class Upgrade_Ui : MonoBehaviour
         slots = GetComponentsInChildren<UpgradeSlot>();
         player = GameObject.Find("character").GetComponent<Player>();
         DoPickup();
+        int _count = 8;
+        Recursion(_count);
     }
 
     // Update is called once per frame
@@ -34,7 +36,21 @@ public class Upgrade_Ui : MonoBehaviour
     {
         
     }
+    private void Recursion(int _Count)
+    {
+        if (_Count <= 0)
+        {
+            return;
+        }
 
+        else
+        {
+            UpgaradeParts();
+            Debug.Log("Àç±ÍÈ£Ç®");
+            // Recursion(_Count);
+            Recursion(_Count - 1);
+        }
+    }
     public void UpgaradeParts()
     {
         int ran = Random.Range(0, 10);

@@ -126,7 +126,7 @@ public class Enemy : Character
         {
             Hp = 0;
             pooling.OnEnemyDeath(this.gameObject);
-            battleManager.enemyCount -= 1;
+            pooling.enemyCount -= 1;
             battleManager.KillCount += 1;
             Debug.Log("몬스터가 죽었습니다");
         }
