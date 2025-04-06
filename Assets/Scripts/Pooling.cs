@@ -14,7 +14,6 @@ public class Pooling : MonoBehaviour
 
     public float minSpawnDistance = 2.0f; // 최소 거리
     public List<Vector3> activeEnemyPositions = new List<Vector3>(); // 현재 적 위치 추적 리스트
-
     [System.Serializable]
     public class pool
     {
@@ -42,7 +41,7 @@ public class Pooling : MonoBehaviour
             }
             poolDictionary.Add(pool.tag, objectPool);
         }
-         if (instance != null)
+        if (instance != null)
         {
             Destroy(gameObject);
             return;
@@ -73,6 +72,7 @@ public class Pooling : MonoBehaviour
             enemy.transform.position = safePos;
             enemy.SetActive(true);
             activeEnemyPositions.Add(safePos);
+            //enemyPositionMap[enemy] = safePos;
         }
     }
 
@@ -99,6 +99,7 @@ public class Pooling : MonoBehaviour
                 return false;
         }
         return true;
+
     }
 
     private Vector3 GetRandomPosition()
