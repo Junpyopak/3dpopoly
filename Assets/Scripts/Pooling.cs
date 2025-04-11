@@ -14,6 +14,7 @@ public class Pooling : MonoBehaviour
 
     public float minSpawnDistance = 2.0f; // 최소 거리
     public List<Vector3> activeEnemyPositions = new List<Vector3>(); // 현재 적 위치 추적 리스트
+    public Dictionary<GameObject, Vector3> enemySpawnPositions = new Dictionary<GameObject, Vector3>();
     [System.Serializable]
     public class pool
     {
@@ -66,13 +67,20 @@ public class Pooling : MonoBehaviour
     private void EnemySpawn()
     {
         GameObject enemy = SpawnFromPool("Enemy");
+        if (enemy == null)
+        {
+            Debug.LogWarning("스폰 실패: Enemy 오브젝트가 null입니다.");
+            return;
+        }
         if (enemy != null)
         {
             Vector3 safePos = GetSafeSpawnPosition();
+            if (safePos == Vector3.negativeInfinity) return; // 실패 방지
+
             enemy.transform.position = safePos;
             enemy.SetActive(true);
             activeEnemyPositions.Add(safePos);
-            //enemyPositionMap[enemy] = safePos;
+            enemySpawnPositions[enemy] = safePos; // 적 오브젝트와 스폰 위치 연결s;
         }
     }
 
@@ -116,19 +124,46 @@ public class Pooling : MonoBehaviour
 
     public GameObject SpawnFromPool(string tag)
     {
+        //if (!poolDictionary.ContainsKey(tag))
+        //    return null;
+
+        //GameObject obj = poolDictionary[tag].Dequeue();
+        //poolDictionary[tag].Enqueue(obj);
+
+        //return obj;
         if (!poolDictionary.ContainsKey(tag))
             return null;
 
-        GameObject obj = poolDictionary[tag].Dequeue();
-        poolDictionary[tag].Enqueue(obj);
+        GameObject obj = null;
+        Queue<GameObject> poolQueue = poolDictionary[tag];
 
-        return obj;
+        for (int i = 0; i < poolQueue.Count; i++)
+        {
+            obj = poolQueue.Dequeue();
+            if (!obj.activeInHierarchy) // 비활성화된 것만 사용
+            {
+                poolQueue.Enqueue(obj);
+                return obj;
+            }
+            poolQueue.Enqueue(obj); // 다시 뒤로 보내기
+        }
+
+        Debug.LogWarning($"사용 가능한 {tag} 오브젝트가 없습니다.");
+        return null;
     }
 
     public void OnEnemyDeath(GameObject enemy)
     {
         activeEnemyPositions.RemoveAll(pos => Vector3.Distance(pos, enemy.transform.position) < 0.1f);
         enemy.SetActive(false);
-        enemyCount--;
+        if (enemySpawnPositions.ContainsKey(enemy))
+        {
+            Vector3 spawnPos = enemySpawnPositions[enemy];
+            activeEnemyPositions.Remove(spawnPos);
+            enemySpawnPositions.Remove(enemy);
+        }
+
+        //enemy.SetActive(false);
+        //enemyCount--;
     }
 }
