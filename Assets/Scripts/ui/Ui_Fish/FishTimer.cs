@@ -1,11 +1,12 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Burst.CompilerServices;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class FishTimer : MonoBehaviour
 {
+    public static FishTimer instance;
     private Slider Slider;
     private float sliderSpeed = 200f;
     public float MinPos;
@@ -13,11 +14,22 @@ public class FishTimer : MonoBehaviour
     int fishCnt = 0;
     int MaxCnt = 3;
     private bool Failed = false;
-    private bool Succes = false;
-    public  List<GameObject> FishingItems;
+    public bool Succes = false;
+    public List<GameObject> FishingItems;
     [SerializeField]
     public Text fishText;
+    [SerializeField]
+    private InventoryUi inventoryUi;
     // Start is called before the first frame update
+    private void Awake()
+    {
+        if (instance != null)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        instance = this;
+    }
     void Start()
     {
         Slider = GetComponent<Slider>();
@@ -34,6 +46,8 @@ public class FishTimer : MonoBehaviour
             Succes = true;
             Slider.value = Slider.value;
             StartCoroutine(Failfish());
+            DropFish();
+
             fishCnt = 0;
         }
     }
@@ -41,7 +55,7 @@ public class FishTimer : MonoBehaviour
     {
         MinPos = 115f;
         MaxPos = 180f;
-        if (Slider.value <= Slider.maxValue && Failed == false&&Succes==false)
+        if (Slider.value <= Slider.maxValue && Failed == false && Succes == false)
         {
             Slider.value += Time.deltaTime * sliderSpeed;
             if (Input.GetKeyDown(KeyCode.Space))
@@ -73,5 +87,19 @@ public class FishTimer : MonoBehaviour
     {
         yield return new WaitForSeconds(1.5f);
         Destroy(GameObject.Find("fishing"));
+    }
+    private void DropFish()
+    {
+        int ran = Random.Range(0, 10);
+        if (ran < 9)
+        {
+            Debug.Log(FishingItems[0].transform.GetComponent<GetItem>().item.ItemName + "È¹µæ");
+            inventoryUi.AddSlotItem(FishingItems[0].transform.GetComponent<GetItem>().item);
+        }
+        else if (ran < 10)
+        {
+            Debug.Log(FishingItems[1].transform.GetComponent<GetItem>().item.ItemName + "È¹µæ");
+            inventoryUi.AddSlotItem(FishingItems[1].transform.GetComponent<GetItem>().item);
+        }
     }
 }

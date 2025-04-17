@@ -139,49 +139,49 @@ public class Player : Character
             meshAgent.isStopped = true;
             chController.enabled = true;
         }
-        if (colliders.Length > 0)
-        {
-            float targetDistance = Vector3.Distance(transform.position, colliders[0].transform.position);
-            foreach (Collider collider in colliders)
-            {
-                float Shotdistance = Vector3.Distance(transform.position, collider.transform.position);
-                if (targetDistance > Shotdistance)
-                {
-                    targetDistance = Shotdistance;
-                    ShotEnemy = collider;
-                }
-            }
-        }
+        //if (colliders.Length > 0)
+        //{
+        //    float targetDistance = Vector3.Distance(transform.position, colliders[0].transform.position);
+        //    foreach (Collider collider in colliders)
+        //    {
+        //        float Shotdistance = Vector3.Distance(transform.position, collider.transform.position);
+        //        if (targetDistance > Shotdistance)
+        //        {
+        //            targetDistance = Shotdistance;
+        //            ShotEnemy = collider;
+        //        }
+        //    }
+        //}
         Autoloading.SetActive(AutoMode);
-        if (AutoMode == true)
-        {
-            float targetDistance = Vector3.Distance(transform.position, colliders[0].transform.position);
-            //foreach (Collider collider in colliders)
-            //{
-            //    float Shotdistance = Vector3.Distance(transform.position, collider.transform.position);
-            //    if (targetDistance > Shotdistance)
-            //    {
-            //        targetDistance = Shotdistance;
-            //        ShotEnemy = collider;
-            //    }
-            //}
-            if (targetDistance > Range && targetDistance < detectionDis)
-            {
-                chController.enabled = false;
-                meshAgent.isStopped = false;
-                meshAgent.speed = 5;
-                meshAgent.destination = Warrok.position;
-            }
-            if (targetDistance <= Range)
-            {
-                // 네비 멈추고 공격 실행
-                meshAgent.isStopped = true;
-                //chController.enabled = true;
-                Autoloading.SetActive(true);
-                Attack();
-                Debug.Log("플레이어 적 공격");
-            }
-        }
+        //if (AutoMode == true)
+        //{
+        //    float targetDistance = Vector3.Distance(transform.position, colliders[0].transform.position);
+        //    //foreach (Collider collider in colliders)
+        //    //{
+        //    //    float Shotdistance = Vector3.Distance(transform.position, collider.transform.position);
+        //    //    if (targetDistance > Shotdistance)
+        //    //    {
+        //    //        targetDistance = Shotdistance;
+        //    //        ShotEnemy = collider;
+        //    //    }
+        //    //}
+        //    if (targetDistance > Range && targetDistance < detectionDis)
+        //    {
+        //        chController.enabled = false;
+        //        meshAgent.isStopped = false;
+        //        meshAgent.speed = 5;
+        //        meshAgent.destination = Warrok.position;
+        //    }
+        //    if (targetDistance <= Range)
+        //    {
+        //        // 네비 멈추고 공격 실행
+        //        meshAgent.isStopped = true;
+        //        //chController.enabled = true;
+        //        Autoloading.SetActive(true);
+        //        Attack();
+        //        Debug.Log("플레이어 적 공격");
+        //    }
+        //}
     }
     private void LateUpdate()
     {

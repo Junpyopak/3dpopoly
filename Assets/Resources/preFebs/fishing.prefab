@@ -108,7 +108,8 @@ MonoBehaviour:
   FishingItems:
   - {fileID: 124698, guid: b639fd0347adb472b8d9d68c2da3f05a, type: 3}
   - {fileID: 8111702614565564723, guid: c17f969c856984c46a978d9a2d6de9ec, type: 3}
-  fishText: {fileID: 7807312752841571947, guid: e891440efc93edb4eb4f2ea5c355da66, type: 3}
+  fishText: {fileID: 1476531896508506053}
+  inventoryUi: {fileID: 2651188578189166021, guid: 26c83234f82bd2941abe4cafc8379844, type: 3}
 --- !u!1 &567554751724356207
 GameObject:
   m_ObjectHideFlags: 0
@@ -578,6 +579,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e891440efc93edb4eb4f2ea5c355da66, type: 3}
+--- !u!114 &1476531896508506053 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7807312752841571947, guid: e891440efc93edb4eb4f2ea5c355da66, type: 3}
+  m_PrefabInstance: {fileID: 8657207638197789102}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &8570878813851304338 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1068888735587016764, guid: e891440efc93edb4eb4f2ea5c355da66, type: 3}
