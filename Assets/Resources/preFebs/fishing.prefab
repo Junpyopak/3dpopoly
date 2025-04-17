@@ -34,7 +34,6 @@ RectTransform:
   - {fileID: 4737728951780957555}
   - {fileID: 6862680578056760174}
   m_Father: {fileID: 6493667014999596610}
-  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -106,6 +105,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MinPos: 0
   MaxPos: 0
+  FishingItems:
+  - {fileID: 124698, guid: b639fd0347adb472b8d9d68c2da3f05a, type: 3}
+  - {fileID: 8111702614565564723, guid: c17f969c856984c46a978d9a2d6de9ec, type: 3}
   fishText: {fileID: 7807312752841571947, guid: e891440efc93edb4eb4f2ea5c355da66, type: 3}
 --- !u!1 &567554751724356207
 GameObject:
@@ -137,7 +139,6 @@ RectTransform:
   m_Children:
   - {fileID: 3010202344371620852}
   m_Father: {fileID: 5660563494973152531}
-  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -175,7 +176,6 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5660563494973152531}
-  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.25}
   m_AnchorMax: {x: 1, y: 0.75}
@@ -251,7 +251,6 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6862680578056760174}
-  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -327,7 +326,6 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5660563494973152531}
-  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 1}
@@ -406,7 +404,6 @@ RectTransform:
   - {fileID: 5660563494973152531}
   - {fileID: 8570878813851304338}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}

@@ -14,6 +14,7 @@ public class FishTimer : MonoBehaviour
     int MaxCnt = 3;
     private bool Failed = false;
     private bool Succes = false;
+    public  List<GameObject> FishingItems;
     [SerializeField]
     public Text fishText;
     // Start is called before the first frame update
