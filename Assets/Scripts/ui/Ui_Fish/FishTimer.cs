@@ -47,7 +47,6 @@ public class FishTimer : MonoBehaviour
             Slider.value = Slider.value;
             StartCoroutine(Failfish());
             DropFish();
-
             fishCnt = 0;
         }
     }
@@ -65,6 +64,7 @@ public class FishTimer : MonoBehaviour
                     fishCnt++;
                     fishText.text = $"{((int)fishCnt)}/{MaxCnt}";
                     Debug.Log($"{fishCnt}");
+
 
                 }
                 else if (Slider.value != MinPos && Slider.value != MaxPos)
@@ -90,6 +90,15 @@ public class FishTimer : MonoBehaviour
     }
     private void DropFish()
     {
+        if (inventoryUi == null)
+        {
+            inventoryUi = FindObjectOfType<InventoryUi>();
+            if (inventoryUi == null)
+            {
+                Debug.LogError("[DropFish] inventoryUi가 할당되지 않았습니다!");
+                return;
+            }
+        }
         int ran = Random.Range(0, 10);
         if (ran < 9)
         {

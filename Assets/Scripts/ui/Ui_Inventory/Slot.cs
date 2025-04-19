@@ -52,10 +52,29 @@ public class Slot : MonoBehaviour, IPointerClickHandler
         }
         SetColor(1);
     }
+    //public void AddItem(Item newItem, int newCount)
+    //{
+    //    Debug.Log($"[Slot] AddItem 호출됨 - {newItem?.ItemName}, 수량: {newCount}");
+    //    item = newItem;
+    //    itemCount = newCount;
+    //    UpdateUI();
+    //    if (item.itemType != Item.ItemType.Equipment)
+    //    {
+    //        CountImage.SetActive(true);
+    //        text_Count.text = itemCount.ToString();
+    //    }
+    //    else
+    //    {
+    //        text_Count.text = "0";
+    //        CountImage.SetActive(false);
+    //    }
+    //    SetColor(1);
+    //}
     public void SetSlotCount(int _count)//아이템개수
     {
         itemCount += _count;
         text_Count.text = itemCount.ToString();
+        UpdateUI();
         if (itemCount <= 0)
         {
             ClearItemSlot();
@@ -104,6 +123,20 @@ public class Slot : MonoBehaviour, IPointerClickHandler
                     
                 }
             }
+        }
+    }
+    private void UpdateUI()
+    {
+        if (item != null)
+        {
+            itemImage.sprite = item.ItemImage;
+            itemImage.enabled = true;
+            text_Count.text = itemCount.ToString();
+        }
+        else
+        {
+            itemImage.enabled = false;
+            text_Count.text = "";
         }
     }
 }
