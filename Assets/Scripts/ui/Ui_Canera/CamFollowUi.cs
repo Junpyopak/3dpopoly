@@ -5,7 +5,7 @@ using UnityEngine;
 public class CamFollowUi : MonoBehaviour
 {
     public Transform Target;
-    public float FollowSpeed = 10f;
+    public float FollowSpeed = 20f;
     public float MouseSensor = 100f;//마우스 감도
     public float LimitAngle = 70f;//제한각도
 
@@ -15,29 +15,51 @@ public class CamFollowUi : MonoBehaviour
     public Transform Camera;
     public Vector3 dir;
     public Vector3 finalDir;//마지막거리
-    public float minDis;//최소
-    public float maxDis;//최대
+
+    public float minDis = 0.1f;//최소
+    public float maxDis = 2f;//최대
     public float finalDis;
     public float Smove = 10f;
-    Player player;
-    // Start is called before the first frame update
+    public float ZoomSmoothSpeed = 5f;
+
+    private float currentDis;
+
+    private Player player;
+
     void Start()
     {
         rotaX = transform.localRotation.eulerAngles.x;
         rotaY = transform.localRotation.eulerAngles.y;
+
+        if (Camera == null)
+        {
+            Debug.LogError(" Camera 트랜스폼이 연결되지 않았습니다!");
+            return;
+        }
+
         dir = Camera.localPosition.normalized;
+        if (dir.magnitude == 0)
+        {
+            Debug.LogWarning(" dir 값이 0입니다. Camera.localPosition을 확인해주세요!");
+        }
+
         finalDis = Camera.localPosition.magnitude;
-        player = GameObject.Find("character").GetComponent<Player>();
+        currentDis = finalDis;
+
+        GameObject playerObj = GameObject.Find("character");
+        if (playerObj != null)
+            player = playerObj.GetComponent<Player>();
+        else
+            Debug.LogError(" 'character' 오브젝트를 찾을 수 없습니다!");
     }
 
-    // Update is called once per frame
     void Update()
     {
-        if (player.AutoMode == false)
+        if (player != null && player.AutoMode == false)
         {
             rotaX += -(Input.GetAxis("Mouse Y")) * MouseSensor * Time.deltaTime;
             rotaY += Input.GetAxis("Mouse X") * MouseSensor * Time.deltaTime;
-            rotaX = Mathf.Clamp(rotaX, -LimitAngle, LimitAngle);
+            rotaX = Mathf.Clamp(NormalizeAngle(rotaX), -LimitAngle, LimitAngle);
             Quaternion root = Quaternion.Euler(rotaX, rotaY, 0);
             transform.rotation = root;
         }
@@ -48,23 +70,40 @@ public class CamFollowUi : MonoBehaviour
             Quaternion root = Quaternion.Euler(rotaX, rotaY, 0);
             transform.rotation = root;
         }
-
     }
-    private void LateUpdate()
+
+    void LateUpdate()
     {
+        if (Camera == null || player == null) return;
+
         transform.position = Vector3.MoveTowards(transform.position, Target.position, FollowSpeed * Time.deltaTime);
-        finalDir = transform.TransformPoint(dir * maxDis);
+
+
+        float targetDis = Input.GetKey(KeyCode.Z) ? minDis + 1f :
+                          player.IsAttacking ? minDis + 1f : maxDis;
+
+        currentDis = Mathf.Lerp(currentDis, targetDis, Time.deltaTime * ZoomSmoothSpeed);
+        finalDir = transform.TransformPoint(dir * currentDis);
 
         RaycastHit hit;
         if (Physics.Linecast(transform.position, finalDir, out hit))
         {
-            finalDis = Mathf.Clamp(hit.distance, minDis, maxDis);
+            finalDis = Mathf.Clamp(hit.distance, minDis, currentDis);
         }
         else
         {
-            finalDis = maxDis;
+            finalDis = currentDis;
         }
 
         Camera.localPosition = Vector3.Lerp(Camera.localPosition, dir * finalDis, Time.deltaTime * Smove);
+
+        Debug.Log($"[] targetDis: {targetDis}, finalDis: {finalDis}, localPos: {Camera.localPosition}, IsAttacking: {player.IsAttacking}");
+    }
+
+    float NormalizeAngle(float angle)
+    {
+        angle %= 360;
+        if (angle > 180) angle -= 360;
+        return angle;
     }
 }

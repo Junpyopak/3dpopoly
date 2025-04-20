@@ -1760,6 +1760,35 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 676023787}
   m_CullTransparentMesh: 1
+--- !u!1 &689308991 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5624200166238114225, guid: 8e87b438c1e6bce4f8414b64f8d9eb1d, type: 3}
+  m_PrefabInstance: {fileID: 7506060768817402681}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &689308994
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 689308991}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60f25053ad937a2488ebf33f75c59f61, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Target: {fileID: 3375836042441815718}
+  FollowSpeed: 20
+  MouseSensor: 100
+  LimitAngle: 70
+  Camera: {fileID: 1874450260}
+  dir: {x: 0, y: 0, z: 0}
+  finalDir: {x: 0, y: 0, z: 0}
+  minDis: 0.1
+  maxDis: 2
+  finalDis: 0
+  Smove: 10
+  ZoomSmoothSpeed: 10
 --- !u!1 &771512994
 GameObject:
   m_ObjectHideFlags: 0
@@ -3299,6 +3328,11 @@ RectTransform:
 ParticleSystem:
   m_CorrespondingSourceObject: {fileID: 8780105756566511960, guid: ec8e408c484cd39479235db1b5e19d71, type: 3}
   m_PrefabInstance: {fileID: 8960730758587264257}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1874450260 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3483344098977902368, guid: 8e87b438c1e6bce4f8414b64f8d9eb1d, type: 3}
+  m_PrefabInstance: {fileID: 7506060768817402681}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1874624932
 GameObject:
@@ -16686,12 +16720,24 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 3375836042441815718}
     - target: {fileID: 6675693468431769428, guid: 8e87b438c1e6bce4f8414b64f8d9eb1d, type: 3}
+      propertyPath: minDis
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6675693468431769428, guid: 8e87b438c1e6bce4f8414b64f8d9eb1d, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6675693468431769428, guid: 8e87b438c1e6bce4f8414b64f8d9eb1d, type: 3}
       propertyPath: LimitAngle
       value: 70
       objectReference: {fileID: 0}
     - target: {fileID: 6675693468431769428, guid: 8e87b438c1e6bce4f8414b64f8d9eb1d, type: 3}
       propertyPath: FollowSpeed
       value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 6675693468431769428, guid: 8e87b438c1e6bce4f8414b64f8d9eb1d, type: 3}
+      propertyPath: ZoomSmoothSpeed
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 6898133567066263618, guid: 8e87b438c1e6bce4f8414b64f8d9eb1d, type: 3}
       propertyPath: m_RootOrder
@@ -16740,7 +16786,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 5624200166238114225, guid: 8e87b438c1e6bce4f8414b64f8d9eb1d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 689308994}
   m_SourcePrefab: {fileID: 100100000, guid: 8e87b438c1e6bce4f8414b64f8d9eb1d, type: 3}
 --- !u!1 &7851136426968942684 stripped
 GameObject:

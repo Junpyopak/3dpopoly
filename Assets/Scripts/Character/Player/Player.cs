@@ -27,6 +27,7 @@ public class Player : Character
     public float Smove = 10f;
     public float detectionDis = 7f;//Å½Áö °Å¸®
     public bool Attack1 = false;
+    public bool IsAttacking => Attack1 || animator.GetBool("Atk2");
     Enemy Enemy;
     public int Hp = 100;
     public int MaxHp = 100;
