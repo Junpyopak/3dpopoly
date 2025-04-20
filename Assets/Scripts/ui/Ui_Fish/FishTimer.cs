@@ -18,7 +18,6 @@ public class FishTimer : MonoBehaviour
     public List<GameObject> FishingItems;
     [SerializeField]
     public Text fishText;
-    [SerializeField]
     private InventoryUi inventoryUi;
     // Start is called before the first frame update
     private void Awake()
@@ -35,6 +34,7 @@ public class FishTimer : MonoBehaviour
         Slider = GetComponent<Slider>();
         fishText.text = $"{((int)fishCnt)}/{MaxCnt}";
         Slider.value = 0;
+        inventoryUi = GameObject.Find("InvenCanvas").GetComponent<InventoryUi>();
     }
     // Update is called once per frame
     void Update()
@@ -90,15 +90,15 @@ public class FishTimer : MonoBehaviour
     }
     private void DropFish()
     {
-        if (inventoryUi == null)
-        {
-            inventoryUi = FindObjectOfType<InventoryUi>();
-            if (inventoryUi == null)
-            {
-                Debug.LogError("[DropFish] inventoryUi가 할당되지 않았습니다!");
-                return;
-            }
-        }
+        //if (inventoryUi == null)
+        //{
+        //    inventoryUi = GameObject.Find("InvenCanvas").GetComponent<InventoryUi>();
+        //    if (inventoryUi == null)
+        //    {
+        //        Debug.LogError("[DropFish] inventoryUi가 할당되지 않았습니다!");
+        //        return;
+        //    }
+        //}
         int ran = Random.Range(0, 10);
         if (ran < 9)
         {

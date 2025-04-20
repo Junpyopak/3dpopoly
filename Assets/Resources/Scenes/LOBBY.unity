@@ -17030,7 +17030,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1129378729805039697, guid: ec8e408c484cd39479235db1b5e19d71, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1828069631954124329, guid: ec8e408c484cd39479235db1b5e19d71, type: 3}
       propertyPath: m_LocalPosition.x
@@ -17226,9 +17226,6 @@ MonoBehaviour:
   ActionText: {fileID: 4771228804147797628}
   inventoryUi: {fileID: 92630376470073173}
   FishSlider: {fileID: 7764817004010674368, guid: 8b87047437365e043b138281e4efb98e, type: 3}
-  FishingItems:
-  - {fileID: 124698, guid: b639fd0347adb472b8d9d68c2da3f05a, type: 3}
-  - {fileID: 8111702614565564723, guid: c17f969c856984c46a978d9a2d6de9ec, type: 3}
 --- !u!4 &8960730758587264260 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1828069631954124329, guid: ec8e408c484cd39479235db1b5e19d71, type: 3}
