@@ -1772,23 +1772,15 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 689308991}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 60f25053ad937a2488ebf33f75c59f61, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Target: {fileID: 3375836042441815718}
-  FollowSpeed: 20
-  MouseSensor: 100
-  LimitAngle: 70
-  Camera: {fileID: 1874450260}
-  dir: {x: 0, y: 0, z: 0}
-  finalDir: {x: 0, y: 0, z: 0}
-  minDis: 0.1
-  maxDis: 2
-  finalDis: 0
-  Smove: 10
-  ZoomSmoothSpeed: 10
+  camTransform: {fileID: 1874450260}
+  shakeDuration: 0.25
+  shakeMagnitude: 0.15
+  dampingSpeed: 1
 --- !u!1 &771512994
 GameObject:
   m_ObjectHideFlags: 0

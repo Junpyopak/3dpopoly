@@ -49,8 +49,7 @@ public class Player : Character
     public Transform Warrok;
     public bool DoTelpo = false;
     public LayerMask layer;
-    public Collider[] colliders;
-    public Collider ShotEnemy;
+    public AttackCam AttackCam;
     // Start is called before the first frame update
     void Start()
     {
@@ -75,6 +74,7 @@ public class Player : Character
         playableDirector = GetComponent<PlayableDirector>();
         hpGauge = GameObject.Find("PlayerHp").GetComponent<HpGauge>();
         meshAgent = GetComponent<NavMeshAgent>();
+        AttackCam = GameObject.Find("Camera").GetComponent<AttackCam>();
 
     }
 
@@ -92,7 +92,6 @@ public class Player : Character
     private void FixedUpdate()
     {
         Attack();
-        colliders = Physics.OverlapSphere(transform.position, detectionDis, layer);
     }
     IEnumerator MoveStopCoroutine()//컷신 플레이시 플레이어 움직임 조작
     {
