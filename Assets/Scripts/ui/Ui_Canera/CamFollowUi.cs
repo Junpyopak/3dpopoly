@@ -23,7 +23,7 @@ public class CamFollowUi : MonoBehaviour
     public float ZoomSmoothSpeed = 5f;
 
     private float currentDis;
-
+    public bool OnShake { set; get; }
     private Player player;
 
     void Start()
@@ -57,6 +57,7 @@ public class CamFollowUi : MonoBehaviour
     {
         if (player != null && player.AutoMode == false)
         {
+            if (OnShake == true) return;
             rotaX += -(Input.GetAxis("Mouse Y")) * MouseSensor * Time.deltaTime;
             rotaY += Input.GetAxis("Mouse X") * MouseSensor * Time.deltaTime;
             rotaX = Mathf.Clamp(NormalizeAngle(rotaX), -LimitAngle, LimitAngle);
@@ -84,7 +85,7 @@ public class CamFollowUi : MonoBehaviour
 
         currentDis = Mathf.Lerp(currentDis, targetDis, Time.deltaTime * ZoomSmoothSpeed);
         finalDir = transform.TransformPoint(dir * currentDis);
-
+        if (OnShake == true) return;
         RaycastHit hit;
         if (Physics.Linecast(transform.position, finalDir, out hit))
         {
