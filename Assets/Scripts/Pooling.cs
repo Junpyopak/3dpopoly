@@ -78,6 +78,7 @@ public class Pooling : MonoBehaviour
             if (safePos == Vector3.negativeInfinity) return; // 실패 방지
 
             enemy.transform.position = safePos;
+            enemy.GetComponent<Enemy>().ResetEnemy();
             enemy.SetActive(true);
             activeEnemyPositions.Add(safePos);
             enemySpawnPositions[enemy] = safePos; // 적 오브젝트와 스폰 위치 연결s;

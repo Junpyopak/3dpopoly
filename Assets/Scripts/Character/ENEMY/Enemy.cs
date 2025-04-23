@@ -12,6 +12,7 @@ public class Enemy : Character
     public Transform player;//플레이어 위치 찾기위함용
     SphereCollider sphereCollider;
     public int Hp = 70;
+    public int MaxHp = 70;
     public int AttackDamage = 7;
     public int PlayerDamage = 20;
     Player Player;
@@ -123,6 +124,7 @@ public class Enemy : Character
     public virtual void Damage()
     {
         Hp -= Player.AttackDamage;
+        animator.SetTrigger("Hurt");
         if (Hp <= 0)
         {
             Hp = 0;
@@ -140,5 +142,9 @@ public class Enemy : Character
     public void EndAttack()
     {
         sphereCollider.enabled = false;
+    }
+    public void ResetEnemy()
+    {
+        Hp = MaxHp;
     }
 }
