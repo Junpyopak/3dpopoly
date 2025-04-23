@@ -17,6 +17,7 @@ public class Enemy : Character
     public int PlayerDamage = 20;
     Player Player;
     BattleManager battleManager;
+    private ParticleSystem hitEffect;
     // Start is called before the first frame update
     void Start()
     {
@@ -28,6 +29,7 @@ public class Enemy : Character
         battleManager = GameObject.Find("BattleManager").GetComponent<BattleManager>();
         animator = GetComponent<Animator>();
         sphereCollider.enabled = false;
+        hitEffect = GameObject.Find("HitParticle").GetComponent<ParticleSystem>();
     }
 
     // Update is called once per frame
@@ -124,6 +126,11 @@ public class Enemy : Character
     public virtual void Damage()
     {
         Hp -= Player.AttackDamage;
+        if (hitEffect != null)
+        {
+            hitEffect.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear); // »§Ω√ ¿Áª˝ ¡ﬂ¿Ã∏È ∏ÿ√„
+            hitEffect.Play();
+        }
         animator.SetTrigger("Hurt");
         if (Hp <= 0)
         {
