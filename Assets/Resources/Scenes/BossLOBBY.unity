@@ -226,12 +226,16 @@ PrefabInstance:
       value: 0.021104338
       objectReference: {fileID: 0}
     - target: {fileID: 399198079383502473, guid: ec8e408c484cd39479235db1b5e19d71, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.04
+      objectReference: {fileID: 0}
+    - target: {fileID: 399198079383502473, guid: ec8e408c484cd39479235db1b5e19d71, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.55
+      value: 1.13
       objectReference: {fileID: 0}
     - target: {fileID: 399198079383502473, guid: ec8e408c484cd39479235db1b5e19d71, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -1
+      value: -1.13
       objectReference: {fileID: 0}
     - target: {fileID: 550724588659568660, guid: ec8e408c484cd39479235db1b5e19d71, type: 3}
       propertyPath: m_LocalPosition.x
@@ -6614,7 +6618,7 @@ Transform:
   m_GameObject: {fileID: 370145381}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 1, z: -1.8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -6680,17 +6684,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Target: {fileID: 1528715031}
-  FollowSpeed: 10
+  FollowSpeed: 20
   MouseSensor: 100
   LimitAngle: 70
   Camera: {fileID: 8010871254247293854}
   dir: {x: 0, y: 0, z: 0}
   finalDir: {x: 0, y: 0, z: 0}
-  minDis: 0
-  maxDis: 0
+  minDis: 0.1
+  maxDis: 2
   finalDis: 0
   Smove: 10
-  ZoomSmoothSpeed: 5
+  ZoomSmoothSpeed: 10
 --- !u!1 &433353398
 GameObject:
   m_ObjectHideFlags: 0
@@ -9403,7 +9407,7 @@ Transform:
   m_GameObject: {fileID: 6865823633157151469}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 1, z: -1.8000002}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
