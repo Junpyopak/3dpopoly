@@ -2386,7 +2386,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1237044920}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 71f38d614a062f94b8da14df6c10759f, type: 3}
   m_Name: 
@@ -2398,12 +2398,8 @@ MonoBehaviour:
   SpawnPoint: {fileID: 5567205}
   PotalPoint: {fileID: 305540491}
   KillText: {fileID: 1980099575}
-  listEnemy:
-  - {fileID: 669465899863786551, guid: 7991c8554b7a30645b44a96076189760, type: 3}
   listPotal:
   - {fileID: 5227831412505161394, guid: baf98fbe25aa0944087ebd2b3e0be9e7, type: 3}
-  spawnTime: 4
-  sTimer: 0
 --- !u!114 &1237044924
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -19,6 +19,10 @@ public class Enemy : Character
     BattleManager battleManager;
     private ParticleSystem hitEffect;
     // Start is called before the first frame update
+    private void Awake()
+    {
+        hitEffect = GetComponentInChildren<ParticleSystem>();
+    }
     void Start()
     {
         pooling = Pooling.instance;
@@ -29,7 +33,6 @@ public class Enemy : Character
         battleManager = GameObject.Find("BattleManager").GetComponent<BattleManager>();
         animator = GetComponent<Animator>();
         sphereCollider.enabled = false;
-        hitEffect = GameObject.Find("HitParticle").GetComponent<ParticleSystem>();
     }
 
     // Update is called once per frame
