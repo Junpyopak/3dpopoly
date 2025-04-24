@@ -1005,8 +1005,8 @@ Transform:
   m_GameObject: {fileID: 305540491}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 137.24, y: 13.19, z: -95.3}
-  m_LocalScale: {x: 2, y: 1, z: 2}
+  m_LocalPosition: {x: 138.8, y: 12.3, z: -95.3}
+  m_LocalScale: {x: 0.58, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1237044922}
@@ -2399,7 +2399,7 @@ MonoBehaviour:
   PotalPoint: {fileID: 305540491}
   KillText: {fileID: 1980099575}
   listPotal:
-  - {fileID: 5227831412505161394, guid: baf98fbe25aa0944087ebd2b3e0be9e7, type: 3}
+  - {fileID: 6757366458892582863, guid: 85386968b7ab8154c9df1a935457c171, type: 3}
 --- !u!114 &1237044924
 MonoBehaviour:
   m_ObjectHideFlags: 0

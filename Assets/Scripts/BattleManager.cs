@@ -40,16 +40,17 @@ public class BattleManager : MonoBehaviour
     }
     public void CreatePotal()
     {
-        Vector3 Pos = PotalPoint.transform.position;//현재 위치를 박스 콜라이더의 위치로 설정
-        float RandomX = PotalBoxCollider.bounds.size.x;//박스콜라이더의 사이즈 안에서만 리스폰 하시위해 x,z 사이즈를 설정
-        float RandomZ = PotalBoxCollider.bounds.size.z;
+        Vector3 basePos = PotalPoint.transform.position;
+        float rangeX = PotalBoxCollider.bounds.size.x;
+        float rangeZ = PotalBoxCollider.bounds.size.z;
 
-        RandomX = Random.Range((RandomX / 2) * -1, RandomX / 2);//랜덤함수를 사용해 콜라이더 사이즈를 반으로 나누고,
-        //-1을 곱한 값부터 곱하지 않은 값이 랜덤으로 스폰위치 설정
-        RandomZ = Random.Range((RandomZ / 2) * -1, RandomZ / 2);
-        Vector3 newPos = new Vector3(RandomX, 0f, RandomZ);
-        Vector3 SpawnPos = Pos + newPos;//기존 박스콜라이더의 위치에서 위에 선언한 위치로 나오게끔
-        GameObject po = Instantiate(listPotal[0], SpawnPos, Quaternion.identity);
+        float randomX = Random.Range(-rangeX / 2, rangeX / 2);
+        float randomZ = Random.Range(-rangeZ / 2, rangeZ / 2);
+
+        Vector3 spawnOffset = new Vector3(randomX, 0f, randomZ); // yOffset 적용
+        Vector3 spawnPos = basePos + spawnOffset;
+        spawnPos.y = 18f;
+        GameObject portal = Instantiate(listPotal[0], spawnPos, Quaternion.identity);
     }
     public void checkPotal()
     {

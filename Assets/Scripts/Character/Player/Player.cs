@@ -260,7 +260,7 @@ public class Player : Character
                 Debug.Log("데미지");
                 Debug.Log($"스텟{Hp}");
             }
-            if (other.gameObject.CompareTag("Gate"))
+            if (other.tag=="Gate")
             {
                 Debug.Log("게이트");
                 SceneManager.LoadScene("BossMapLOAD");
