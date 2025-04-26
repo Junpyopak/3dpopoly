@@ -8170,6 +8170,7 @@ GameObject:
   - component: {fileID: 370145382}
   - component: {fileID: 370145383}
   - component: {fileID: 370145384}
+  - component: {fileID: 370145385}
   m_Layer: 0
   m_Name: Virtual Camera
   m_TagString: Untagged
@@ -8186,7 +8187,7 @@ Transform:
   m_GameObject: {fileID: 370145381}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 3, z: -2}
+  m_LocalPosition: {x: 0, y: 0, z: 1.19}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -8246,21 +8247,45 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 370145381}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 17d5bc2cc012cd7448e2c39e59648f91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Target: {fileID: 1528715031}
-  followSpeed: 20
+  followSpeed: 10
   mouseSensitivity: 100
   clampAngle: 80
   minDistance: 2
   maxDistance: 5
-  zoomSpeed: 10
+  zoomSpeed: 5
   isShaking: 0
   shakeDuration: 0.5
   shakeAmount: 0.5
+--- !u!114 &370145385
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 370145381}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b546ddc5d0605ff4aad9fd40f9b35531, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Target: {fileID: 1528715031}
+  FollowSpeed: 20
+  MouseSensor: 100
+  LimitAngle: 70
+  Camera: {fileID: 8010871254247293854}
+  dir: {x: 0, y: 0, z: 0}
+  finalDir: {x: 0, y: 0, z: 0}
+  minDis: 0.1
+  maxDis: 2
+  finalDis: 0
+  Smove: 10
+  ZoomSmoothSpeed: 10
 --- !u!1001 &371080002
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -19285,7 +19310,7 @@ Transform:
   m_GameObject: {fileID: 6865823633157151469}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 3, z: -2}
+  m_LocalPosition: {x: 0, y: 0, z: 1.19}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
