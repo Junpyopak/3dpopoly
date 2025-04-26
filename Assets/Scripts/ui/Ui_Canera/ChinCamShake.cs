@@ -125,3 +125,4 @@ public class ChinCamShake : MonoBehaviour
         isShaking = true;
     }
 }
+

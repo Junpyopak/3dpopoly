@@ -8252,11 +8252,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Target: {fileID: 1528715031}
-  followSpeed: 50
+  followSpeed: 20
   mouseSensitivity: 100
   clampAngle: 80
-  minDistance: 0.1
-  maxDistance: 2
+  minDistance: 2
+  maxDistance: 5
   zoomSpeed: 10
   isShaking: 0
   shakeDuration: 0.5
