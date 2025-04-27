@@ -76,7 +76,7 @@ public class CamFollowUi : MonoBehaviour
     void LateUpdate()
     {
         if (Camera == null || player == null) return;
-
+        if (player.IsAttacking == true) return;
         transform.position = Vector3.MoveTowards(transform.position, Target.position, FollowSpeed * Time.deltaTime);
 
 

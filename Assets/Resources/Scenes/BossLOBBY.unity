@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
+  m_SkyboxMaterial: {fileID: 2100000, guid: 6eecb3bb77b3f7a43a504fceda3b0b5f, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -8169,15 +8169,13 @@ GameObject:
   m_Component:
   - component: {fileID: 370145382}
   - component: {fileID: 370145383}
-  - component: {fileID: 370145384}
-  - component: {fileID: 370145385}
   m_Layer: 0
   m_Name: Virtual Camera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &370145382
 Transform:
   m_ObjectHideFlags: 0
@@ -8240,52 +8238,6 @@ MonoBehaviour:
         m_Calls: []
   m_LegacyBlendHint: 0
   m_ComponentOwner: {fileID: 236588950}
---- !u!114 &370145384
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 370145381}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 17d5bc2cc012cd7448e2c39e59648f91, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Target: {fileID: 1528715031}
-  followSpeed: 10
-  mouseSensitivity: 100
-  clampAngle: 80
-  minDistance: 2
-  maxDistance: 5
-  zoomSpeed: 5
-  isShaking: 0
-  shakeDuration: 0.5
-  shakeAmount: 0.5
---- !u!114 &370145385
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 370145381}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b546ddc5d0605ff4aad9fd40f9b35531, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Target: {fileID: 1528715031}
-  FollowSpeed: 20
-  MouseSensor: 100
-  LimitAngle: 70
-  Camera: {fileID: 8010871254247293854}
-  dir: {x: 0, y: 0, z: 0}
-  finalDir: {x: 0, y: 0, z: 0}
-  minDis: 0.1
-  maxDis: 2
-  finalDis: 0
-  Smove: 10
-  ZoomSmoothSpeed: 10
 --- !u!1001 &371080002
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -19146,7 +19098,7 @@ Camera:
   m_GameObject: {fileID: 6865823633157151469}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 2
+  m_ClearFlags: 1
   m_BackGroundColor: {r: 0.1, g: 0.07, b: 0.06, a: 1}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
@@ -19278,6 +19230,7 @@ GameObject:
   - component: {fileID: 4146456072153756392}
   - component: {fileID: 1770218589014872328}
   - component: {fileID: 8010871254247293855}
+  - component: {fileID: 8010871254247293856}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -19294,6 +19247,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6007953155050843997}
+  - component: {fileID: 7392158110282319053}
   m_Layer: 0
   m_Name: Camera
   m_TagString: Untagged
@@ -19301,6 +19255,30 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &7392158110282319053
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7392158110282319052}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b546ddc5d0605ff4aad9fd40f9b35531, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Target: {fileID: 1528715031}
+  FollowSpeed: 20
+  MouseSensor: 100
+  LimitAngle: 70
+  Camera: {fileID: 8010871254247293854}
+  dir: {x: 0, y: 0, z: 0}
+  finalDir: {x: 0, y: 0, z: 0}
+  minDis: 0.15
+  maxDis: 0.1
+  finalDis: 0
+  Smove: 10
+  ZoomSmoothSpeed: 10
 --- !u!4 &8010871254247293854
 Transform:
   m_ObjectHideFlags: 0
@@ -19350,6 +19328,30 @@ MonoBehaviour:
   m_CameraActivatedEvent:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &8010871254247293856
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6865823633157151469}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b546ddc5d0605ff4aad9fd40f9b35531, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Target: {fileID: 1528715031}
+  FollowSpeed: 20
+  MouseSensor: 100
+  LimitAngle: 70
+  Camera: {fileID: 8010871254247293854}
+  dir: {x: 0, y: 0, z: 0}
+  finalDir: {x: 0, y: 0, z: 0}
+  minDis: 2
+  maxDis: 0.1
+  finalDis: 0
+  Smove: 10
+  ZoomSmoothSpeed: 10
 --- !u!4 &8877253298665010930
 Transform:
   m_ObjectHideFlags: 0

@@ -106,10 +106,12 @@ public class Player : Character
         {
             Hp = MaxHp;
         }
+        
         if (animator.GetBool("Death") == false)
         {
             if (playCut == false)
             {
+                if (IsAttacking == true) return;
                 if (Input.GetKey(KeyCode.LeftShift) || AutoMode == true)
                 {
                     SetMove(new RunStrategy());
