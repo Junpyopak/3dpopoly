@@ -11,12 +11,13 @@ public class SkillCoolController : MonoBehaviour
 
     private float cooldownTimer = 0f;
     private bool isCooldown = false;
-
+    Animator animator;
     void Start()
     {
         cooldownOverlay.fillAmount = 0f;
         SetOverlayAlpha(0f); // 처음엔 안보이게
         skillButton.onClick.AddListener(UseSkill);
+        animator = GameObject.Find("character").GetComponent<Animator>();
     }
 
     void Update()
@@ -44,6 +45,7 @@ public class SkillCoolController : MonoBehaviour
     void UseSkill()
     {
         Debug.Log("스킬 사용!");
+        animator.SetTrigger("Skill1");
         isCooldown = true;
         cooldownTimer = cooldownTime;
         skillButton.interactable = false;
