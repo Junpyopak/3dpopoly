@@ -50,6 +50,7 @@ public class Player : Character
     public bool DoTelpo = false;
     public LayerMask layer;
     public AttackCam AttackCam;
+    private ParticleSystem SkillEffect;
     // Start is called before the first frame update
     void Start()
     {
@@ -75,6 +76,7 @@ public class Player : Character
         hpGauge = GameObject.Find("PlayerHp").GetComponent<HpGauge>();
         meshAgent = GetComponent<NavMeshAgent>();
         AttackCam = GameObject.Find("Camera").GetComponent<AttackCam>();
+        SkillEffect = GameObject.Find("Skill1").GetComponent<ParticleSystem>();
 
     }
 
@@ -236,6 +238,10 @@ public class Player : Character
     void EndCol()
     {
         BoxCollider.enabled = false;
+    }
+    public void SkillPositionPlay()
+    {
+        SkillEffect.Play();
     }
     public override void Attack()
     {
