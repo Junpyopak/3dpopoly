@@ -17,6 +17,7 @@ TagManager:
   - DropItem
   - Water
   - Telport
+  - Skill1
   layers:
   - Default
   - TransparentFX

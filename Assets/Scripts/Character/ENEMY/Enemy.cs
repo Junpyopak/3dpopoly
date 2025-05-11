@@ -124,8 +124,8 @@ public class Enemy : Character
             Debug.Log("몬스터데미지");
             Debug.Log($"스탯{Hp}");
         }
+        
     }
-
     public virtual void Damage()
     {
         Hp -= Player.AttackDamage;
