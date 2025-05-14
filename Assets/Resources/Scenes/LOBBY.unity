@@ -17624,6 +17624,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 4410538100483704801, guid: ec8e408c484cd39479235db1b5e19d71, type: 3}
+      propertyPath: CollisionModule.m_EnergyLossOnCollision.scalar
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4410538100483704801, guid: ec8e408c484cd39479235db1b5e19d71, type: 3}
       propertyPath: CollisionModule.multiplyColliderForceByParticleSize
       value: 0
       objectReference: {fileID: 0}
@@ -17862,6 +17866,10 @@ PrefabInstance:
     - target: {fileID: 9145186919409628327, guid: ec8e408c484cd39479235db1b5e19d71, type: 3}
       propertyPath: TriggerModule.primitives.Array.data[0]
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 9145186919409628327, guid: ec8e408c484cd39479235db1b5e19d71, type: 3}
+      propertyPath: CollisionModule.m_EnergyLossOnCollision.scalar
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9145186919409628327, guid: ec8e408c484cd39479235db1b5e19d71, type: 3}
       propertyPath: CollisionModule.multiplyColliderForceByParticleSize

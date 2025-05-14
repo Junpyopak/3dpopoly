@@ -124,17 +124,21 @@ public class Enemy : Character
             Debug.Log("몬스터데미지");
             Debug.Log($"스탯{Hp}");
         }
-        
+
     }
     public virtual void Damage()
     {
+        if (Hp <= 0) return;
+
         Hp -= Player.AttackDamage;
+
         if (hitEffect != null)
         {
             hitEffect.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear); // 혹시 재생 중이면 멈춤
             hitEffect.Play();
         }
         animator.SetTrigger("Hurt");
+
         if (Hp <= 0)
         {
             Hp = 0;
@@ -144,7 +148,8 @@ public class Enemy : Character
             Debug.Log("몬스터가 죽었습니다");
         }
     }
-    public  void StartAttack()
+
+    public void StartAttack()
     {
         sphereCollider.enabled = true;
     }
@@ -157,4 +162,5 @@ public class Enemy : Character
     {
         Hp = MaxHp;
     }
+
 }

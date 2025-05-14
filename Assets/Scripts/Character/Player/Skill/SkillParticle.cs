@@ -20,7 +20,7 @@ public class SkillParticle : MonoBehaviour
     private void OnParticleCollision(GameObject other)
     {
         Debug.Log("파티클 충돌");
-        if(other.CompareTag("Enemy"))
+        if (other.CompareTag("Enemy"))
         {
             Enemy enemy = other.GetComponent<AIMonster>();
             enemy.Damage();
