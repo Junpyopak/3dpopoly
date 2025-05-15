@@ -71,8 +71,5 @@ public class SkillCoolController : MonoBehaviour
         color.a = alpha;
         cooldownOverlay.color = color;
     }
-    public void SkillEnd()
-    {
-        isSkillCasting = false;
-    }
+   
 }
