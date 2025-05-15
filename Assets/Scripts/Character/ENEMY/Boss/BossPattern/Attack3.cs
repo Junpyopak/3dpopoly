@@ -22,17 +22,21 @@ public class Attack3 : MonoBehaviour
         Size();
 
     }
-    IEnumerator SkillStartCoroutine()//컷신 플레이시 플레이어 움직임 조작
-    {
-        yield return new WaitForSeconds(3f);
-        BossSkill3.Play();
-    }
+    //IEnumerator SkillStartCoroutine()
+    //{
+    //    yield return new WaitForSeconds(1f);
+    //    BossSkill3.Play();
+    //}
     void Size()
     {
         if (Range.transform.localScale.x<=Vector3.x && Range.transform.localScale.y<=Vector3.y)
         {
             Range.transform.localScale += new Vector3(0.3f, 0.3f, 0) * speed;
-            StartCoroutine(SkillStartCoroutine());
+            //StartCoroutine(SkillStartCoroutine());
+            if (Range.transform.localScale.x == Vector3.x && Range.transform.localScale.y == Vector3.y)
+            {
+                BossSkill3.Play();
+            }
         }
     }
     void EndRange()

@@ -30,11 +30,13 @@ public class BOSS : Enemy
     [SerializeField] float patternChangeTime = 10.0f;//패턴 바꿀때 딜레이되는시간
     //float CoolTimer = 0.0f;
 
+    private ParticleSystem DamageEffect;
     void Start()
     {
         HP = MaxHp;
         Animator = GetComponent<Animator>();
         startAttack = GameObject.Find("StartAttack").GetComponent<StartAttack>();
+        DamageEffect = GameObject.Find("Hitroot").GetComponent<ParticleSystem>();
     }
 
     IEnumerator RoarCoroutine()
@@ -160,6 +162,11 @@ public class BOSS : Enemy
 
     public override void Damage()
     {
+        if (DamageEffect != null)
+        {
+            DamageEffect.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear); // 혹시 재생 중이면 멈춤
+            DamageEffect.Play();
+        }
         HP -= PlayerDamage;
         BossHpgauge.SetHp(HP, MaxHp);
         if (HP <= 0)

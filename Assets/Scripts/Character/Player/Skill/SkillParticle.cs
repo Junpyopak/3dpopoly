@@ -25,5 +25,10 @@ public class SkillParticle : MonoBehaviour
             Enemy enemy = other.GetComponent<AIMonster>();
             enemy.Damage();
         }
+        if(other.CompareTag("Boss"))
+        {
+            BOSS boss = other.GetComponent<BOSS>();
+            boss.Damage();
+        }
     }
 }

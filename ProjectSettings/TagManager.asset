@@ -18,6 +18,7 @@ TagManager:
   - Water
   - Telport
   - Skill1
+  - Boss
   layers:
   - Default
   - TransparentFX
@@ -38,7 +39,7 @@ TagManager:
   - MinimapCam
   - MainCam
   - Enemy
-  - 
+  - Boss
   - 
   - 
   - 
