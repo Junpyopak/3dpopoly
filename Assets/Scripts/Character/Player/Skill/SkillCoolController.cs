@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class SkillCoolController : MonoBehaviour
 {
+    public static SkillCoolController instance;
     public Button skillButton;
     public Image cooldownOverlay;
     public float cooldownTime = 8f;
@@ -12,10 +13,20 @@ public class SkillCoolController : MonoBehaviour
     private float cooldownTimer = 0f;
     private bool isCooldown = false;
     Animator animator;
+    public bool isSkillCasting = false;
+    private void Awake()
+    {
+        if (instance != null)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        instance = this;
+    }
     void Start()
     {
         cooldownOverlay.fillAmount = 0f;
-        SetOverlayAlpha(0f); // 처음엔 안보이게
+        SetOverlayAlpha(0f);
         skillButton.onClick.AddListener(UseSkill);
         animator = GameObject.Find("character").GetComponent<Animator>();
     }
@@ -36,7 +47,7 @@ public class SkillCoolController : MonoBehaviour
             {
                 isCooldown = false;
                 cooldownOverlay.fillAmount = 0f;
-                SetOverlayAlpha(0f); // 쿨타임 끝나면 투명하게
+                SetOverlayAlpha(0f);
                 skillButton.interactable = true;
             }
         }
@@ -46,11 +57,12 @@ public class SkillCoolController : MonoBehaviour
     {
         Debug.Log("스킬 사용!");
         animator.SetTrigger("Skill1");
+        isSkillCasting = true;
         isCooldown = true;
         cooldownTimer = cooldownTime;
         skillButton.interactable = false;
         cooldownOverlay.fillAmount = 1f;
-        SetOverlayAlpha(0.6f); // 쿨타임 중 흐리게 (0.6 정도 추천)
+        SetOverlayAlpha(0.6f);
     }
 
     void SetOverlayAlpha(float alpha)
@@ -58,5 +70,9 @@ public class SkillCoolController : MonoBehaviour
         Color color = cooldownOverlay.color;
         color.a = alpha;
         cooldownOverlay.color = color;
+    }
+    public void SkillEnd()
+    {
+        isSkillCasting = false;
     }
 }

@@ -51,9 +51,11 @@ public class Player : Character
     public LayerMask layer;
     public AttackCam AttackCam;
     private ParticleSystem SkillEffect;
+    SkillCoolController SkillCool;
     // Start is called before the first frame update
     void Start()
     {
+        SkillCool = SkillCoolController.instance;
         Hp = MaxHp;
         if (GameObject.Find("Warrok") != null)
         {
@@ -79,7 +81,6 @@ public class Player : Character
         SkillEffect = GameObject.Find("Skill1").GetComponent<ParticleSystem>();
 
     }
-
     public void SetMove(MoveStrategy moveStrategy)
     {
         this.moveStrategy = moveStrategy;
@@ -114,6 +115,7 @@ public class Player : Character
             if (playCut == false)
             {
                 if (IsAttacking == true) return;
+                if (SkillCool.isSkillCasting == true) return;
                 if (Input.GetKey(KeyCode.LeftShift) || AutoMode == true)
                 {
                     SetMove(new RunStrategy());
@@ -242,6 +244,10 @@ public class Player : Character
     public void SkillPositionPlay()
     {
         SkillEffect.Play();
+    }
+    public void SkillEnd()
+    {
+        SkillCool.isSkillCasting = false;
     }
     public override void Attack()
     {
