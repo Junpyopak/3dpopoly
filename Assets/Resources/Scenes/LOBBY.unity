@@ -2890,9 +2890,9 @@ MonoBehaviour:
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
-  m_FillAmount: 1
+  m_FillAmount: 0
   m_FillClockwise: 1
-  m_FillOrigin: 0
+  m_FillOrigin: 2
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
 --- !u!222 &1402351612
@@ -4615,6 +4615,7 @@ MonoBehaviour:
   skillButton: {fileID: 508026692}
   cooldownOverlay: {fileID: 1402351611}
   cooldownTime: 8
+  isSkillCasting: 0
 --- !u!114 &92630376470073173 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2651188578189166021, guid: 26c83234f82bd2941abe4cafc8379844, type: 3}

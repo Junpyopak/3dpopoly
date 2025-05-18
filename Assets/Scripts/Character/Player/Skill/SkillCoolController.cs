@@ -41,7 +41,7 @@ public class SkillCoolController : MonoBehaviour
         if (isCooldown)
         {
             cooldownTimer -= Time.deltaTime;
-            cooldownOverlay.fillAmount = cooldownTimer / cooldownTime;
+            cooldownOverlay.fillAmount = 1f -(cooldownTimer / cooldownTime);
 
             if (cooldownTimer <= 0f)
             {

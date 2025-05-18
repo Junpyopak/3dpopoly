@@ -1,16 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class BOSS : Enemy
 {
     // Start is called before the first frame update
-    public int HP = 300;
-    public int MaxHp = 300;
+    
     Animator Animator;
     [SerializeField] BossHpGauge BossHpgauge;
     [SerializeField] List<GameObject> listPattern;//패턴의 종류
     public ParticleSystem MyparticleSystem;
+    public ParticleSystem ShiledParticle;
     public StartAttack startAttack;
     [Header("보스 패턴")]
 
@@ -30,13 +31,17 @@ public class BOSS : Enemy
     [SerializeField] float patternChangeTime = 10.0f;//패턴 바꿀때 딜레이되는시간
     //float CoolTimer = 0.0f;
 
+    bool isInvincible = false;
+
     private ParticleSystem DamageEffect;
     void Start()
     {
-        HP = MaxHp;
+        Hp = 300;
+        MaxHp = 300;
         Animator = GetComponent<Animator>();
         startAttack = GameObject.Find("StartAttack").GetComponent<StartAttack>();
         DamageEffect = GameObject.Find("Hitroot").GetComponent<ParticleSystem>();
+        ShiledParticle = GameObject.Find("Magic shield").GetComponent<ParticleSystem>();
     }
 
     IEnumerator RoarCoroutine()
@@ -54,13 +59,7 @@ public class BOSS : Enemy
     // Update is called once per frame
     void Update()
     {
-        //Attack_1();
-        //Attack_2();
-        //Attack_3();
-        //if(Attack1==false)
-        //{
-        //    CheckCool();
-        //}
+        
         if(startAttack.onPlayer==true)
         {
             BossSkill();
@@ -156,20 +155,30 @@ public class BOSS : Enemy
         {
             Damage();
             Debug.Log("데미지");
-            Debug.Log($"스탯{HP}");
+            Debug.Log($"스탯{Hp}");
         }
     }
 
     public override void Damage()
     {
+        if(isInvincible)
+        {
+            Debug.Log("보스 무적상태");
+            return;
+        }
         if (DamageEffect != null)
         {
             DamageEffect.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear); // 혹시 재생 중이면 멈춤
             DamageEffect.Play();
         }
-        HP -= PlayerDamage;
-        BossHpgauge.SetHp(HP, MaxHp);
-        if (HP <= 0)
+        Hp -= PlayerDamage;
+        BossHpgauge.SetHp(Hp, MaxHp);
+        if(Hp==200||Hp==140)
+        {
+            Debug.Log("보스 무적상태");
+            StartCoroutine(unbeatable(10f));
+        }
+        if (Hp <= 0)
         {
             Hp = 0;
             Animator.SetBool("Death", true);
@@ -185,12 +194,13 @@ public class BOSS : Enemy
     {
         MyparticleSystem.Stop();
     }
-    //private void CheckCool()
-    //{
-    //    if (CoolTime > 0 && HP >=0)
-    //    {
-    //        CoolTime -= Time.deltaTime * 0.5f;
+    IEnumerator unbeatable(float time)
+    {
+        isInvincible = true;
+        ShiledParticle.Play();
+        yield return new WaitForSeconds(time);
 
-    //    }
-    //}
+        isInvincible =false;
+        Debug.Log("무적종료");
+    }
 }

@@ -5,8 +5,8 @@ using UnityEngine.UI;
 
 public class BossHpGauge : MonoBehaviour
 {
-    private Image HP;
-    private Image Effect;
+    public Image HP;
+    public Image Effect;
     [SerializeField] public float CurBossHp;
     [SerializeField] public float MaxBossHp;
     private void Awake()
