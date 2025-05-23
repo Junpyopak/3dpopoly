@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class BOSS : Enemy
 {
     // Start is called before the first frame update
-    
+    public static BOSS instance;
     Animator Animator;
     [SerializeField] BossHpGauge BossHpgauge;
     [SerializeField] List<GameObject> listPattern;//패턴의 종류
@@ -29,10 +29,18 @@ public class BOSS : Enemy
     float patternTimer;//패턴타이머
     bool patternChange = false;//패턴을 바꾸어야하는 상황인지
     [SerializeField] float patternChangeTime = 10.0f;//패턴 바꿀때 딜레이되는시간
-    //float CoolTimer = 0.0f;
+                                                     //float CoolTimer = 0.0f;
 
-    bool isInvincible = false;
-
+    public bool isInvincible = false;
+    private void Awake()
+    {
+        if (instance != null)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        instance = this;
+    }
     private ParticleSystem DamageEffect;
     void Start()
     {
@@ -59,11 +67,11 @@ public class BOSS : Enemy
     // Update is called once per frame
     void Update()
     {
-        
-        if(startAttack.onPlayer==true)
+
+        if (startAttack.onPlayer == true)
         {
             BossSkill();
-        }     
+        }
     }
     private void BossSkill()
     {
@@ -161,7 +169,7 @@ public class BOSS : Enemy
 
     public override void Damage()
     {
-        if(isInvincible)
+        if (isInvincible)
         {
             Debug.Log("보스 무적상태");
             return;
@@ -173,7 +181,7 @@ public class BOSS : Enemy
         }
         Hp -= PlayerDamage;
         BossHpgauge.SetHp(Hp, MaxHp);
-        if(Hp==200||Hp==140)
+        if (Hp == 200 || Hp == 140)
         {
             Debug.Log("보스 무적상태");
             StartCoroutine(unbeatable(10f));
@@ -197,10 +205,18 @@ public class BOSS : Enemy
     IEnumerator unbeatable(float time)
     {
         isInvincible = true;
+        if (Boss_unbeatable.instance != null)
+        {
+            Boss_unbeatable.instance.StartSpawn();
+        }
         ShiledParticle.Play();
         yield return new WaitForSeconds(time);
 
-        isInvincible =false;
+        isInvincible = false;
+        if (Boss_unbeatable.instance != null)
+        {
+            Boss_unbeatable.instance.StopSpawn();
+        }        
         Debug.Log("무적종료");
     }
 }

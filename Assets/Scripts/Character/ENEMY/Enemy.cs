@@ -30,7 +30,10 @@ public class Enemy : Character
         player = GameObject.Find("character").transform;
         Speed = 2f;
         sphereCollider = GameObject.Find("LeftHand").GetComponent<SphereCollider>();
-        battleManager = GameObject.Find("BattleManager").GetComponent<BattleManager>();
+        if(GameObject.Find("BattleManager")!=null)
+        {
+            battleManager = GameObject.Find("BattleManager").GetComponent<BattleManager>();
+        }  
         animator = GetComponent<Animator>();
         sphereCollider.enabled = false;
     }
