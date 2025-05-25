@@ -71,4 +71,12 @@ public class SlashMotion : MonoBehaviour
             Destroy(effect, duration);
         }
     }
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.cyan;
+        for (int i = 0; i < trailPositions.Count - 1; i++)
+        {
+            Gizmos.DrawLine(trailPositions[i], trailPositions[i + 1]);
+        }
+    }
 }

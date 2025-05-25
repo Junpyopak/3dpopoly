@@ -360,4 +360,5 @@ public class Player : Character
             slashMotion?.StopRecordingTrail();
         }
     }
+
 }
