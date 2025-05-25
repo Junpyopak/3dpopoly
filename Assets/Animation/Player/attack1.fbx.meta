@@ -85,6 +85,20 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
+      - time: 0.4177215
+        functionName: StartTrail
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: 0406c3b8f8835cc428c1ee779d8540e9, type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.6392405
+        functionName: StopTrail
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: 0406c3b8f8835cc428c1ee779d8540e9, type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}

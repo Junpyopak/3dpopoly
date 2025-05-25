@@ -52,10 +52,14 @@ public class Player : Character
     public AttackCam AttackCam;
     private ParticleSystem SkillEffect;
     SkillCoolController SkillCool;
+    SlashEffect_OnOff slashEffect_OnOff;
+    SlashMotion slashMotion;
     // Start is called before the first frame update
     void Start()
     {
         SkillCool = SkillCoolController.instance;
+        slashEffect_OnOff = SlashEffect_OnOff.instance;
+        slashMotion = SlashMotion.instance;
         Hp = MaxHp;
         if (GameObject.Find("Warrok") != null)
         {
@@ -109,7 +113,7 @@ public class Player : Character
         {
             Hp = MaxHp;
         }
-        
+
         if (animator.GetBool("Death") == false)
         {
             if (playCut == false)
@@ -274,7 +278,7 @@ public class Player : Character
                 Debug.Log("데미지");
                 Debug.Log($"스텟{Hp}");
             }
-            if (other.tag=="Gate")
+            if (other.tag == "Gate")
             {
                 Debug.Log("게이트");
                 SceneManager.LoadScene("BossMapLOAD");
@@ -341,5 +345,19 @@ public class Player : Character
             chController.enabled = true;
         }
     }
+    public void StartTrail()
+    {
+        if (slashMotion != null)
+        {
+            slashMotion?.StartRecordingTrail();
+        }
+    }
 
+    public void StopTrail()
+    {
+        if (slashMotion != null)
+        {
+            slashMotion?.StopRecordingTrail();
+        }
+    }
 }
