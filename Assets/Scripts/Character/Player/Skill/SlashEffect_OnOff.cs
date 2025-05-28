@@ -6,9 +6,10 @@ public class SlashEffect_OnOff : MonoBehaviour
 {
     public static SlashEffect_OnOff instance;
     public ParticleSystem SlashEffect;
-    public float EffectDuration = 0.1f;
+    public Transform swordEnd;
     private void Awake()
     {
+        SlashEffect = GetComponent<ParticleSystem>();
         if (instance != null)
         {
             Destroy(gameObject);
@@ -16,23 +17,21 @@ public class SlashEffect_OnOff : MonoBehaviour
         }
         instance = this;
     }
-    public void PlayEffect()
+    public void Slash_On()
     {
-        if (SlashEffect != null)
+        if (swordEnd != null && SlashEffect != null)
         {
+            Transform effectTransform = SlashEffect.transform;
 
-            SlashEffect.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
+            effectTransform.position = swordEnd.position;
+            effectTransform.rotation = swordEnd.rotation; 
+
             SlashEffect.Play();
-            StopAllCoroutines();
-            StartCoroutine(DisEffect());
         }
     }
-    private System.Collections.IEnumerator DisEffect()
+    public void Slash_Off()
     {
-        yield return new WaitForSeconds(EffectDuration);
         if (SlashEffect != null)
-        {
-            SlashEffect.Stop(true, ParticleSystemStopBehavior.StopEmitting);
-        }
+            SlashEffect.Stop();
     }
 }

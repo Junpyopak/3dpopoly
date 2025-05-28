@@ -52,14 +52,12 @@ public class Player : Character
     public AttackCam AttackCam;
     private ParticleSystem SkillEffect;
     SkillCoolController SkillCool;
-    SlashEffect_OnOff slashEffect_OnOff;
-    SlashMotion slashMotion;
+    SlashEffect_OnOff slashEffect;
     // Start is called before the first frame update
     void Start()
     {
         SkillCool = SkillCoolController.instance;
-        slashEffect_OnOff = SlashEffect_OnOff.instance;
-        slashMotion = SlashMotion.instance;
+        slashEffect = SlashEffect_OnOff.instance;
         Hp = MaxHp;
         if (GameObject.Find("Warrok") != null)
         {
@@ -347,18 +345,20 @@ public class Player : Character
     }
     public void StartTrail()
     {
-        if (slashMotion != null)
+       if(slashEffect != null)
         {
-            slashMotion?.StartRecordingTrail();
+            slashEffect.Slash_On();
         }
+        
     }
 
     public void StopTrail()
     {
-        if (slashMotion != null)
+        if (slashEffect != null)
         {
-            slashMotion?.StopRecordingTrail();
+            slashEffect.Slash_Off();
         }
+
     }
 
 }
