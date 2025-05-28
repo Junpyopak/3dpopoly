@@ -21,10 +21,6 @@ public class SlashEffect_OnOff : MonoBehaviour
     {
         if (swordEnd != null && SlashEffect != null)
         {
-            Transform effectTransform = SlashEffect.transform;
-
-            effectTransform.position = swordEnd.position;
-            effectTransform.rotation = swordEnd.rotation; 
 
             SlashEffect.Play();
         }
