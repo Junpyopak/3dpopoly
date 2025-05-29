@@ -30,4 +30,5 @@ public class SlashEffect_OnOff : MonoBehaviour
         if (SlashEffect != null)
             SlashEffect.Stop();
     }
+
 }

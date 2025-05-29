@@ -345,11 +345,12 @@ public class Player : Character
     }
     public void StartTrail()
     {
-       if(slashEffect != null)
+        if (slashEffect != null)
         {
+            
             slashEffect.Slash_On();
         }
-        
+
     }
 
     public void StopTrail()
