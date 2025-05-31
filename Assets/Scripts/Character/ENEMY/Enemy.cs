@@ -135,6 +135,8 @@ public class Enemy : Character
 
         Hp -= Player.AttackDamage;
 
+        ShowDamageText(Player.AttackDamage);
+
         if (hitEffect != null)
         {
             hitEffect.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear); // 혹시 재생 중이면 멈춤
@@ -164,6 +166,22 @@ public class Enemy : Character
     public void ResetEnemy()
     {
         Hp = MaxHp;
+    }
+
+    private void ShowDamageText(int damage)
+    {
+        GameObject obj = TextPool.Instance.Get();
+
+        // 생성 위치: 몬스터 머리 위
+        Vector3 spawnPos = transform.position + Vector3.up * 2f;
+        obj.transform.position = spawnPos;
+
+        // 텍스트 설정
+        Damagetext dt = obj.GetComponent<Damagetext>();
+        if (dt != null)
+        {
+            dt.SetText(damage);
+        }
     }
 
 }

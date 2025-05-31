@@ -2718,6 +2718,7 @@ GameObject:
   - component: {fileID: 1237044922}
   - component: {fileID: 1237044923}
   - component: {fileID: 1237044924}
+  - component: {fileID: 1237044925}
   m_Layer: 0
   m_Name: BattleManager
   m_TagString: Untagged
@@ -2787,6 +2788,20 @@ MonoBehaviour:
   - tag: Enemy
     prefab: {fileID: 669465899863786551, guid: 7991c8554b7a30645b44a96076189760, type: 3}
     size: 3
+--- !u!114 &1237044925
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1237044920}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0b27676f7826514caf7c2abf5c3fed5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damageTextPrefab: {fileID: 8296750441950297941, guid: 3eef7c5e998af6847945e2f3b7498d7c, type: 3}
+  poolSize: 20
 --- !u!1 &1360193802
 GameObject:
   m_ObjectHideFlags: 0
