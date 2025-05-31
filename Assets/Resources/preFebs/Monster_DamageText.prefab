@@ -227,5 +227,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   text: {fileID: 6722969026542903879}
-  moveSpeed: 1
-  lifeTime: 1
+  moveSpeed: 30
+  lifeTime: 3
