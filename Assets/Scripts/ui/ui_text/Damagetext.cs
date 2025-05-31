@@ -13,7 +13,6 @@ public class Damagetext : MonoBehaviour
     private float elapsed = 0f;
     private RectTransform rect;
     private Color originalColor;
-
     private void Awake()
     {
         if (text == null)
@@ -29,7 +28,6 @@ public class Damagetext : MonoBehaviour
 
     void Update()
     {
-        
         rect.anchoredPosition += Vector2.up * moveSpeed * Time.deltaTime;
 
         elapsed += Time.deltaTime;

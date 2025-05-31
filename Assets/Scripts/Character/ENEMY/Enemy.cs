@@ -180,6 +180,7 @@ public class Enemy : Character
         Damagetext dt = obj.GetComponent<Damagetext>();
         if (dt != null)
         {
+            
             dt.SetText(damage);
         }
     }
