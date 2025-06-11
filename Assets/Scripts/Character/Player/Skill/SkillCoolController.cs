@@ -8,6 +8,7 @@ public class SkillCoolController : MonoBehaviour
     public static SkillCoolController instance;
     public Button skillButton;
     public Image cooldownOverlay;
+    public Image Skill2cooldownOverlay;
     public float cooldownTime = 8f;
 
     private float cooldownTimer = 0f;
@@ -26,6 +27,7 @@ public class SkillCoolController : MonoBehaviour
     void Start()
     {
         cooldownOverlay.fillAmount = 0f;
+        Skill2cooldownOverlay.fillAmount = 0f;
         SetOverlayAlpha(0f);
         skillButton.onClick.AddListener(UseSkill);
         animator = GameObject.Find("character").GetComponent<Animator>();
@@ -37,6 +39,10 @@ public class SkillCoolController : MonoBehaviour
         {
             UseSkill();
         }
+        if(Input.GetKeyDown(KeyCode.L) && !isCooldown)
+        {
+            UseSkill2();
+        }
 
         if (isCooldown)
         {
@@ -47,6 +53,7 @@ public class SkillCoolController : MonoBehaviour
             {
                 isCooldown = false;
                 cooldownOverlay.fillAmount = 0f;
+                Skill2cooldownOverlay.fillAmount = 0f;
                 SetOverlayAlpha(0f);
                 skillButton.interactable = true;
             }
@@ -63,6 +70,14 @@ public class SkillCoolController : MonoBehaviour
         skillButton.interactable = false;
         cooldownOverlay.fillAmount = 1f;
         SetOverlayAlpha(0.6f);
+    }
+    void UseSkill2()
+    {
+        animator.SetTrigger("Skill2");
+        isSkillCasting = true;
+        isCooldown = true;
+        cooldownTimer = cooldownTime;
+        Skill2cooldownOverlay.fillAmount = 1f;
     }
 
     void SetOverlayAlpha(float alpha)
