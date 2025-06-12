@@ -4911,6 +4911,9 @@ MonoBehaviour:
   skillButton: {fileID: 508026692}
   cooldownOverlay: {fileID: 1402351611}
   cooldownTime: 8
+  skill2Button: {fileID: 631662833}
+  Skill2cooldownOverlay: {fileID: 44018855}
+  Skill2cooldownTime: 10
   isSkillCasting: 0
 --- !u!114 &92630376470073173 stripped
 MonoBehaviour:
