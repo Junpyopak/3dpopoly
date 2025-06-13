@@ -1025,13 +1025,13 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 196642386}
   m_CullTransparentMesh: 1
---- !u!1001 &207775217
+--- !u!1001 &214289949
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 922327806}
+    m_TransformParent: {fileID: 8960730758587264261}
     m_Modifications:
     - target: {fileID: 3902402290944930999, guid: 2cf1f32c5061be945b1263df0f896f98, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1039,7 +1039,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3902402290944930999, guid: 2cf1f32c5061be945b1263df0f896f98, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 3902402290944930999, guid: 2cf1f32c5061be945b1263df0f896f98, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1077,11 +1077,24 @@ PrefabInstance:
       propertyPath: m_Name
       value: TorrnadoSkill
       objectReference: {fileID: 0}
+    - target: {fileID: 9081393217031974483, guid: 2cf1f32c5061be945b1263df0f896f98, type: 3}
+      propertyPath: looping
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9081393217031974483, guid: 2cf1f32c5061be945b1263df0f896f98, type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2cf1f32c5061be945b1263df0f896f98, type: 3}
+--- !u!4 &214289950 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3902402290944930999, guid: 2cf1f32c5061be945b1263df0f896f98, type: 3}
+  m_PrefabInstance: {fileID: 214289949}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &224094325 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 7486339196200299429, guid: 4174ec3b920fc0f42bf7a32d732106c6, type: 3}
@@ -2518,11 +2531,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   radius: 0.5
   skillParticle: {fileID: 0}
---- !u!4 &922327806 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 7529485258084591319, guid: ec8e408c484cd39479235db1b5e19d71, type: 3}
-  m_PrefabInstance: {fileID: 8960730758587264257}
-  m_PrefabAsset: {fileID: 0}
 --- !u!224 &956575688 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8316475353362868220, guid: 26c83234f82bd2941abe4cafc8379844, type: 3}
@@ -2933,11 +2941,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1131307960}
   m_CullTransparentMesh: 1
---- !u!4 &1141540604 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 3902402290944930999, guid: 2cf1f32c5061be945b1263df0f896f98, type: 3}
-  m_PrefabInstance: {fileID: 207775217}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1218757514
 GameObject:
   m_ObjectHideFlags: 0
@@ -17906,6 +17909,14 @@ PrefabInstance:
       propertyPath: layer.m_Bits
       value: 262144
       objectReference: {fileID: 0}
+    - target: {fileID: 2846947327307596792, guid: ec8e408c484cd39479235db1b5e19d71, type: 3}
+      propertyPath: skillSpawnPoint
+      value: 
+      objectReference: {fileID: 8960730758587264261}
+    - target: {fileID: 2846947327307596792, guid: ec8e408c484cd39479235db1b5e19d71, type: 3}
+      propertyPath: TornadoSkillPreb
+      value: 
+      objectReference: {fileID: 8576955568763524324, guid: 2cf1f32c5061be945b1263df0f896f98, type: 3}
     - target: {fileID: 3872378026474177761, guid: ec8e408c484cd39479235db1b5e19d71, type: 3}
       propertyPath: m_LocalScale.x
       value: 4
@@ -18292,9 +18303,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1012815783407570073, guid: ec8e408c484cd39479235db1b5e19d71, type: 3}
       insertIndex: -1
       addedObject: {fileID: 424769016}
-    - targetCorrespondingSourceObject: {fileID: 7529485258084591319, guid: ec8e408c484cd39479235db1b5e19d71, type: 3}
+    - targetCorrespondingSourceObject: {fileID: 5785140669590358939, guid: ec8e408c484cd39479235db1b5e19d71, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1141540604}
+      addedObject: {fileID: 214289950}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 4820950538758380519, guid: ec8e408c484cd39479235db1b5e19d71, type: 3}
       insertIndex: -1
@@ -18339,6 +18350,11 @@ MonoBehaviour:
 --- !u!4 &8960730758587264260 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1828069631954124329, guid: ec8e408c484cd39479235db1b5e19d71, type: 3}
+  m_PrefabInstance: {fileID: 8960730758587264257}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &8960730758587264261 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5785140669590358939, guid: ec8e408c484cd39479235db1b5e19d71, type: 3}
   m_PrefabInstance: {fileID: 8960730758587264257}
   m_PrefabAsset: {fileID: 0}
 --- !u!114 &8960730758587264262 stripped

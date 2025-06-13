@@ -53,6 +53,8 @@ public class Player : Character
     private ParticleSystem SkillEffect;
     SkillCoolController SkillCool;
     SlashEffect_OnOff slashEffect;
+    private ParticleSystem TornadoEffect;
+    public Transform skillSpawnPoint;
     // Start is called before the first frame update
     void Start()
     {
@@ -81,7 +83,7 @@ public class Player : Character
         meshAgent = GetComponent<NavMeshAgent>();
         AttackCam = GameObject.Find("Camera").GetComponent<AttackCam>();
         SkillEffect = GameObject.Find("Skill1").GetComponent<ParticleSystem>();
-
+        TornadoEffect = GameObject.Find("TorrnadoSkill").GetComponent<ParticleSystem>();
     }
     public void SetMove(MoveStrategy moveStrategy)
     {
@@ -361,5 +363,8 @@ public class Player : Character
         }
 
     }
-
+    public void OnTornadoCastEnd()
+    {
+        TornadoEffect.Play();
+    }
 }
