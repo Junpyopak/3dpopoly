@@ -55,6 +55,7 @@ public class Player : Character
     SlashEffect_OnOff slashEffect;
     private ParticleSystem TornadoEffect;
     public Transform skillSpawnPoint;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -198,9 +199,6 @@ public class Player : Character
         if (camera == null) return;
         Vector3 playerRaotation = Vector3.Scale(camera.transform.forward, new Vector3(1, 0, 1));
         transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(playerRaotation), Time.deltaTime * Smove);
-        //Vector3 direction = (Warrok.position - transform.position).normalized;
-        //Quaternion targetRotation = Quaternion.LookRotation(direction);
-        //transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 5f);
     }
     public override void Moved()
     {

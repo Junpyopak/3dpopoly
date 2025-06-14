@@ -4,57 +4,52 @@ using UnityEngine;
 
 public class Target_Onlock : MonoBehaviour
 {
-    public Camera mainCamera;
-    public Transform player;                      
-    public LayerMask targetLayer;
-    public float detectRange = 20f;
-
-    public GameObject lockOnSpritePrefab;
-
-    private Transform currentTarget;
-    private GameObject lockOnInstance;
+    public float detectionDis = 7f;     // 탐지 거리
+    public string enemyTag = "Enemy";   // 적 태그
 
     void Update()
     {
-        
-        Vector3 rayStart = player.position + Vector3.up * 1f;
-        Vector3 rayDirection = player.forward;
-
-        Debug.DrawRay(rayStart, rayDirection * detectRange, Color.red);
-
         if (Input.GetKeyDown(KeyCode.X))
         {
-            if (currentTarget == null)
-                TryLockOn(rayStart, rayDirection);
-            else
-                ReleaseLockOn();
-        }
-
-        if (lockOnInstance && currentTarget)
-        {
-            lockOnInstance.transform.position = currentTarget.position + Vector3.up * 2f;
-            lockOnInstance.transform.rotation = Quaternion.LookRotation(mainCamera.transform.forward);
+            GameObject nearestEnemy = FindNearestEnemy();
+            if (nearestEnemy != null)
+            {
+                // 가장 가까운 적을 바라봄
+                transform.LookAt(nearestEnemy.transform);
+            }
         }
     }
 
-    void TryLockOn(Vector3 rayStart, Vector3 rayDirection)
+    GameObject FindNearestEnemy()
     {
-        Ray ray = new Ray(rayStart, rayDirection);
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag(enemyTag);
+        GameObject nearest = null;
+        float minDist = detectionDis;
 
-        if (Physics.Raycast(ray, out RaycastHit hit, detectRange, targetLayer))
+        foreach (GameObject enemy in enemies)
         {
-            currentTarget = hit.transform;
-            mainCamera.transform.LookAt(currentTarget);
-
-            lockOnInstance = Instantiate(lockOnSpritePrefab);
-            lockOnInstance.transform.position = currentTarget.position + Vector3.up * 2f;
+            float dist = Vector3.Distance(transform.position, enemy.transform.position);
+            if (dist < minDist)
+            {
+                minDist = dist;
+                nearest = enemy;
+            }
         }
+
+        return nearest;
     }
 
-    void ReleaseLockOn()
+    // 디버깅용 Gizmo
+    private void OnDrawGizmos()
     {
-        currentTarget = null;
-        if (lockOnInstance)
-            Destroy(lockOnInstance);
+        Gizmos.color = Color.blue;
+        Gizmos.DrawWireSphere(transform.position, detectionDis);
+
+        GameObject nearest = FindNearestEnemy();
+        if (nearest != null)
+        {
+            Gizmos.color = Color.red;
+            Gizmos.DrawLine(transform.position, nearest.transform.position);
+        }
     }
 }
