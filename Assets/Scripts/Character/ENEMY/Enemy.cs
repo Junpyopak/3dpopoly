@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEditor;
 using UnityEditor.Build;
 using UnityEngine;
@@ -18,6 +19,7 @@ public class Enemy : Character
     Player Player;
     BattleManager battleManager;
     private ParticleSystem hitEffect;
+    public EnemyHpBar EnemyHpbar;
     // Start is called before the first frame update
     private void Awake()
     {
@@ -129,12 +131,13 @@ public class Enemy : Character
         }
 
     }
+
     public virtual void Damage()
     {
         if (Hp <= 0) return;
 
         Hp -= Player.AttackDamage;
-
+        EnemyHpbar.SetHp(Hp, MaxHp);
         ShowDamageText(Player.AttackDamage);
 
         if (hitEffect != null)
@@ -166,6 +169,7 @@ public class Enemy : Character
     public void ResetEnemy()
     {
         Hp = MaxHp;
+        EnemyHpbar.SetHp(Hp, MaxHp);
     }
 
     private void ShowDamageText(int damage)
