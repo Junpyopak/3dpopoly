@@ -54,31 +54,34 @@ public class Target_Onlock : MonoBehaviour
     //}
     public float detectionDis = 7f;
     public string enemyTag = "Enemy";
-    public bool isLockingOn = false;
     private GameObject lockedTarget;
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.X))
+        if (Input.GetKey(KeyCode.X))
         {
-            GameObject nearestEnemy = FindNearestEnemy();
-            if (nearestEnemy != null)
+            if (lockedTarget == null)
             {
-                lockedTarget = nearestEnemy;
-                isLockingOn = true;
-                transform.LookAt(lockedTarget.transform);
+                lockedTarget = FindNearestEnemy();
             }
-            else
-            {
-                isLockingOn = false;
-                lockedTarget = null;
-            }
+        }
+        else
+        {
+            lockedTarget = null; // X 키를 떼면 즉시 해제
         }
     }
 
-    public GameObject GetLockedTarget() => lockedTarget;
+    public bool IsLockingOn()
+    {
+        return lockedTarget != null;
+    }
 
-    GameObject FindNearestEnemy()
+    public GameObject GetLockedTarget()
+    {
+        return lockedTarget;
+    }
+
+    private GameObject FindNearestEnemy()
     {
         GameObject[] enemies = GameObject.FindGameObjectsWithTag(enemyTag);
         GameObject nearest = null;
@@ -97,16 +100,16 @@ public class Target_Onlock : MonoBehaviour
         return nearest;
     }
 
+    // 선택적: 시각적 디버깅
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.blue;
         Gizmos.DrawWireSphere(transform.position, detectionDis);
 
-        GameObject nearest = FindNearestEnemy();
-        if (nearest != null)
+        if (lockedTarget != null)
         {
             Gizmos.color = Color.red;
-            Gizmos.DrawLine(transform.position, nearest.transform.position);
+            Gizmos.DrawLine(transform.position, lockedTarget.transform.position);
         }
     }
 }

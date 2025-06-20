@@ -55,21 +55,57 @@ public class CamFollowUi : MonoBehaviour
 
     void Update()
     {
-        if (player != null && player.AutoMode == false)
+        //if (player != null && player.AutoMode == false)
+        //{
+        //    if (OnShake == true) return;
+        //    rotaX += -(Input.GetAxis("Mouse Y")) * MouseSensor * Time.deltaTime;
+        //    rotaY += Input.GetAxis("Mouse X") * MouseSensor * Time.deltaTime;
+        //    rotaX = Mathf.Clamp(NormalizeAngle(rotaX), -LimitAngle, LimitAngle);
+        //    Quaternion root = Quaternion.Euler(rotaX, rotaY, 0);
+        //    transform.rotation = root;
+        //}
+        //else
+        //{
+        //    rotaX = 14;
+        //    rotaY = 46;
+        //    Quaternion root = Quaternion.Euler(rotaX, rotaY, 0);
+        //    transform.rotation = root;
+        //}
+        if (Camera == null || player == null) return;
+
+        Target_Onlock lockOn = player.GetComponent<Target_Onlock>();
+        bool isLocking = lockOn != null && lockOn.IsLockingOn();
+        GameObject targetEnemy = isLocking ? lockOn.GetLockedTarget() : null;
+
+        if (player.AutoMode == false && OnShake == false)
         {
-            if (OnShake == true) return;
-            rotaX += -(Input.GetAxis("Mouse Y")) * MouseSensor * Time.deltaTime;
-            rotaY += Input.GetAxis("Mouse X") * MouseSensor * Time.deltaTime;
-            rotaX = Mathf.Clamp(NormalizeAngle(rotaX), -LimitAngle, LimitAngle);
+            if (isLocking && targetEnemy != null)
+            {
+                // 락온 중: 적을 바라보는 방향으로 회전 보정
+                Vector3 dirToTarget = targetEnemy.transform.position - transform.position;
+                Quaternion lookRot = Quaternion.LookRotation(dirToTarget);
+                Vector3 angles = lookRot.eulerAngles;
+
+                rotaX = angles.x;
+                rotaY = angles.y;
+            }
+            else
+            {
+                // 마우스 입력 회전
+                rotaX += -(Input.GetAxis("Mouse Y")) * MouseSensor * Time.deltaTime;
+                rotaY += Input.GetAxis("Mouse X") * MouseSensor * Time.deltaTime;
+                rotaX = Mathf.Clamp(NormalizeAngle(rotaX), -LimitAngle, LimitAngle);
+            }
+
             Quaternion root = Quaternion.Euler(rotaX, rotaY, 0);
             transform.rotation = root;
         }
         else
         {
+            // 오토 모드일 때 기본 각도 유지
             rotaX = 14;
             rotaY = 46;
-            Quaternion root = Quaternion.Euler(rotaX, rotaY, 0);
-            transform.rotation = root;
+            transform.rotation = Quaternion.Euler(rotaX, rotaY, 0);
         }
     }
 
