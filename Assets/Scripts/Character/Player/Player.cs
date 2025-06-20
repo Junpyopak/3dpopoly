@@ -196,9 +196,27 @@ public class Player : Character
     }
     private void LateUpdate()
     {
+        //if (camera == null) return;
+        //Vector3 playerRaotation = Vector3.Scale(camera.transform.forward, new Vector3(1, 0, 1));
+        //transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(playerRaotation), Time.deltaTime * Smove);
         if (camera == null) return;
-        Vector3 playerRaotation = Vector3.Scale(camera.transform.forward, new Vector3(1, 0, 1));
-        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(playerRaotation), Time.deltaTime * Smove);
+
+        Target_Onlock lockOn = GetComponent<Target_Onlock>();
+        if (lockOn != null && lockOn.isLockingOn)
+        {
+            GameObject target = lockOn.GetLockedTarget();
+            if (target != null)
+            {
+                Vector3 dir = target.transform.position - transform.position;
+                dir.y = 0;
+                transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(dir), Time.deltaTime * Smove);
+                return;
+            }
+        }
+
+        // 기본 카메라 방향 회전
+        Vector3 playerRotation = Vector3.Scale(camera.transform.forward, new Vector3(1, 0, 1));
+        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(playerRotation), Time.deltaTime * Smove);
     }
     public override void Moved()
     {
