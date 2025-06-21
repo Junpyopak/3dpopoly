@@ -55,22 +55,7 @@ public class CamFollowUi : MonoBehaviour
 
     void Update()
     {
-        //if (player != null && player.AutoMode == false)
-        //{
-        //    if (OnShake == true) return;
-        //    rotaX += -(Input.GetAxis("Mouse Y")) * MouseSensor * Time.deltaTime;
-        //    rotaY += Input.GetAxis("Mouse X") * MouseSensor * Time.deltaTime;
-        //    rotaX = Mathf.Clamp(NormalizeAngle(rotaX), -LimitAngle, LimitAngle);
-        //    Quaternion root = Quaternion.Euler(rotaX, rotaY, 0);
-        //    transform.rotation = root;
-        //}
-        //else
-        //{
-        //    rotaX = 14;
-        //    rotaY = 46;
-        //    Quaternion root = Quaternion.Euler(rotaX, rotaY, 0);
-        //    transform.rotation = root;
-        //}
+
         if (Camera == null || player == null) return;
 
         Target_Onlock lockOn = player.GetComponent<Target_Onlock>();
@@ -95,8 +80,8 @@ public class CamFollowUi : MonoBehaviour
                 rotaX += -(Input.GetAxis("Mouse Y")) * MouseSensor * Time.deltaTime;
                 rotaY += Input.GetAxis("Mouse X") * MouseSensor * Time.deltaTime;
                 rotaX = Mathf.Clamp(NormalizeAngle(rotaX), -LimitAngle, LimitAngle);
-            }
 
+            }
             Quaternion root = Quaternion.Euler(rotaX, rotaY, 0);
             transform.rotation = root;
         }
@@ -131,10 +116,8 @@ public class CamFollowUi : MonoBehaviour
         {
             finalDis = currentDis;
         }
-
         Camera.localPosition = Vector3.Lerp(Camera.localPosition, dir * finalDis, Time.deltaTime * Smove);
-
-        Debug.Log($"[] targetDis: {targetDis}, finalDis: {finalDis}, localPos: {Camera.localPosition}, IsAttacking: {player.IsAttacking}");
+        Camera.localRotation = Quaternion.identity;
     }
 
     float NormalizeAngle(float angle)
