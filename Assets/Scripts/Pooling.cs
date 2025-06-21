@@ -168,4 +168,8 @@ public class Pooling : MonoBehaviour
         //enemy.SetActive(false);
         //enemyCount--;
     }
+    private IEnumerator DeathAnim()
+    {
+        yield return null;
+    }
 }
