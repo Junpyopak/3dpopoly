@@ -20,24 +20,30 @@ public class Target_Onlock : MonoBehaviour
                 lockedTarget = FindNearestEnemy();
                 if (lockedTarget != null)
                 {
-                    if (TargetArrow != null && targetArrow == null)
+                    if (lockedTarget != null && TargetArrow != null)
                     {
-                        targetArrow = Instantiate(TargetArrow);
-                    }
+                        if (targetArrow == null)
+                        {
+                            targetArrow = Instantiate(TargetArrow);
+                        }
 
-                    if (targetArrow != null)
-                    {
                         targetArrow.SetActive(true);
                     }
                 }
             }
             if (lockedTarget != null && targetArrow != null)
             {
-                Vector3 headPos = lockedTarget.transform.position + Vector3.up * 2.0f;
+                Vector3 headPos = lockedTarget.transform.position + Vector3.up * 3.0f;
                 targetArrow.transform.position = headPos;
 
-                // 회전은 카메라 쪽으로 고정
+
                 targetArrow.transform.rotation = Quaternion.LookRotation(Camera.main.transform.forward);
+                if (!lockedTarget.activeInHierarchy)
+                {
+                    lockedTarget = null;
+                    //targetArrow.SetActive(false);
+                    Destroy(targetArrow);
+                }
             }
         }
         else
@@ -45,10 +51,12 @@ public class Target_Onlock : MonoBehaviour
             lockedTarget = null; // X 키를 떼면 즉시 해제
             if (targetArrow != null)
             {
-                targetArrow.SetActive(false);
+                //targetArrow.SetActive(false);
+                Destroy(targetArrow);
             }
         }
     }
+
 
     public bool IsLockingOn()
     {
@@ -79,7 +87,7 @@ public class Target_Onlock : MonoBehaviour
         return nearest;
     }
 
-    // 선택적: 시각적 디버깅
+
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.blue;
