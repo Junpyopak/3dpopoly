@@ -27,7 +27,7 @@ public class Hpbar_Shake : MonoBehaviour
         while (elapsed < shakeTime)
         {
             float x = 0;
-            float y = Random.Range(-0.05f, 0.05f) * shakeIntensity;
+            float y = Random.Range(-0.1f, 0.1f) * shakeIntensity;
             rectTransform.anchoredPosition = originalPos + new Vector3(x, y, 0);
 
             elapsed += Time.deltaTime;

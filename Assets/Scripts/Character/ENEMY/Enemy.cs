@@ -126,7 +126,7 @@ public class Enemy : Character
     {
         if (other.gameObject.layer == LayerMask.NameToLayer("Sward"))
         {
-           // AttackCam.Instance.AttackShakeCam(0.1f, 0.15f);
+           //AttackCam.Instance.AttackShakeCam(0.1f, 0.15f);
             Damage();
             Debug.Log("몬스터데미지");
             Debug.Log($"스탯{Hp}");

@@ -135,6 +135,7 @@ MonoBehaviour:
   AttackDamage: 7
   PlayerDamage: 20
   EnemyHpbar: {fileID: 4990687396755318649}
+  hpBarShake: {fileID: 0}
 --- !u!54 &5141102727098165902
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -394,14 +395,14 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1125840360403771212}
-  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3176394430878230437}
   m_Father: {fileID: 2994525423067854751}
-  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 5}
