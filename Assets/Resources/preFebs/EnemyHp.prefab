@@ -88,6 +88,8 @@ GameObject:
   - component: {fileID: 2349601790453816935}
   - component: {fileID: 7476350491789842604}
   - component: {fileID: 6097886390040091528}
+  - component: {fileID: 4796849598656670331}
+  - component: {fileID: 7357249158614581893}
   m_Layer: 5
   m_Name: EnemyHp
   m_TagString: Untagged
@@ -195,8 +197,33 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HP: {fileID: 9037224087044004393}
   Effect: {fileID: 1627535141605730760}
+  Monster_import: {fileID: 0}
   CurEnemyHp: 70
   MaxEnemyHp: 70
+--- !u!114 &4796849598656670331
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3689306511374358044}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5db814554c2a6214d809a00de1a60d9b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &7357249158614581893
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3689306511374358044}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0cc37e915a4fbc94ba3b44356fd055f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5725760143967144503
 GameObject:
   m_ObjectHideFlags: 0

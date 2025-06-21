@@ -20,10 +20,12 @@ public class Enemy : Character
     BattleManager battleManager;
     private ParticleSystem hitEffect;
     public EnemyHpBar EnemyHpbar;
+    public Hpbar_Shake hpBarShake;
     // Start is called before the first frame update
     private void Awake()
     {
         hitEffect = GetComponentInChildren<ParticleSystem>();
+        hpBarShake = GetComponentInChildren<Hpbar_Shake>();
     }
     void Start()
     {
@@ -124,7 +126,7 @@ public class Enemy : Character
     {
         if (other.gameObject.layer == LayerMask.NameToLayer("Sward"))
         {
-            AttackCam.Instance.AttackShakeCam(0.1f, 0.15f);
+           // AttackCam.Instance.AttackShakeCam(0.1f, 0.15f);
             Damage();
             Debug.Log("몬스터데미지");
             Debug.Log($"스탯{Hp}");
@@ -139,6 +141,10 @@ public class Enemy : Character
         Hp -= Player.AttackDamage;
         EnemyHpbar.SetHp(Hp, MaxHp);
         ShowDamageText(Player.AttackDamage);
+        if (hpBarShake != null)
+        {
+            hpBarShake.ShakeHpBar(0.3f, 3f);
+        }
 
         if (hitEffect != null)
         {

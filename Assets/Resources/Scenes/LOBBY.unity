@@ -18411,6 +18411,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   detectionDis: 15
   enemyTag: Enemy
+  TargetArrow: {fileID: 4964059563403895750, guid: c57161198cd78854789b71a91bc1d474, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
