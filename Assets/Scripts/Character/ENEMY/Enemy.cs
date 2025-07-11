@@ -175,6 +175,12 @@ public class Enemy : Character
     public void ResetEnemy()
     {
         Hp = MaxHp;
+        Transform hpBar = transform.Find("EnemyHp");
+        if (hpBar != null)
+        {
+            hpBar.gameObject.SetActive(true);
+        }
+
         EnemyHpbar.SetHp(Hp, MaxHp);
     }
 

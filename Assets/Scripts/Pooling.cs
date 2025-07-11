@@ -80,6 +80,22 @@ public class Pooling : MonoBehaviour
 
             enemy.transform.position = safePos;
             enemy.GetComponent<Enemy>().ResetEnemy();
+
+            SkinnedMeshRenderer skinnedRenderer = enemy.GetComponentInChildren<SkinnedMeshRenderer>();//몬스터 재 스폰시 알베도 다시 정상으로
+            if (skinnedRenderer != null)
+            {
+                foreach (var mat in skinnedRenderer.materials)
+                {
+                    // 알베도 컬러 = #CFCFCF
+                    if (mat.HasProperty("_Color"))
+                        mat.color = new Color(0.8113208f, 0.8113208f, 0.8113208f);
+
+                    // Smoothness = 0.413
+                    if (mat.HasProperty("_Glossiness"))
+                        mat.SetFloat("_Glossiness", 0.413f);
+                }
+            }
+
             enemy.SetActive(true);
             activeEnemyPositions.Add(safePos);
             enemySpawnPositions[enemy] = safePos; // 적 오브젝트와 스폰 위치 연결s;
@@ -157,19 +173,43 @@ public class Pooling : MonoBehaviour
     public void OnEnemyDeath(GameObject enemy)
     {
         activeEnemyPositions.RemoveAll(pos => Vector3.Distance(pos, enemy.transform.position) < 0.1f);
-        enemy.SetActive(false);
+       // enemy.SetActive(false);
         if (enemySpawnPositions.ContainsKey(enemy))
         {
             Vector3 spawnPos = enemySpawnPositions[enemy];
             activeEnemyPositions.Remove(spawnPos);
             enemySpawnPositions.Remove(enemy);
         }
-
+        StartCoroutine(DeathAnim(enemy));
         //enemy.SetActive(false);
         //enemyCount--;
     }
-    private IEnumerator DeathAnim()
+    private IEnumerator DeathAnim(GameObject enemy)
     {
-        yield return null;
+        Animator animator = enemy.GetComponent<Animator>();
+        if (animator != null)
+        {
+            animator.SetTrigger("isDeath"); // 트리거 이름은 실제 애니메이션 트리거에 맞게 수정
+        }
+        SkinnedMeshRenderer skinnedRenderer = enemy.GetComponentInChildren<SkinnedMeshRenderer>();
+        if (skinnedRenderer != null)
+        {
+            foreach (var mat in skinnedRenderer.materials)
+            {
+                if (mat.HasProperty("_Color"))
+                {
+                    mat.color = Color.black;
+                }
+                if (mat.HasProperty("_Glossiness"))
+                {
+                    mat.SetFloat("_Glossiness", 0f);
+                }
+            }
+        }
+        // 애니메이션이 재생되는 시간만큼 대기 (예: 2초)
+        yield return new WaitForSeconds(3.8f);
+
+        // 비활성화 처리
+        enemy.SetActive(false);
     }
 }

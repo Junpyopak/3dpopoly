@@ -61,6 +61,13 @@ public class EnemyHpBar : MonoBehaviour
     {
         CurEnemyHp = _hp;
         MaxEnemyHp = _maxHp;
+
+        float value = (float)_hp / _maxHp;
+
+        HP.fillAmount = value;
+        Effect.fillAmount = value;
+
+        gameObject.SetActive(true);
     }
 
 }
