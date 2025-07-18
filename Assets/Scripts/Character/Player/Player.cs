@@ -55,10 +55,13 @@ public class Player : Character
     SlashEffect_OnOff slashEffect;
     private ParticleSystem TornadoEffect;
     public Transform skillSpawnPoint;
+    private FrostEffect frostEffect;
 
     // Start is called before the first frame update
     void Start()
     {
+        if (frostEffect == null)
+            frostEffect = Camera.main.GetComponent<FrostEffect>();
         SkillCool = SkillCoolController.instance;
         slashEffect = SlashEffect_OnOff.instance;
         Hp = MaxHp;
@@ -342,6 +345,10 @@ public class Player : Character
             if (other.gameObject.layer == LayerMask.NameToLayer("MonsterAttackBox"))
             {
                 Damage();
+                if(frostEffect!=null)
+                {
+                    frostEffect.PlayFrostEffect();
+                }
                 Debug.Log("µ¥¹ÌÁö");
                 Debug.Log($"½ºÅÝ{Hp}");
             }
