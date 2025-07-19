@@ -14,7 +14,7 @@ public class FrostEffect : MonoBehaviour
     public Texture2D Frost; //RGBA
     public Texture2D FrostNormals; //normalmap
     public Shader Shader; //ImageBlendEffect.shader
-	
+	public bool isFrozen = false;
 	private Material material;
     private Coroutine frostTime;
     private void Awake()
@@ -71,6 +71,7 @@ public class FrostEffect : MonoBehaviour
         // »ó½Â ±¸°£
         while (timer < fadeTime)
         {
+            isFrozen = true;
             FrostAmount = Mathf.Lerp(0f, targetAmount, timer / fadeTime);
             timer += Time.deltaTime;
             yield return null;
@@ -86,6 +87,7 @@ public class FrostEffect : MonoBehaviour
         {
             FrostAmount = Mathf.Lerp(targetAmount, 0f, timer / fadeTime);
             timer += Time.deltaTime;
+            isFrozen = false;
             yield return null;
         }
         FrostAmount = 0f;

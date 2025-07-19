@@ -19,6 +19,7 @@ public class SkillCoolController : MonoBehaviour
     private float cooldownTimer2 = 0f;
     private bool isCooldown1 = false;
     private bool isCooldown2 = false;
+    private FrostEffect frostEffect;
 
     Animator animator;
     public bool isSkillCasting = false;
@@ -44,17 +45,21 @@ public class SkillCoolController : MonoBehaviour
         skill2Button.onClick.AddListener(UseSkill2);
 
         animator = GameObject.Find("character").GetComponent<Animator>();
+        if (frostEffect == null)
+            frostEffect = Camera.main.GetComponent<FrostEffect>();
     }
 
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.K) && !isCooldown1)
         {
+            if(frostEffect.isFrozen==true)return;
             UseSkill1();
         }
 
         if (Input.GetKeyDown(KeyCode.L) && !isCooldown2)
         {
+            if (frostEffect.isFrozen == true) return;
             UseSkill2();
         }
 

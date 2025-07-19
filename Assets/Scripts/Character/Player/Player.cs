@@ -120,10 +120,22 @@ public class Player : Character
 
         if (animator.GetBool("Death") == false)
         {
+            //if (frostEffect.isFrozen == true)
+            //{
+            //    Speed = 0f;
+            //    moveFast = false;
+            //    animator.SetBool("isRun", false);
+            //    return;
+            //}
             if (playCut == false)
             {
                 if (IsAttacking == true) return;
                 if (SkillCool.isSkillCasting == true) return;
+                if(frostEffect.isFrozen == true)
+                {
+                    animator.SetFloat("Speed", 0f);
+                }
+                
                 if (Input.GetKey(KeyCode.LeftShift) || AutoMode == true)
                 {
                     SetMove(new RunStrategy());
@@ -274,6 +286,12 @@ public class Player : Character
     }
     public override void Moved()
     {
+        if (frostEffect.isFrozen)
+        {
+            animator.SetBool("isWalk", false);
+            chController.Move(Vector3.zero);
+            return;
+        }
         if (DoTelpo == false)
         {
             SetMove(new WalkStrategy());
@@ -325,6 +343,7 @@ public class Player : Character
     }
     public override void Attack()
     {
+        if(frostEffect.isFrozen==true)return;
         if (Input.GetKeyDown(KeyCode.V))
         {
             if (Attack1 == false)
