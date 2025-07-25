@@ -284,6 +284,19 @@ public class Player : Character
         Vector3 playerRotation = Vector3.Scale(camera.transform.forward, new Vector3(1, 0, 1));
         transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(playerRotation), Time.deltaTime * Smove);
     }
+    public void IncreaseMaxHp(int amount)
+    {
+        MaxHp += amount;
+        Hp += amount;
+
+        if (Hp > MaxHp)
+            Hp = MaxHp;
+
+        if (hpGauge != null)
+        {
+            hpGauge.SetPlayerHp(Hp, MaxHp);
+        }
+    }
     public override void Moved()
     {
         if (frostEffect.isFrozen)

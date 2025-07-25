@@ -90,5 +90,13 @@ public class HpGauge : MonoBehaviour
     {
         gameObject.SetActive(false);
     }
+    public void IncreaseMaxHp(int amount)
+    {
+        maxPlayerHp += amount;
+        curPlayerHp += amount;
+
+        if (curPlayerHp > maxPlayerHp)
+            curPlayerHp = maxPlayerHp;
+    }
 }
 

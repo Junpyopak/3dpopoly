@@ -25,7 +25,8 @@ public class CamFollowUi : MonoBehaviour
     private float currentDis;
     public bool OnShake { set; get; }
     private Player player;
-
+    public GameObject CardUi;
+    public bool isSelectingCard = false;
     void Start()
     {
         rotaX = transform.localRotation.eulerAngles.x;
@@ -57,6 +58,8 @@ public class CamFollowUi : MonoBehaviour
     {
 
         if (Camera == null || player == null) return;
+        isSelectingCard = CardUi != null && CardUi.activeSelf;
+        if (isSelectingCard == true) return;
 
         Target_Onlock lockOn = player.GetComponent<Target_Onlock>();
         bool isLocking = lockOn != null && lockOn.IsLockingOn();
