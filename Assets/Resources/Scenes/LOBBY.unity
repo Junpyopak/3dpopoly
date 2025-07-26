@@ -18651,6 +18651,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7750537885432696212, guid: ec8e408c484cd39479235db1b5e19d71, type: 3}
+      propertyPath: m_Name
+      value: AtkBuff
+      objectReference: {fileID: 0}
+    - target: {fileID: 7750537885432696212, guid: ec8e408c484cd39479235db1b5e19d71, type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
