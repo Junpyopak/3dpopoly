@@ -16,6 +16,7 @@ public class Enemy : Character
     public int MaxHp = 70;
     public int AttackDamage = 7;
     public int PlayerDamage = 20;
+    public int expReward = 30;
     Player Player;
     BattleManager battleManager;
     private ParticleSystem hitEffect;
@@ -145,7 +146,7 @@ public class Enemy : Character
         {
             hpBarShake.ShakeHpBar(0.3f, 3f);
         }
-
+       
         if (hitEffect != null)
         {
             hitEffect.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear); // »§Ω√ ¿Áª˝ ¡ﬂ¿Ã∏È ∏ÿ√„
@@ -156,6 +157,10 @@ public class Enemy : Character
         if (Hp <= 0)
         {
             Hp = 0;
+            if(Player != null)
+            {
+                Player.GainExperience(expReward);
+            }
             pooling.OnEnemyDeath(this.gameObject);
             pooling.enemyCount -= 1;
             battleManager.KillCount += 1;

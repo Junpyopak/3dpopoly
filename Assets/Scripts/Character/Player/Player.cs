@@ -12,6 +12,7 @@ using Unity.Burst.CompilerServices;
 using static UnityEngine.Rendering.VolumeComponent;
 using UnityEngine.AI;
 using static UI_TITLE;
+using UnityEngine.TextCore.Text;
 
 
 public class Player : Character
@@ -57,9 +58,19 @@ public class Player : Character
     public Transform skillSpawnPoint;
     private FrostEffect frostEffect;
 
+    public int currentExp = 0;
+    public int level = 1;
+    public int expToLevelUp = 100;
+    [SerializeField] private Slider expSlider;
+    private Coroutine expRoutine;
+    public GameObject LevelUPEffect;
+    [SerializeField] private TextMeshProUGUI levelup_text;
+    [SerializeField] private GameObject avillity;
     // Start is called before the first frame update
     void Start()
     {
+        UpdateExpSliderImmediate();
+        UpdateLevelText();
         if (frostEffect == null)
             frostEffect = Camera.main.GetComponent<FrostEffect>();
         SkillCool = SkillCoolController.instance;
@@ -112,7 +123,7 @@ public class Player : Character
     // Update is called once per frame
     void Update()
     {
-
+        
         if (Hp > MaxHp)
         {
             Hp = MaxHp;
@@ -283,6 +294,88 @@ public class Player : Character
         // 기본 카메라 방향을 따라 회전
         Vector3 playerRotation = Vector3.Scale(camera.transform.forward, new Vector3(1, 0, 1));
         transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(playerRotation), Time.deltaTime * Smove);
+    }
+    private void UpdateExpSliderImmediate()
+    {
+        expSlider.maxValue = expToLevelUp;
+        expSlider.value = currentExp;
+    }
+    private void UpdateLevelText()
+    {
+        if (levelup_text != null)
+            levelup_text.text =  level.ToString();
+    }
+    public void GainExperience(int amount)
+    {
+        currentExp += amount;
+
+        // 코루틴 중단
+        if (expRoutine != null)
+            StopCoroutine(expRoutine);
+
+        expRoutine = StartCoroutine(HandleExperience());
+    }
+    private IEnumerator HandleExperience()
+    {
+        while (true)
+        {
+            // 현재 레벨 기준 경험치 목표 저장
+            int requiredExp = expToLevelUp;
+
+            // 부드러운 슬라이더 증가
+            yield return StartCoroutine(AnimateExpSlider(currentExp, requiredExp));
+
+            // 레벨업 조건
+            if (currentExp >= requiredExp)
+            {
+                currentExp -= requiredExp;
+                LevelUp();
+            }
+            else
+            {
+                break;
+            }
+        }
+
+        // 마지막 슬라이더 값 갱신
+        UpdateExpSliderImmediate();
+    }
+    private IEnumerator AnimateExpSlider(int currentValue, int maxValue)
+    {
+        float duration = 0.3f;
+        float elapsed = 0f;
+
+        float startValue = expSlider.value;
+        float targetValue = Mathf.Min(currentValue, maxValue);
+
+        expSlider.maxValue = maxValue;
+
+        while (elapsed < duration)
+        {
+            elapsed += Time.deltaTime;
+            float t = elapsed / duration;
+            expSlider.value = Mathf.Lerp(startValue, targetValue, t);
+            yield return null;
+        }
+
+        expSlider.value = targetValue;
+    }
+    private void LevelUp()
+    {
+        level++;
+        Debug.Log($"[레벨업 함수 실행됨] 현재 레벨: {level}");
+        expToLevelUp += 50;
+
+        if (LevelUPEffect != null)
+        {
+            Vector3 spawnPos = gameObject.transform.position + new Vector3(0.5f, 0f, 0f);
+            GameObject particle = Instantiate(LevelUPEffect, spawnPos, quaternion.identity);
+            Destroy(particle, 2f);
+        }
+        avillity?.SetActive(true);
+        UpdateLevelText();
+
+        Debug.Log("레벨 업! 현재 레벨: " + level);
     }
     public void IncreaseMaxHp(int amount)
     {

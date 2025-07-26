@@ -189,7 +189,7 @@ public class Pooling : MonoBehaviour
         Animator animator = enemy.GetComponent<Animator>();
         if (animator != null)
         {
-            animator.SetTrigger("isDeath"); // 트리거 이름은 실제 애니메이션 트리거에 맞게 수정
+            animator.SetTrigger("isDeath");
         }
         SkinnedMeshRenderer skinnedRenderer = enemy.GetComponentInChildren<SkinnedMeshRenderer>();
         if (skinnedRenderer != null)
@@ -206,10 +206,10 @@ public class Pooling : MonoBehaviour
                 }
             }
         }
-        // 애니메이션이 재생되는 시간만큼 대기 (예: 2초)
+        
         yield return new WaitForSeconds(3.8f);
 
-        // 비활성화 처리
+        
         enemy.SetActive(false);
     }
 }

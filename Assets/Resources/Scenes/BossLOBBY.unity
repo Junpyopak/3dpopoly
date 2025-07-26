@@ -19733,6 +19733,8 @@ MonoBehaviour:
   MaxHp: 300
   AttackDamage: 7
   PlayerDamage: 20
+  EnemyHpbar: {fileID: 0}
+  hpBarShake: {fileID: 0}
   BossHpgauge: {fileID: 16060443}
   listPattern:
   - {fileID: 3834786303547003370, guid: 0cd09b37598506e4a9017265118710b7, type: 3}
@@ -19748,6 +19750,7 @@ MonoBehaviour:
   pattern3Count: 3
   pattern3Reload: 7
   patternChangeTime: 7
+  isInvincible: 0
 --- !u!95 &2116081807 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 5866666021909216657, guid: cff0afbf235be454e90cbb4f33707be7, type: 3}
@@ -20227,6 +20230,7 @@ GameObject:
   - component: {fileID: 1770218589014872328}
   - component: {fileID: 8010871254247293855}
   - component: {fileID: 8010871254247293856}
+  - component: {fileID: 8010871254247293857}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -20275,6 +20279,8 @@ MonoBehaviour:
   finalDis: 0
   Smove: 10
   ZoomSmoothSpeed: 10
+  CardUi: {fileID: 0}
+  isSelectingCard: 0
 --- !u!4 &8010871254247293854
 Transform:
   m_ObjectHideFlags: 0
@@ -20348,6 +20354,30 @@ MonoBehaviour:
   finalDis: 0
   Smove: 10
   ZoomSmoothSpeed: 10
+  CardUi: {fileID: 0}
+  isSelectingCard: 0
+--- !u!114 &8010871254247293857
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6865823633157151469}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9044ef733a99ffa4aa7a986bb5e9a7f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  FrostAmount: 0
+  EdgeSharpness: 1
+  minFrost: 0
+  maxFrost: 1
+  seethroughness: 0.1
+  distortion: 0.05
+  Frost: {fileID: 2800000, guid: 210743b88c99bcf45b28c3a4a4a3e178, type: 3}
+  FrostNormals: {fileID: 2800000, guid: 065247d136abaa042a330ab6a7b030fc, type: 3}
+  Shader: {fileID: 4800000, guid: db8aebe950ae3794aae5ed890f38549b, type: 3}
+  isFrozen: 0
 --- !u!4 &8877253298665010930
 Transform:
   m_ObjectHideFlags: 0
