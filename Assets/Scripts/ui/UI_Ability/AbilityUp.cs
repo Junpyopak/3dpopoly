@@ -5,10 +5,12 @@ using UnityEngine;
 public class AbilityUp : MonoBehaviour
 {
     private Player player;
+    public ParticleSystem Attackuppart;
     // Start is called before the first frame update
     void Start()
     {
         player = GameObject.Find("character").GetComponent<Player>();
+        
     }
 
     // Update is called once per frame
@@ -20,6 +22,7 @@ public class AbilityUp : MonoBehaviour
     {
         Debug.Log("공격력 증가");
         player.AttackDamage += 7;
+        Attackuppart.Play();
         gameObject.SetActive(false);
     }
     public void Abillity_HpUpstate()

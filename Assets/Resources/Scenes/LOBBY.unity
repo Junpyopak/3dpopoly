@@ -1995,6 +1995,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 508026690}
   m_CullTransparentMesh: 1
+--- !u!198 &594515501 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 5584748901027872439, guid: ec8e408c484cd39479235db1b5e19d71, type: 3}
+  m_PrefabInstance: {fileID: 8960730758587264257}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &599810986
 GameObject:
   m_ObjectHideFlags: 0
@@ -3125,6 +3130,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96b049af972f8c4428ea2b7c0325ba78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Attackuppart: {fileID: 594515501}
 --- !u!224 &1103204424 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 3535962212405495706, guid: c7c03b7fad9294242b86a694895b75d4, type: 3}
@@ -18444,6 +18450,30 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3933694727362971394, guid: ec8e408c484cd39479235db1b5e19d71, type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3933694727480021925, guid: ec8e408c484cd39479235db1b5e19d71, type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3933694727820370908, guid: ec8e408c484cd39479235db1b5e19d71, type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3933694727916508062, guid: ec8e408c484cd39479235db1b5e19d71, type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3933694728136301398, guid: ec8e408c484cd39479235db1b5e19d71, type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3933694728179418894, guid: ec8e408c484cd39479235db1b5e19d71, type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3945885282984091364, guid: ec8e408c484cd39479235db1b5e19d71, type: 3}
       propertyPath: m_TagString
       value: Skill1
@@ -18540,6 +18570,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 1.5
       objectReference: {fileID: 0}
+    - target: {fileID: 5584748901027872439, guid: ec8e408c484cd39479235db1b5e19d71, type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5669098495573658145, guid: ec8e408c484cd39479235db1b5e19d71, type: 3}
       propertyPath: m_TagString
       value: Skill1
@@ -18615,6 +18649,10 @@ PrefabInstance:
     - target: {fileID: 7627963556914526577, guid: ec8e408c484cd39479235db1b5e19d71, type: 3}
       propertyPath: m_StepOffset
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7750537885432696212, guid: ec8e408c484cd39479235db1b5e19d71, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7809831402607367939, guid: ec8e408c484cd39479235db1b5e19d71, type: 3}
       propertyPath: m_IsActive
