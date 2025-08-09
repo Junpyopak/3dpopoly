@@ -65,7 +65,8 @@ public class Player : Character
     private Coroutine expRoutine;
     public GameObject LevelUPEffect;
     [SerializeField] private TextMeshProUGUI levelup_text;
-    [SerializeField] private GameObject avillity;
+    
+    [SerializeField] ButtonFade Levelbtn;
     // Start is called before the first frame update
     void Start()
     {
@@ -81,7 +82,6 @@ public class Player : Character
             Enemy = GameObject.Find("Warrok").GetComponent<Enemy>();
             Warrok = GameObject.Find("Warrok").transform;
         }
-
         Speed = 3f;
         rigidbody = this.GetComponent<Rigidbody>();
         animator = GameObject.Find("character").GetComponent<Animator>();
@@ -363,6 +363,7 @@ public class Player : Character
     private void LevelUp()
     {
         level++;
+        Levelbtn.ShowOnLevelUp();
         Debug.Log($"[레벨업 함수 실행됨] 현재 레벨: {level}");
         expToLevelUp += 50;
 
@@ -372,7 +373,7 @@ public class Player : Character
             GameObject particle = Instantiate(LevelUPEffect, spawnPos, quaternion.identity);
             Destroy(particle, 2f);
         }
-        avillity?.SetActive(true);
+        
         UpdateLevelText();
 
         Debug.Log("레벨 업! 현재 레벨: " + level);
