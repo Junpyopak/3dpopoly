@@ -14,12 +14,12 @@ public class ChatUi : MonoBehaviour
 
     void Start()
     {
-        inputField.onSubmit.AddListener(SendMessage);
+        //inputField.onSubmit.AddListener(SendMessage);
     }
 
     void Update()
     {
-       //엔터키로 메세지 전송
+       //엔터로 출력
         if (Input.GetKeyDown(KeyCode.Return))
         {
             if (!string.IsNullOrWhiteSpace(inputField.text))
@@ -35,7 +35,7 @@ public class ChatUi : MonoBehaviour
     {
         if (string.IsNullOrWhiteSpace(msg)) return;
 
-        // 메시지 프리팹 생성
+        //메세지 출력
         GameObject newMsg = Instantiate(messagePrefab, content);
         TMP_Text txt = newMsg.GetComponent<TMP_Text>();
         if (txt != null)
