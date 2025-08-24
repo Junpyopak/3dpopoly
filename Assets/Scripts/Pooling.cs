@@ -140,29 +140,60 @@ public class Pooling : MonoBehaviour
         return new Vector3(basePos.x + randX, basePos.y, basePos.z + randZ);
     }
 
+    //public GameObject SpawnFromPool(string tag)
+    //{
+    //    //if (!poolDictionary.ContainsKey(tag))
+    //    //    return null;
+
+    //    //GameObject obj = poolDictionary[tag].Dequeue();
+    //    //poolDictionary[tag].Enqueue(obj);
+
+    //    //return obj;
+    //    if (!poolDictionary.ContainsKey(tag))
+    //        return null;
+
+    //    GameObject obj = null;
+    //    Queue<GameObject> poolQueue = poolDictionary[tag];
+
+    //    for (int i = 0; i < poolQueue.Count; i++)
+    //    {
+    //        obj = poolQueue.Dequeue();
+    //        if (!obj.activeInHierarchy) // 비활성화된 것만 사용
+    //        {
+    //            poolQueue.Enqueue(obj);
+    //            return obj;
+    //        }
+    //        poolQueue.Enqueue(obj); // 다시 뒤로 보내기
+    //    }
+
+    //    Debug.LogWarning($"사용 가능한 {tag} 오브젝트가 없습니다.");
+    //    return null;
+    //}
     public GameObject SpawnFromPool(string tag)
     {
-        //if (!poolDictionary.ContainsKey(tag))
-        //    return null;
-
-        //GameObject obj = poolDictionary[tag].Dequeue();
-        //poolDictionary[tag].Enqueue(obj);
-
-        //return obj;
         if (!poolDictionary.ContainsKey(tag))
             return null;
 
-        GameObject obj = null;
         Queue<GameObject> poolQueue = poolDictionary[tag];
+        int count = poolQueue.Count;
 
-        for (int i = 0; i < poolQueue.Count; i++)
+        for (int i = 0; i < count; i++)
         {
-            obj = poolQueue.Dequeue();
+            GameObject obj = poolQueue.Dequeue();
+
+            //  이미 Destroy 된 경우는 무시
+            if (obj == null)
+            {
+                continue;
+            }
+
             if (!obj.activeInHierarchy) // 비활성화된 것만 사용
             {
+                obj.SetActive(true); // 필요하면 여기서 바로 활성화
                 poolQueue.Enqueue(obj);
                 return obj;
             }
+
             poolQueue.Enqueue(obj); // 다시 뒤로 보내기
         }
 

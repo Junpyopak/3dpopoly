@@ -996,9 +996,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 7851136426553191641, guid: 26c83234f82bd2941abe4cafc8379844, type: 3}
     - target: {fileID: 2846947327307596792, guid: ec8e408c484cd39479235db1b5e19d71, type: 3}
+      propertyPath: Autoloading
+      value: 
+      objectReference: {fileID: 6273592381394060112, guid: be9095ff012cbf345b7329ce87026fd4, type: 3}
+    - target: {fileID: 2846947327307596792, guid: ec8e408c484cd39479235db1b5e19d71, type: 3}
       propertyPath: inventoryUi
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 2846947327307596792, guid: ec8e408c484cd39479235db1b5e19d71, type: 3}
+      propertyPath: skillSpawnPoint
+      value: 
+      objectReference: {fileID: 112045352}
     - target: {fileID: 2846947327307596792, guid: ec8e408c484cd39479235db1b5e19d71, type: 3}
       propertyPath: timelines.Array.size
       value: 1
@@ -2057,12 +2065,20 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 5785140669590358939, guid: ec8e408c484cd39479235db1b5e19d71, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1217403503}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 4820950538758380519, guid: ec8e408c484cd39479235db1b5e19d71, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1812926946}
   m_SourcePrefab: {fileID: 100100000, guid: ec8e408c484cd39479235db1b5e19d71, type: 3}
+--- !u!4 &112045352 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5785140669590358939, guid: ec8e408c484cd39479235db1b5e19d71, type: 3}
+  m_PrefabInstance: {fileID: 112045351}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &112078037
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13135,7 +13151,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyCount: 0
-  maxEnemy: 3
+  maxEnemy: 2
   SpawnPoint: {fileID: 815990898}
   spawnTime: 4
   sTimer: 0
@@ -13224,6 +13240,72 @@ MonoBehaviour:
         m_Calls: []
   m_LegacyBlendHint: 0
   m_ComponentOwner: {fileID: 1185936598}
+--- !u!1001 &1217403502
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 112045352}
+    m_Modifications:
+    - target: {fileID: 3902402290944930999, guid: 2cf1f32c5061be945b1263df0f896f98, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3902402290944930999, guid: 2cf1f32c5061be945b1263df0f896f98, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3902402290944930999, guid: 2cf1f32c5061be945b1263df0f896f98, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3902402290944930999, guid: 2cf1f32c5061be945b1263df0f896f98, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 3902402290944930999, guid: 2cf1f32c5061be945b1263df0f896f98, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 3902402290944930999, guid: 2cf1f32c5061be945b1263df0f896f98, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3902402290944930999, guid: 2cf1f32c5061be945b1263df0f896f98, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3902402290944930999, guid: 2cf1f32c5061be945b1263df0f896f98, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 3902402290944930999, guid: 2cf1f32c5061be945b1263df0f896f98, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3902402290944930999, guid: 2cf1f32c5061be945b1263df0f896f98, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8576955568763524324, guid: 2cf1f32c5061be945b1263df0f896f98, type: 3}
+      propertyPath: m_Name
+      value: TorrnadoSkill
+      objectReference: {fileID: 0}
+    - target: {fileID: 9081393217031974483, guid: 2cf1f32c5061be945b1263df0f896f98, type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 2cf1f32c5061be945b1263df0f896f98, type: 3}
+--- !u!4 &1217403503 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3902402290944930999, guid: 2cf1f32c5061be945b1263df0f896f98, type: 3}
+  m_PrefabInstance: {fileID: 1217403502}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1226872852
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -19733,6 +19815,7 @@ MonoBehaviour:
   MaxHp: 300
   AttackDamage: 7
   PlayerDamage: 20
+  expReward: 30
   EnemyHpbar: {fileID: 0}
   hpBarShake: {fileID: 0}
   BossHpgauge: {fileID: 16060443}

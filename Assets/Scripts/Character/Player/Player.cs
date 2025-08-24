@@ -70,6 +70,15 @@ public class Player : Character
     // Start is called before the first frame update
     void Start()
     {
+        // 씬 전환 후에도 DontDestroyOnLoad ExpBar(UI) 찾아서 연결
+        ExpSlider existingExpBar = FindObjectOfType<ExpSlider>();
+        if (existingExpBar != null)
+        {
+            if (existingExpBar != null)
+                expSlider = existingExpBar.slider;
+            levelup_text = existingExpBar.levelup_text;
+            LevelUPEffect = existingExpBar.LevelUPEffect;
+        }
         UpdateExpSliderImmediate();
         UpdateLevelText();
         if (frostEffect == null)
@@ -128,7 +137,6 @@ public class Player : Character
         {
             Hp = MaxHp;
         }
-
         if (animator.GetBool("Death") == false)
         {
             //if (frostEffect.isFrozen == true)

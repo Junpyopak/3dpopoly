@@ -6,7 +6,7 @@ public class Boss_unbeatable : MonoBehaviour
 {
     public static Boss_unbeatable instance;
     public int enemyCount;
-    public int maxEnemy = 3;
+    public int maxEnemy = 2;
     public GameObject SpawnPoint; // 리스폰 위치
     [SerializeField] float spawnTime = 1.0f;
     [SerializeField] float sTimer = 0.0f; // 스폰 타이머

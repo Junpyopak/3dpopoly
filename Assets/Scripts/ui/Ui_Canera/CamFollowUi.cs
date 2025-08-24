@@ -27,6 +27,13 @@ public class CamFollowUi : MonoBehaviour
     private Player player;
     public GameObject CardUi;
     public bool isSelectingCard = false;
+    private void Awake()
+    {
+        if (player == null)
+        {
+            player = GameObject.FindWithTag("Player")?.GetComponent<Player>();
+        }
+    }
     void Start()
     {
         rotaX = transform.localRotation.eulerAngles.x;
@@ -100,6 +107,7 @@ public class CamFollowUi : MonoBehaviour
     void LateUpdate()
     {
         if (Camera == null || player == null) return;
+
         if (player.IsAttacking == true) return;
         transform.position = Vector3.MoveTowards(transform.position, Target.position, FollowSpeed * Time.deltaTime);
 

@@ -1,9 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEditor;
 using UnityEditor.Build;
 using UnityEngine;
+using UnityEngine.UI;
 using static UI_TITLE;
 
 public class Enemy : Character
@@ -35,10 +37,10 @@ public class Enemy : Character
         player = GameObject.Find("character").transform;
         Speed = 2f;
         sphereCollider = GameObject.Find("LeftHand").GetComponent<SphereCollider>();
-        if(GameObject.Find("BattleManager")!=null)
+        if (GameObject.Find("BattleManager") != null)
         {
             battleManager = GameObject.Find("BattleManager").GetComponent<BattleManager>();
-        }  
+        }
         animator = GetComponent<Animator>();
         sphereCollider.enabled = false;
     }
@@ -127,7 +129,7 @@ public class Enemy : Character
     {
         if (other.gameObject.layer == LayerMask.NameToLayer("Sward"))
         {
-           //AttackCam.Instance.AttackShakeCam(0.1f, 0.15f);
+            //AttackCam.Instance.AttackShakeCam(0.1f, 0.15f);
             Damage();
             Debug.Log("몬스터데미지");
             Debug.Log($"스탯{Hp}");
@@ -137,19 +139,52 @@ public class Enemy : Character
 
     public virtual void Damage()
     {
-        if (Hp <= 0) return;
+        //if (Hp <= 0) return;
 
-        Hp -= Player.AttackDamage;
+        //Hp -= Player.AttackDamage;
+        //EnemyHpbar.SetHp(Hp, MaxHp);
+        //ShowDamageText(Player.AttackDamage);
+        //if (hpBarShake != null)
+        //{
+        //    hpBarShake.ShakeHpBar(0.3f, 3f);
+        //}
+
+        //if (hitEffect != null)
+        //{
+        //    hitEffect.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear); // 혹시 재생 중이면 멈춤
+        //    hitEffect.Play();
+        //}
+        //animator.SetTrigger("Hurt");
+
+        //if (Hp <= 0)
+        //{
+        //    Hp = 0;
+        //    if (Player != null)
+        //    {
+        //        Player.GainExperience(expReward);
+        //    }
+        //    pooling.OnEnemyDeath(this.gameObject);
+        //    pooling.enemyCount -= 1;
+        //    battleManager.KillCount += 1;
+        //    Debug.Log("몬스터가 죽었습니다");
+        //}
+        if (Hp <= 0) return;
+        if (Player == null) return; // Player null 체크
+
+        int damage = Player.AttackDamage; // 플레이어 공격력 가져오기
+
+        Hp -= damage;
         EnemyHpbar.SetHp(Hp, MaxHp);
-        ShowDamageText(Player.AttackDamage);
+        ShowDamageText(damage); // 텍스트에 출력
+
         if (hpBarShake != null)
         {
             hpBarShake.ShakeHpBar(0.3f, 3f);
         }
-       
+
         if (hitEffect != null)
         {
-            hitEffect.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear); // 혹시 재생 중이면 멈춤
+            hitEffect.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
             hitEffect.Play();
         }
         animator.SetTrigger("Hurt");
@@ -157,13 +192,16 @@ public class Enemy : Character
         if (Hp <= 0)
         {
             Hp = 0;
-            if(Player != null)
+
+            if (Player != null)
             {
                 Player.GainExperience(expReward);
             }
+
             pooling.OnEnemyDeath(this.gameObject);
             pooling.enemyCount -= 1;
             battleManager.KillCount += 1;
+
             Debug.Log("몬스터가 죽었습니다");
         }
     }
@@ -189,21 +227,57 @@ public class Enemy : Character
         EnemyHpbar.SetHp(Hp, MaxHp);
     }
 
-    private void ShowDamageText(int damage)
+    //private void ShowDamageText(int damage)
+    //{
+    //    GameObject obj = TextPool.Instance.Get();
+
+    //    // 생성 위치: 몬스터 머리 위
+    //    Vector3 spawnPos = transform.position + Vector3.up * 2f;
+    //    obj.transform.position = spawnPos;
+
+    //    // 텍스트 설정
+    //    Damagetext dt = obj.GetComponent<Damagetext>();
+    //    if (dt != null)
+    //    {
+
+    //        dt.SetText(damage);
+    //    }
+    //}
+    //public void ShowDamageText(int damage)
+    //{
+    //    GameObject damageTextObj = TextPool.Instance.Get();
+    //    if (damageTextObj == null) return; // 안전 처리
+
+    //    damageTextObj.transform.position = transform.position + Vector3.up; // 몬스터 머리 위
+    //    TextMeshProUGUI text = damageTextObj.GetComponent<TextMeshProUGUI>();
+    //    if (text != null)
+    //    {
+    //        text.text = damage.ToString();
+    //    }
+
+    //    // 1초 후 자동 반환
+    //    StartCoroutine(ReturnToPool(damageTextObj, 1f));
+    //}
+    public void ShowDamageText(int damage)
     {
-        GameObject obj = TextPool.Instance.Get();
+        GameObject damageTextObj = TextPool.Instance.Get();
+        if (damageTextObj == null) return;
 
-        // 생성 위치: 몬스터 머리 위
-        Vector3 spawnPos = transform.position + Vector3.up * 2f;
-        obj.transform.position = spawnPos;
+        damageTextObj.transform.position = transform.position + Vector3.up;
 
-        // 텍스트 설정
-        Damagetext dt = obj.GetComponent<Damagetext>();
-        if (dt != null)
+        Text legacyText = damageTextObj.GetComponent<Text>();
+        if (legacyText != null)
         {
-            
-            dt.SetText(damage);
+            legacyText.text = damage.ToString();
         }
+
+        StartCoroutine(ReturnToPool(damageTextObj, 1f));
     }
 
+    private IEnumerator ReturnToPool(GameObject obj, float delay)
+    {
+        yield return new WaitForSeconds(delay);
+
+
+    }
 }
