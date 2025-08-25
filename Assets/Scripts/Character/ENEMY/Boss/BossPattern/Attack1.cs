@@ -39,6 +39,14 @@ public class Attack1 : MonoBehaviour
         {
             Vector3 Pos = new Vector3(0, 0.5f, BossTrs.position.z - 4.3f);
             GameObject Rock = Instantiate(ListAttack[0], Pos, Quaternion.identity);
+            Rigidbody rb = Rock.GetComponent<Rigidbody>();
+            if (rb == null) rb = Rock.AddComponent<Rigidbody>();
+            rb.isKinematic = true;
+
+            // Collider 설정
+            Collider col = Rock.GetComponent<Collider>();
+            if (col == null) col = Rock.AddComponent<BoxCollider>(); // 단순 BoxCollider 추천
+            col.isTrigger = true;
             Rock.name = "RockAttack";
             RockAttack = false;
         }

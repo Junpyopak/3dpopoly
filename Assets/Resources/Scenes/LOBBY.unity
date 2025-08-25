@@ -2974,7 +2974,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2097969823}
   m_HandleRect: {fileID: 2097969822}
   m_Direction: 2
-  m_Value: 0
+  m_Value: 1
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -4694,7 +4694,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 0, y: 425}
+  m_AnchoredPosition: {x: 0, y: 424.99997}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1323702165
@@ -7535,7 +7535,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slider: {fileID: 258795104}
-  levelup_text: {fileID: 1953524652}
+  levelup_text: {fileID: 440545190}
   LevelUPEffect: {fileID: 754285978547251153, guid: 9a794ef7ebc81774ea908d8d2a99b647, type: 3}
 --- !u!1 &1998550986
 GameObject:
@@ -10380,6 +10380,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ItemGetText
       objectReference: {fileID: 0}
+    - target: {fileID: 2087856733576279764, guid: ec6490af71415384882589150dfe67fa, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2431666517909739755, guid: ec6490af71415384882589150dfe67fa, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -10463,6 +10467,10 @@ PrefabInstance:
     - target: {fileID: 2431666517909739755, guid: ec6490af71415384882589150dfe67fa, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7007493959894789990, guid: ec6490af71415384882589150dfe67fa, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -21343,7 +21351,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1129378729805039697, guid: ec8e408c484cd39479235db1b5e19d71, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1182290439803124961, guid: ec8e408c484cd39479235db1b5e19d71, type: 3}
       propertyPath: looping

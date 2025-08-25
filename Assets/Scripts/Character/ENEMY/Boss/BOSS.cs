@@ -31,6 +31,8 @@ public class BOSS : Enemy
     bool patternChange = false;//패턴을 바꾸어야하는 상황인지
     [SerializeField] float patternChangeTime = 10.0f;//패턴 바꿀때 딜레이되는시간
                                                      //float CoolTimer = 0.0f;
+    private bool hasActivatedFirst = false;
+    private bool hasActivatedSecond = false;
 
     public bool isInvincible = false;
     private void Awake()
@@ -187,10 +189,17 @@ public class BOSS : Enemy
 
         Hp -= damage;
         BossHpgauge.SetHp(Hp, MaxHp);
-        if (Hp == 200 || Hp == 140)
+        if (Hp <= 200 && !hasActivatedFirst && Hp > 120)
         {
-            Debug.Log("보스 무적상태");
+            Debug.Log("보스 무적상태 (HP 200 이하 ~ 121)");
             StartCoroutine(unbeatable(10f));
+            hasActivatedFirst = true; // 1회 발동 후 true로 변경
+        }
+        else if (Hp <= 120 && !hasActivatedSecond)
+        {
+            Debug.Log("보스 무적상태 (HP 120 이하)");
+            StartCoroutine(unbeatable(10f));
+            hasActivatedSecond = true; // 1회 발동 후 true로 변경
         }
         if (Hp <= 0)
         {

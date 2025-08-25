@@ -20,12 +20,16 @@ public class ItemEffect : MonoBehaviour
     {
         player = GameObject.Find("character").GetComponent<Player>();
         PlayerHpGauge = GameObject.Find("PlayerHp").GetComponent<HpGauge>();
+        if (MyparticleSystem != null)
+            DontDestroyOnLoad(MyparticleSystem.gameObject);
 
     }
     IEnumerator EffectOff()
     {
         yield return new WaitForSeconds(3f);
-        MyparticleSystem.Stop();
+        //MyparticleSystem.Stop();
+        if (MyparticleSystem != null)
+            MyparticleSystem.Stop();
     }
     IEnumerator Heal(int _hp)
     {
@@ -35,20 +39,35 @@ public class ItemEffect : MonoBehaviour
     }
     public void Useitem(Item _item)
     {
-        if(_item.itemType==Item.ItemType.Used)
+        //if(_item.itemType==Item.ItemType.Used)
+        //{
+        //    if(_item.ItemName == "중급 포션")
+        //    {
+        //        MyparticleSystem.Play();
+        //        StartCoroutine(EffectOff());
+        //        StartCoroutine(Heal(30));
+        //        Debug.Log("체력이 회복되었습니다.");
+        //    }
+        //    if(_item.ItemName == "하급 포션")
+        //    {
+        //        MyparticleSystem.Play();
+        //        StartCoroutine(EffectOff());
+        //        StartCoroutine (Heal(15));
+        //        Debug.Log("체력이 회복되었습니다.");
+        //    }
+        //}
+        if (_item.itemType == Item.ItemType.Used)
         {
-            if(_item.ItemName == "중급 포션")
+            int healAmount = 0;
+            if (_item.ItemName == "중급 포션") healAmount = 30;
+            else if (_item.ItemName == "하급 포션") healAmount = 15;
+
+            if (healAmount > 0 && MyparticleSystem != null)
             {
                 MyparticleSystem.Play();
                 StartCoroutine(EffectOff());
-                StartCoroutine(Heal(30));
-                Debug.Log("체력이 회복되었습니다.");
-            }
-            if(_item.ItemName == "하급 포션")
-            {
-                MyparticleSystem.Play();
-                StartCoroutine(EffectOff());
-                StartCoroutine (Heal(15));
+                StartCoroutine(Heal(healAmount));
+
                 Debug.Log("체력이 회복되었습니다.");
             }
         }
