@@ -7,6 +7,7 @@ public class BOSS : Enemy
 {
     // Start is called before the first frame update
     public static BOSS instance;
+    Player Player;
     Animator Animator;
     [SerializeField] BossHpGauge BossHpgauge;
     [SerializeField] List<GameObject> listPattern;//패턴의 종류
@@ -46,6 +47,7 @@ public class BOSS : Enemy
     {
         Hp = 300;
         MaxHp = 300;
+        Player = GameObject.Find("character").GetComponent<Player>();
         Animator = GetComponent<Animator>();
         startAttack = GameObject.Find("StartAttack").GetComponent<StartAttack>();
         DamageEffect = GameObject.Find("Hitroot").GetComponent<ParticleSystem>();
@@ -179,7 +181,11 @@ public class BOSS : Enemy
             DamageEffect.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear); // 혹시 재생 중이면 멈춤
             DamageEffect.Play();
         }
-        Hp -= PlayerDamage;
+        if (Player == null) return; // Player null 체크
+
+        int damage = Player.AttackDamage; // 플레이어 공격력 가져오기
+
+        Hp -= damage;
         BossHpgauge.SetHp(Hp, MaxHp);
         if (Hp == 200 || Hp == 140)
         {

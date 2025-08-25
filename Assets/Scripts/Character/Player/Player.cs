@@ -32,6 +32,7 @@ public class Player : Character
     Enemy Enemy;
     public int Hp = 100;
     public int MaxHp = 100;
+    private static int savedAttackDamage = -1;
     public int AttackDamage = 20;
     BoxCollider BoxCollider;
     [SerializeField] HpGauge hpGauge;
@@ -68,6 +69,14 @@ public class Player : Character
     
     [SerializeField] ButtonFade Levelbtn;
     // Start is called before the first frame update
+    private void Awake()
+    {
+        //이전씬에 존재한 공격력 불러오기
+        if (savedAttackDamage != -1)
+        {
+            AttackDamage = savedAttackDamage;
+        }
+    }
     void Start()
     {
         // 씬 전환 후에도 DontDestroyOnLoad ExpBar(UI) 찾아서 연결
@@ -108,6 +117,11 @@ public class Player : Character
         AttackCam = GameObject.Find("Camera").GetComponent<AttackCam>();
         SkillEffect = GameObject.Find("Skill1").GetComponent<ParticleSystem>();
         TornadoEffect = GameObject.Find("TorrnadoSkill").GetComponent<ParticleSystem>();
+    }
+    private void OnDestroy()
+    {
+        // 파괴될 때 공격력 저장
+        savedAttackDamage = AttackDamage;
     }
     public void SetMove(MoveStrategy moveStrategy)
     {

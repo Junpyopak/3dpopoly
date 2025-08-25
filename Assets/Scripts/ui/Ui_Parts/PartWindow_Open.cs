@@ -34,11 +34,12 @@ public class PartWindow_Open : MonoBehaviour
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
         }
-        if(OpenWindow == false)
+        if (OpenWindow == false)
         {
             UpgradeWindow.SetActive(false);
         }
-        
+
+
     }
     public void closeUpgrade()
     {

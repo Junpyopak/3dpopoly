@@ -13,6 +13,9 @@ public class InventoryUi : MonoBehaviour
     private bool OpenInvebtory = false;
     public Slot[] slots;
     public Transform SlotHolder;
+    public GameObject CharacterInfo;
+    public GameObject Chatting;
+    public GameObject SkillCan;
     // Start is called before the first frame update
 
     private void Awake()
@@ -57,6 +60,13 @@ public class InventoryUi : MonoBehaviour
         {
             OpenInvebtory = !OpenInvebtory;
             Inven.SetActive(OpenInvebtory);
+            if (CharacterInfo != null)
+                CharacterInfo.SetActive(!OpenInvebtory);
+            if(Chatting!=null)
+                Chatting.SetActive(!OpenInvebtory);
+            if (SkillCan != null)
+                SkillCan.SetActive(!OpenInvebtory);
+
             if (inven.SlotCount == 0)
             {
                 inven.SlotCount = 4;
@@ -163,6 +173,13 @@ public class InventoryUi : MonoBehaviour
         Inven.SetActive(OpenInvebtory);
         MiniCam_close.Closemap();
         hpGauge.BtnOff_Hp();
+        if (CharacterInfo != null)
+            CharacterInfo.SetActive(false);
+        if (Chatting != null)
+            Chatting.SetActive(false);
+        if (SkillCan != null)
+            SkillCan.SetActive(false);
+
         if (inven.SlotCount == 0)
         {
             inven.SlotCount = 4;
@@ -174,5 +191,11 @@ public class InventoryUi : MonoBehaviour
         Inven.SetActive(OpenInvebtory);
         MiniCam_close.OpenMap();
         hpGauge.BtnOn_Hp();
+        if (CharacterInfo != null)
+            CharacterInfo.SetActive(true);
+        if (Chatting != null)
+            Chatting.SetActive(true);
+        if (SkillCan != null)
+            SkillCan.SetActive(true);
     }
 }
