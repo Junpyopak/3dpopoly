@@ -60,6 +60,7 @@ public class BOSS : Enemy
     {
         yield return new WaitForSeconds(0f);
         Animator.SetTrigger("Roar");
+        SoundManager.Instance.PlaySFX("BossRoar", 0.7f);
     }
     IEnumerator DearthCoroutine()
     {

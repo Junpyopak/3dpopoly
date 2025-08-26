@@ -58,6 +58,8 @@ public class Player : Character
     private ParticleSystem TornadoEffect;
     public Transform skillSpawnPoint;
     private FrostEffect frostEffect;
+    bool isWalkingSound = false;
+
 
     public int currentExp = 0;
     public int level = 1;
@@ -393,6 +395,7 @@ public class Player : Character
         {
             Vector3 spawnPos = gameObject.transform.position + new Vector3(0.5f, 0f, 0f);
             GameObject particle = Instantiate(LevelUPEffect, spawnPos, quaternion.identity);
+            SoundManager.Instance.PlaySFX("Levelup");
             Destroy(particle, 2f);
         }
         
@@ -418,6 +421,7 @@ public class Player : Character
         if (frostEffect.isFrozen)
         {
             animator.SetBool("isWalk", false);
+           // SoundManager.Instance.StopLoop();
             chController.Move(Vector3.zero);
             return;
         }
@@ -431,18 +435,37 @@ public class Player : Character
             if (moveDir != Vector3.zero)
             {
                 animator.SetBool("isWalk", true);
+                //if (!isWalkingSound)
+                //{
+                //    SoundManager.Instance.PlayLoop("Footstep");
+                //    isWalkingSound = true;
+                //}
                 DoMove();
             }
             else
             {
                 animator.SetBool("isWalk", false);
+                //if (isWalkingSound)
+                //{
+                //    SoundManager.Instance.StopLoop();
+                //    isWalkingSound = false;
+                //}
             }
             chController.Move(moveDir.normalized * Speed * Time.deltaTime);
         }
     }
+    void FootSetSound()
+    {
+        SoundManager.Instance.PlaySFX("Footstep",0.5f);
+    }
+    void RunSetSound()
+    {
+        SoundManager.Instance.PlaySFX("RunStep", 0.5f);
+    }
     private void StartAttack()
     {
         Attack1 = true;
+        
     }
     void EndAttack1()
     {
@@ -478,12 +501,18 @@ public class Player : Character
             if (Attack1 == false)
             {
                 animator.SetTrigger("Atk1");
+                
             }
             else if (animator.GetBool("Atk2") == false)
             {
                 animator.SetBool("Atk2", true);
+               
             }
         }
+    }
+    void AtkSound()
+    {
+        SoundManager.Instance.PlaySFX("AttackSound");
     }
 
     public override void OnTriggerEnter(Collider other)
