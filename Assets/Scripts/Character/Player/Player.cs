@@ -68,8 +68,15 @@ public class Player : Character
     private Coroutine expRoutine;
     public GameObject LevelUPEffect;
     [SerializeField] private TextMeshProUGUI levelup_text;
-    
+
+    [SerializeField] private TMP_Text hpText;
+    [SerializeField] private TMP_Text expText;
+
     [SerializeField] ButtonFade Levelbtn;
+    public static int savedLevel = 1;
+    public static int savedHp = -1;
+    public static int savedExp = 0;
+    public static int savedMaxHp = 100;
     // Start is called before the first frame update
     private void Awake()
     {
@@ -78,6 +85,16 @@ public class Player : Character
         {
             AttackDamage = savedAttackDamage;
         }
+        if (savedLevel != 1)
+            level = savedLevel;
+
+        if (savedHp != -1)
+            Hp = savedHp;
+
+        if (savedMaxHp != 100)
+            MaxHp = savedMaxHp;
+
+        currentExp = savedExp;
     }
     void Start()
     {
@@ -96,7 +113,7 @@ public class Player : Character
             frostEffect = Camera.main.GetComponent<FrostEffect>();
         SkillCool = SkillCoolController.instance;
         slashEffect = SlashEffect_OnOff.instance;
-        Hp = MaxHp;
+       // Hp = MaxHp;
         if (GameObject.Find("Warrok") != null)
         {
             Enemy = GameObject.Find("Warrok").GetComponent<Enemy>();
@@ -119,11 +136,17 @@ public class Player : Character
         AttackCam = GameObject.Find("Camera").GetComponent<AttackCam>();
         SkillEffect = GameObject.Find("Skill1").GetComponent<ParticleSystem>();
         TornadoEffect = GameObject.Find("TorrnadoSkill").GetComponent<ParticleSystem>();
+        UpdateHpUI();
+        UpdateExpUI();
     }
     private void OnDestroy()
     {
         // 파괴될 때 공격력 저장
         savedAttackDamage = AttackDamage;
+        savedLevel = level;
+        savedHp = Hp;
+        savedMaxHp = MaxHp;
+        savedExp = currentExp;
     }
     public void SetMove(MoveStrategy moveStrategy)
     {
@@ -324,6 +347,25 @@ public class Player : Character
         expSlider.maxValue = expToLevelUp;
         expSlider.value = currentExp;
     }
+    private void UpdateHpUI()
+    {
+        if (hpGauge != null)
+            hpGauge.SetPlayerHp(Hp, MaxHp);
+
+        if (hpText != null)
+            hpText.text = $"{Hp} / {MaxHp}";
+    }
+    private void UpdateExpUI()
+    {
+        if (expSlider != null)
+        {
+            expSlider.maxValue = expToLevelUp;
+            expSlider.value = currentExp;
+        }
+
+        if (expText != null)
+            expText.text = $"{currentExp} / {expToLevelUp}";
+    }
     private void UpdateLevelText()
     {
         if (levelup_text != null)
@@ -338,6 +380,7 @@ public class Player : Character
             StopCoroutine(expRoutine);
 
         expRoutine = StartCoroutine(HandleExperience());
+        UpdateExpUI();
     }
     private IEnumerator HandleExperience()
     {
@@ -390,6 +433,7 @@ public class Player : Character
         Levelbtn.ShowOnLevelUp();
         Debug.Log($"[레벨업 함수 실행됨] 현재 레벨: {level}");
         expToLevelUp += 50;
+        UpdateExpUI();
 
         if (LevelUPEffect != null)
         {
@@ -415,6 +459,7 @@ public class Player : Character
         {
             hpGauge.SetPlayerHp(Hp, MaxHp);
         }
+        UpdateHpUI();
     }
     public override void Moved()
     {
@@ -566,6 +611,7 @@ public class Player : Character
     public void Damage()
     {
         Hp -= 7;//Enemy.AttackDamage;
+        UpdateHpUI();
         GameObject Text = Instantiate(damageText);
         Text.GetComponent<DamaeText>();
         hpGauge.SetPlayerHp(Hp, MaxHp);

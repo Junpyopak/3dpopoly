@@ -206,6 +206,10 @@ public class BOSS : Enemy
         {
             Hp = 0;
             Animator.SetBool("Death", true);
+            if (Ui_Clear.Instance != null)
+            {
+                Ui_Clear.Instance.ShowLevelClear(3);
+            }
             StartCoroutine(DearthCoroutine());
         }
     }

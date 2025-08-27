@@ -33,6 +33,7 @@ public class ui_BossLoad : MonoBehaviour
             if (SceneLoadTime >= LoadingTime)
             {
                 SceneManager.LoadScene("BossLOBBY");
+                
             }
         }
     }
