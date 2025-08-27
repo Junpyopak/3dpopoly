@@ -33,9 +33,19 @@ public class ItemEffect : MonoBehaviour
     }
     IEnumerator Heal(int _hp)
     {
+        //yield return new WaitForSeconds(1f);
+        //player.Hp += _hp;
+        //PlayerHpGauge.curPlayerHp = player.Hp;
         yield return new WaitForSeconds(1f);
+
         player.Hp += _hp;
+        if (player.Hp > player.MaxHp)
+            player.Hp = player.MaxHp;
+
         PlayerHpGauge.curPlayerHp = player.Hp;
+
+
+        player.UpdateHpUI();
     }
     public void Useitem(Item _item)
     {
@@ -67,7 +77,7 @@ public class ItemEffect : MonoBehaviour
                 MyparticleSystem.Play();
                 StartCoroutine(EffectOff());
                 StartCoroutine(Heal(healAmount));
-
+                player.UpdateHpUI();
                 Debug.Log("체력이 회복되었습니다.");
             }
         }

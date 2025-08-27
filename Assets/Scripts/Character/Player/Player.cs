@@ -347,7 +347,7 @@ public class Player : Character
         expSlider.maxValue = expToLevelUp;
         expSlider.value = currentExp;
     }
-    private void UpdateHpUI()
+    public void UpdateHpUI()
     {
         if (hpGauge != null)
             hpGauge.SetPlayerHp(Hp, MaxHp);

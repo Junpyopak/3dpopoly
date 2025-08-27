@@ -110,6 +110,7 @@ public class Slot : MonoBehaviour, IPointerClickHandler
                             itemEffect.Useitem(item);
                             Debug.Log(item.ItemName + "을 사용하였습니다.");
                             SetSlotCount(-1);
+                            player.UpdateHpUI();
                         }
                         //itemEffect.Useitem(item);
                         //Debug.Log(item.ItemName + "을 사용하였습니다.");
