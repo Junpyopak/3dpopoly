@@ -35,6 +35,7 @@ public class BOSS : Enemy
     private bool hasActivatedSecond = false;
 
     public bool isInvincible = false;
+    private bool isDead = false;
     private void Awake()
     {
         if (instance != null)
@@ -64,7 +65,7 @@ public class BOSS : Enemy
     }
     IEnumerator DearthCoroutine()
     {
-        yield return new WaitForSeconds(10f);
+        yield return new WaitForSeconds(8.5f);
         Destroy(gameObject);
         Debug.Log("보스가 죽었습니다");
     }
@@ -80,7 +81,7 @@ public class BOSS : Enemy
     }
     private void BossSkill()
     {
-
+        if (isDead) return;
         patternTimer += Time.deltaTime;
         if (patternChange == true)//패턴이 바뀔때 잠시 멈춰있는시간,유저가 공격할 타이밍
         {
@@ -205,6 +206,7 @@ public class BOSS : Enemy
         if (Hp <= 0)
         {
             Hp = 0;
+            isDead = true;
             Animator.SetBool("Death", true);
             if (Ui_Clear.Instance != null)
             {
