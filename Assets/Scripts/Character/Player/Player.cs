@@ -1074,7 +1074,7 @@ public class Player : Character, IPunObservable
         }
     }
 
-    // --- Photon 동기화 ---
+    //  Photon 동기화 
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
     {
         if (stream.IsWriting)
@@ -1095,7 +1095,7 @@ public class Player : Character, IPunObservable
         }
     }
 
-    // --- 컷신 ---
+    //  컷신 
     private IEnumerator MoveStopCoroutine()
     {
         yield return new WaitForSeconds(11.2f);
