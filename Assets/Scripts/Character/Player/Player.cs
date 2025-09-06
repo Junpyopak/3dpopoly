@@ -854,7 +854,14 @@ public class Player : Character, IPunObservable
             chController.Move(moveDir.normalized * Speed * Time.deltaTime);
         }
     }
-
+    void FootSetSound()
+    {
+        SoundManager.Instance.PlaySFX("Footstep", 0.5f);
+    }
+    void RunSetSound()
+    {
+        SoundManager.Instance.PlaySFX("RunStep", 0.5f);
+    }
     private void LateUpdate()
     {
         if (camera == null) return;
@@ -1093,5 +1100,26 @@ public class Player : Character, IPunObservable
     {
         yield return new WaitForSeconds(11.2f);
         playCut = false;
+    }
+    public void StartTrail()
+    {
+        if (slashEffect != null)
+        {
+
+            slashEffect.Slash_On();
+        }
+
+    }
+
+    public void StopTrail()
+    {
+        if (slashEffect != null)
+        {
+            slashEffect.Slash_Off();
+        }
+    }
+    void AtkSound()
+    {
+        SoundManager.Instance.PlaySFX("AttackSound");
     }
 }

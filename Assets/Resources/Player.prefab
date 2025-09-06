@@ -1550,7 +1550,6 @@ MonoBehaviour:
   MaxHp: 100
   AttackDamage: 20
   hpGauge: {fileID: 0}
-  DamaeText: {fileID: 5882894034401387900, guid: 24d8f608c3dfb4f459884b968f80fdd3, type: 3}
   damageText: {fileID: 8131566568141632185, guid: fc6ba0aff8cddcf428bdef92441af22b, type: 3}
   GameOver: {fileID: 2620707268189010400, guid: a7322b6342a15b243b5884a6b0c8d130, type: 3}
   timelines: []
@@ -1727,7 +1726,8 @@ MonoBehaviour:
   Synchronization: 3
   OwnershipTransfer: 0
   observableSearch: 2
-  ObservedComponents: []
+  ObservedComponents:
+  - {fileID: 2846947327307596792}
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
