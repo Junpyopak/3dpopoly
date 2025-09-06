@@ -6490,6 +6490,51 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 685c2265722328744998a340f77b063c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1664466530
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1664466532}
+  - component: {fileID: 1664466531}
+  m_Layer: 0
+  m_Name: NetworkManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1664466531
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1664466530}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3a4eeab161403b48934988493b09612, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerPrefabName: Player
+--- !u!4 &1664466532
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1664466530}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1667999367
 GameObject:
   m_ObjectHideFlags: 0
@@ -21717,6 +21762,14 @@ PrefabInstance:
       propertyPath: playOnAwake
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 141262927013362639, guid: ec8e408c484cd39479235db1b5e19d71, type: 3}
+      propertyPath: sceneViewId
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 272071110761117174, guid: ec8e408c484cd39479235db1b5e19d71, type: 3}
+      propertyPath: sceneViewId
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 399198079383502473, guid: ec8e408c484cd39479235db1b5e19d71, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -21784,6 +21837,10 @@ PrefabInstance:
     - target: {fileID: 2206518080794329610, guid: ec8e408c484cd39479235db1b5e19d71, type: 3}
       propertyPath: playOnAwake
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: sceneViewId
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2846947327307596792, guid: ec8e408c484cd39479235db1b5e19d71, type: 3}
       propertyPath: Warrok
@@ -22009,6 +22066,10 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 4915977108951930077, guid: ec8e408c484cd39479235db1b5e19d71, type: 3}
+      propertyPath: sceneViewId
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 5004358741505869915, guid: ec8e408c484cd39479235db1b5e19d71, type: 3}
       propertyPath: playOnAwake
       value: 1
@@ -22108,6 +22169,10 @@ PrefabInstance:
     - target: {fileID: 6748326039461480960, guid: ec8e408c484cd39479235db1b5e19d71, type: 3}
       propertyPath: m_Enabled
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6789714650882134346, guid: ec8e408c484cd39479235db1b5e19d71, type: 3}
+      propertyPath: sceneViewId
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6902131521839076760, guid: ec8e408c484cd39479235db1b5e19d71, type: 3}
       propertyPath: playOnAwake
@@ -22481,3 +22546,4 @@ SceneRoots:
   - {fileID: 4841674560177594757}
   - {fileID: 420510680}
   - {fileID: 215051787}
+  - {fileID: 1664466532}
