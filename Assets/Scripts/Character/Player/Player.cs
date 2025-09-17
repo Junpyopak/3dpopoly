@@ -731,9 +731,12 @@ public class Player : Character, IPunObservable
     public static int savedExp = 0;
     public static int savedMaxHp = 100;
 
+    PhotonView pv;
+
     // --- 초기화 ---
     private void Awake()
     {
+        pv = GetComponentInParent<PhotonView>();
         if (savedAttackDamage != -1) AttackDamage = savedAttackDamage;
         if (savedLevel != 1) level = savedLevel;
         if (savedHp != -1) Hp = savedHp;
@@ -779,6 +782,7 @@ public class Player : Character, IPunObservable
 
     void Update()
     {
+        if (!pv.IsMine) return;//내 캐릭터만 움직이도록
         if (Hp > MaxHp) Hp = MaxHp;
 
         if (!animator.GetBool("Death"))

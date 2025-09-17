@@ -81,26 +81,6 @@ public class ui_LOADING : MonoBehaviour
 
         SceneLoadTime += Time.deltaTime * 8f;
         initSlider();
-        //if (SceneLoadTime >= 3)
-        //{
-        //    Pause();
-        //    //StartCoroutine(waitTime(5));
-        //    if (SceneLoadTime >= 63)
-        //    {
-        //        Pause();
-        //        if (SceneLoadTime >= 78)
-        //        {
-        //            Pause();
-        //            if (SceneLoadTime >= LoadingTime)
-        //            {
-        //                SceneManager.LoadScene("LOBBY");
-        //            }
-        //        }
-        //    }
-
-        //}
-
-
     }
     private void Pause()
     {
