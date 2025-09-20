@@ -4,45 +4,46 @@ using Photon.Realtime;
 
 public class NetworkManager : MonoBehaviourPunCallbacks
 {
-    public string playerPrefabName = "Player";
-    public string roomName = "TestRoom";
-    public Vector3 baseSpawnPos = new Vector3(-58f, 16.4500008f, -294f);
+    [Header("UI")]
+    public GameObject PartCan; // 로비 UI 패널
 
     void Start()
     {
-       
-        if(!PhotonNetwork.IsConnected)
+        if (!PhotonNetwork.IsConnected)
         {
             PhotonNetwork.ConnectUsingSettings();
-        }
-        else
-        {
-            JoinRoom();
+            Debug.Log("Photon 서버 연결 시도 중...");
         }
     }
 
     public override void OnConnectedToMaster()
     {
-        //PhotonNetwork.JoinLobby();
-        JoinRoom();
+        Debug.Log("마스터 서버 접속 완료");
+        // 로비 입장은 버튼 클릭 시만
     }
 
-    //public override void OnJoinedLobby()
-    //{
-    //    PhotonNetwork.JoinOrCreateRoom("TestRoom", new RoomOptions { MaxPlayers = 4 }, TypedLobby.Default);
-    //}
-    public void JoinRoom()
+    // 로비 입장 버튼 클릭
+    public void OnClickJoinLobby()
     {
-        PhotonNetwork.JoinOrCreateRoom(roomName, new RoomOptions { MaxPlayers = 4 }, TypedLobby.Default);
+        if (!PhotonNetwork.IsConnected)
+        {
+            Debug.LogWarning("Photon 서버 연결이 아직 안됨");
+            return;
+        }
+
+        if (PhotonNetwork.InLobby)
+        {
+            Debug.Log("이미 로비에 입장되어 있음");
+            return;
+        }
+
+        PhotonNetwork.JoinLobby();
+        Debug.Log("로비 입장 시도 중...");
     }
-    public override void OnJoinedRoom()
+
+    public override void OnJoinedLobby()
     {
-        //Vector3 spawnPos = new Vector3(Random.Range(-2f, 2f), 0f, Random.Range(-2f, 2f));
-        Vector3 spawnPos = new Vector3(
-           Random.Range(baseSpawnPos.x - 2f, baseSpawnPos.x + 2f),
-           baseSpawnPos.y,
-           Random.Range(baseSpawnPos.z - 2f, baseSpawnPos.z + 2f)
-       );
-        PhotonNetwork.Instantiate(playerPrefabName, spawnPos, Quaternion.identity);
+        Debug.Log("로비 입장 완료!");
+        if (PartCan != null) PartCan.SetActive(true);
     }
 }
