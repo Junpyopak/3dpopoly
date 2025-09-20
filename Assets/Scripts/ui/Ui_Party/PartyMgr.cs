@@ -1,8 +1,9 @@
-using UnityEngine;
-using UnityEngine.UI;
+using System.Collections.Generic;
 using Photon.Pun;
 using Photon.Realtime;
-using System.Collections.Generic;
+using TMPro;
+using UnityEngine;
+using UnityEngine.UI;
 
 public class PartyMgr : MonoBehaviourPunCallbacks
 {
@@ -43,9 +44,23 @@ public class PartyMgr : MonoBehaviourPunCallbacks
 
         GameObject newButton = Instantiate(RoomButtonPrefab, RoomButtonParent);
 
-        // 버튼 텍스트 설정
-        Text btnText = newButton.GetComponentInChildren<Text>();
-        if (btnText != null) btnText.text = roomName;
+        Transform roomNameTransform = newButton.transform.Find("RoomNameText"); // 자식 오브젝트 이름
+        if (roomNameTransform != null)
+        {
+            TMP_Text roomNameText = roomNameTransform.GetComponent<TMP_Text>();
+            if (roomNameText != null)
+            {
+                roomNameText.text = roomName;
+            }
+            else
+            {
+                Debug.LogWarning("RoomNameText에 TMP_Text가 없습니다!");
+            }
+        }
+        else
+        {
+            Debug.LogWarning("RoomNameText 자식 오브젝트를 찾을 수 없습니다!");
+        }
 
         // 버튼 클릭 이벤트 연결
         Button btn = newButton.GetComponent<Button>();
