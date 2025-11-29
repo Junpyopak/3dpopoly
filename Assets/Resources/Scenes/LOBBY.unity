@@ -3459,8 +3459,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2097969823}
   m_HandleRect: {fileID: 2097969822}
   m_Direction: 2
-  m_Value: 0
-  m_Size: 0.99969697
+  m_Value: 1
+  m_Size: 0.99999696
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -5828,7 +5828,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 0, y: 425}
+  m_AnchoredPosition: {x: 0, y: 424.99905}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1323702165
@@ -23396,6 +23396,18 @@ PrefabInstance:
     - target: {fileID: 5004358741505869915, guid: ec8e408c484cd39479235db1b5e19d71, type: 3}
       propertyPath: playOnAwake
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5303925730235045513, guid: ec8e408c484cd39479235db1b5e19d71, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5303925730235045513, guid: ec8e408c484cd39479235db1b5e19d71, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.g
+      value: 0.5518868
+      objectReference: {fileID: 0}
+    - target: {fileID: 5303925730235045513, guid: ec8e408c484cd39479235db1b5e19d71, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.r
+      value: 0.8058176
       objectReference: {fileID: 0}
     - target: {fileID: 5419910688738474794, guid: ec8e408c484cd39479235db1b5e19d71, type: 3}
       propertyPath: m_Name

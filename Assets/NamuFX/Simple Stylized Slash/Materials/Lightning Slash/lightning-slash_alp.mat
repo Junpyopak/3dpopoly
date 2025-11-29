@@ -135,7 +135,7 @@ Material:
     - _DissovleTexRot: 0
     - _DstBlend: 0
     - _EdgeWidth: 0
-    - _Emission: 1
+    - _Emission: 2.06
     - _EnvironmentReflections: 1
     - _GlossMapScale: 0
     - _Glossiness: 0
