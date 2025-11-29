@@ -19,6 +19,7 @@ TagManager:
   - Telport
   - Skill1
   - Boss
+  - Bullet
   layers:
   - Default
   - TransparentFX
@@ -41,7 +42,7 @@ TagManager:
   - Enemy
   - Boss
   - Particle
-  - 
+  - PostProcessing
   - 
   - 
   - 
