@@ -719,10 +719,14 @@ public class Player : Character, IPunObservable
     private Coroutine expRoutine;
     public GameObject LevelUPEffect;
     [SerializeField] private TextMeshProUGUI levelup_text;
+    [SerializeField] private Text levelUpNoticeText;
 
     [SerializeField] private TMP_Text hpText;
     [SerializeField] private TMP_Text expText;
     [SerializeField] private ButtonFade Levelbtn;
+
+    [SerializeField] private GameObject levelUpNoticePanel;
+    [SerializeField] private float levelUpNoticeDuration = 2f;
 
     // --- Static 저장 변수 ---
     private static int savedAttackDamage = -1;
@@ -935,6 +939,16 @@ public class Player : Character, IPunObservable
         UpdateExpSliderImmediate();
     }
 
+    private IEnumerator ShowLevelUpNotice()
+    {
+        if (levelUpNoticePanel != null)
+        {
+            levelUpNoticePanel.SetActive(true);
+            yield return new WaitForSeconds(levelUpNoticeDuration);
+            levelUpNoticePanel.SetActive(false);
+        }
+    }
+
     private IEnumerator AnimateExpSlider(int currentValue, int maxValue)
     {
         float duration = 0.3f;
@@ -968,7 +982,9 @@ public class Player : Character, IPunObservable
         Levelbtn.ShowOnLevelUp();
         expToLevelUp += 50;
         UpdateExpUI();
-
+        if (levelUpNoticeText != null)
+            levelUpNoticeText.text = $"Level {level}";
+        StartCoroutine(ShowLevelUpNotice());
         if (LevelUPEffect != null)
         {
             Vector3 spawnPos = transform.position + new Vector3(0.5f, 0f, 0f);
