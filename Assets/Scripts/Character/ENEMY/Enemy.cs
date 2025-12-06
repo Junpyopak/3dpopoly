@@ -38,7 +38,8 @@ public class Enemy : Character
         Player = GameObject.Find("character").GetComponent<Player>();
         player = GameObject.Find("character").transform;
         Speed = 2f;
-        sphereCollider = GameObject.Find("LeftHand").GetComponent<SphereCollider>();
+        //sphereCollider = GameObject.Find("LeftHand").GetComponent<SphereCollider>();
+        sphereCollider = GetComponentInChildren<SphereCollider>();
         if (GameObject.Find("BattleManager") != null)
         {
             battleManager = GameObject.Find("BattleManager").GetComponent<BattleManager>();
