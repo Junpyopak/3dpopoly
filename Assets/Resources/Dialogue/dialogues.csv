@@ -1,0 +1,6 @@
+﻿DialogueID,Order,Speaker,Text
+npc01_intro,0,행인,아이고 모험가 양반!
+npc01_intro,1,행인,길을 지나가야하는데 요즘 늑대가 많아서 큰일이여.
+npc01_intro,2,행인,시간 되면 좀 도와줄 수 있는가?
+npc01_afterQuest,0,행인,자네 덕분에 길을 지나갈수 있겠어 !
+npc01_afterQuest,1,행인,정말 고맙네!
