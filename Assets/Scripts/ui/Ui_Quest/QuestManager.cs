@@ -9,7 +9,7 @@ public class QuestManager : MonoBehaviour
     [Header("Canvas")]
     public GameObject questCanvas;      // Canvas 전체
     public GameObject dialoguePanel;    // 하단 말풍선
-    public GameObject characterPanel;   // 캐릭터 일러스트 패널
+    public GameObject characterPanel;   // 캐릭터 일러스트 패널 (선택)
 
     [Header("Text UI (Legacy)")]
     public Text speakerText;
