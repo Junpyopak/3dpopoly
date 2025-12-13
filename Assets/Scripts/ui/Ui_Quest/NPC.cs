@@ -6,12 +6,17 @@ public class NPC : MonoBehaviour
 {
     public string DialogueID = "npc01_intro";
     public int QuestID = 1;
+    bool isTalking = false;
 
     private void OnTriggerStay(Collider other)
     {
-        if (other.CompareTag("Player") && Input.GetKeyDown(KeyCode.E))
+        if (other.CompareTag("Player") && Input.GetKeyDown(KeyCode.E) && !isTalking)
         {
-            QuestManager.Instance.StartDialogue(DialogueID, OnDialogueEnd);
+            isTalking = true;
+            QuestManager.Instance.StartDialogue(DialogueID, () =>
+            {
+                isTalking = false;
+            });
         }
     }
 

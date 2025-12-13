@@ -172,6 +172,8 @@ public class PickUP_Item : MonoBehaviour
         ItemInfoDis(); // 아이템이 없으면 텍스트 끄기
     }
 
+  
+
     private void ItemInfo()
     {
         PickItem = true;
