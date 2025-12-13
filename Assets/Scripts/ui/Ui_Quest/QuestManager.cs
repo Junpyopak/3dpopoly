@@ -25,6 +25,9 @@ public class QuestManager : MonoBehaviour
 
     private System.Action onDialogueFinish;
 
+    public GameObject questAcceptPanel;
+    private int pendingQuestID = -1;
+
     private void Awake()
     {
         // ΩÃ±€≈Ê
@@ -144,5 +147,23 @@ public class QuestManager : MonoBehaviour
         {
             ShowNextLine();
         }
+    }
+
+    void CloseAllUI()
+    {
+        questAcceptPanel.SetActive(false);
+        dialoguePanel.SetActive(false);
+        questCanvas.SetActive(false);
+    }
+
+    public void OnAcceptQuest()
+    {
+        QuestSystem.Instance.AcceptQuest(pendingQuestID);
+        CloseAllUI();
+    }
+
+    public void OnRejectQuest()
+    {
+        CloseAllUI();
     }
 }
