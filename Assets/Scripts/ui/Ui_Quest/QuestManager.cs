@@ -30,6 +30,8 @@ public class QuestManager : MonoBehaviour
     public GameObject acceptButton;
     public GameObject rejectButton;
 
+    public GameObject questBody;
+    public Transform questsGroup;
     private void Awake()
     {
         // 싱글톤
@@ -55,6 +57,11 @@ public class QuestManager : MonoBehaviour
         rejectButton.SetActive(false);
     }
 
+    void Start()
+    {
+        Transform body = GameObject.Find("Body").transform;
+        body.gameObject.SetActive(false);
+    }
     /// <summary>
     /// NPC가 호출하는 대화 시작 함수
     /// </summary>
@@ -165,6 +172,17 @@ public class QuestManager : MonoBehaviour
     public void OnAcceptQuest()
     {
         QuestSystem.Instance.AcceptQuest(pendingQuestID);
+
+        questBody.SetActive(true);   // ← 켜기!
+
+        Transform quest = questsGroup.GetChild(0);
+
+        Text questTitle = quest.Find("Quest Name Text").GetComponent<Text>();
+        questTitle.text = "상인을 도와주자";
+
+        Text objectiveText = quest.Find("Objectives/Objective (1)").GetComponentInChildren<Text>();
+        objectiveText.text = "몬스터 3마리 처치";
+
         CloseAllUI();
     }
 
