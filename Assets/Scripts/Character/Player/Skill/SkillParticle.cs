@@ -13,10 +13,10 @@ public class SkillParticle : MonoBehaviour
         if (skillParticle == null)
             skillParticle = GetComponent<ParticleSystem>();
     }
-    void Update()
-    {
-        Debug.Log("작동중");
-    }
+    //void Update()
+    //{
+    //    Debug.Log("작동중");
+    //}
     private void OnParticleCollision(GameObject other)
     {
         Debug.Log("파티클 충돌");

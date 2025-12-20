@@ -25,8 +25,10 @@ public class QuestManager : MonoBehaviour
 
     private System.Action onDialogueFinish;
 
-    public GameObject questAcceptPanel;
     private int pendingQuestID = -1;
+
+    public GameObject acceptButton;
+    public GameObject rejectButton;
 
     private void Awake()
     {
@@ -48,6 +50,9 @@ public class QuestManager : MonoBehaviour
 
         if (characterPanel != null)
             characterPanel.SetActive(false);
+
+        acceptButton.SetActive(false);
+        rejectButton.SetActive(false);
     }
 
     /// <summary>
@@ -128,12 +133,14 @@ public class QuestManager : MonoBehaviour
         if (typingCoroutine != null)
             StopCoroutine(typingCoroutine);
 
-        dialoguePanel.SetActive(false);
+        dialoguePanel.SetActive(true);
         if (characterPanel != null)
             characterPanel.SetActive(false);
 
-        // Canvas  OFF
-        questCanvas.SetActive(false);
+
+        //수락/거절 버튼 활성화
+        acceptButton.SetActive(true);
+        rejectButton.SetActive(true);
 
         onDialogueFinish?.Invoke();
     }
@@ -151,7 +158,6 @@ public class QuestManager : MonoBehaviour
 
     void CloseAllUI()
     {
-        questAcceptPanel.SetActive(false);
         dialoguePanel.SetActive(false);
         questCanvas.SetActive(false);
     }

@@ -23,7 +23,7 @@ public class AbilityUp : MonoBehaviour
     public void Abillity_Upstate()
     {
         Debug.Log("공격력 증가");
-        Debug.Log(character.transform.position);
+        //Debug.Log(character.transform.position);
         player.AttackDamage += 7;
 
         if (Attackuppart != null)

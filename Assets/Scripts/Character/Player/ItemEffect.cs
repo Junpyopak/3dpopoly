@@ -24,7 +24,7 @@ public class ItemEffect : MonoBehaviour
         player = GameObject.Find("character").GetComponent<Player>();
         PlayerHpGauge = GameObject.Find("PlayerHp").GetComponent<HpGauge>();
         if (MyparticleSystem != null)
-            DontDestroyOnLoad(MyparticleSystem.gameObject);
+            DontDestroyOnLoad(MyparticleSystem.transform.root.gameObject);
 
     }
     IEnumerator EffectOff()

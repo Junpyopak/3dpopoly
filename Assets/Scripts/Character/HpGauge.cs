@@ -20,7 +20,7 @@ public class HpGauge : MonoBehaviour
             return;
         }
         instance = this;
-        DontDestroyOnLoad(this);
+        DontDestroyOnLoad(gameObject);
     }
     void Start()
     {
