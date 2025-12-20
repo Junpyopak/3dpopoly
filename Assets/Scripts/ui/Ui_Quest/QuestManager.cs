@@ -32,6 +32,7 @@ public class QuestManager : MonoBehaviour
 
     public GameObject questBody;
     public Transform questsGroup;
+    private bool isOpen = false;
     private void Awake()
     {
         // ΩÃ±€≈Ê
@@ -189,5 +190,11 @@ public class QuestManager : MonoBehaviour
     public void OnRejectQuest()
     {
         CloseAllUI();
+    }
+
+    public void QuestOnOff()
+    {
+        isOpen = !isOpen;
+        questBody.SetActive(isOpen);
     }
 }
